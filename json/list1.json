@@ -1,0 +1,318 @@
+{"api": "mtop.mz.getMyMzList", "v": "1.0", "ret": ["SUCCESS::调用成功"], "data": {
+    "defaultData": {
+        "mzExtPart": {
+            "page": "1",
+            "totalCount": "12"
+        },
+        "mzPartList": [
+            {
+                "mzBasePart": {
+                    "gid": "59",
+                    "itemId": "1500012488650",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "10_100",
+                    "ruleDesc": "每集齐10人 立降1.00元",
+                    "status": "1",
+                    "title": "广泛的合法和人体",
+                    "type": "0",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "1",
+                    "showName": "参与斗价"
+                },
+                "mzCorePart": {
+                    "maxPrice": "10.00",
+                    "minPrice": "1.00",
+                    "nowPrice": "10.00",
+                    "numOfJoiners": "0"
+                },
+                "mzInfoPart": {
+                    "desc": "已优惠xx元,速抢!"
+                }
+            },
+            {
+                "mzBasePart": {
+                    "gid": "64",
+                    "itemId": "1604717184",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "20_800;30_700;1000_100",
+                    "status": "1",
+                    "title": "test3muz",
+                    "type": "1",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "1",
+                    "showName": "参与斗价"
+                },
+                "mzCorePart": {
+                    "maxPrice": "29.00",
+                    "minPrice": "1.00",
+                    "nowPrice": "29.00",
+                    "numOfJoiners": "0"
+                },
+                "mzInfoPart": {
+                    "desc": "仅剩3件宝贝,速抢!"
+                }
+            },
+            {
+                "mzBasePart": {
+                    "gid": "64",
+                    "itemId": "1605416104",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "100_100",
+                    "ruleDesc": "每集齐100人 立降1.00元",
+                    "status": "1",
+                    "title": "test2muz",
+                    "type": "0",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "1",
+                    "showName": "参与斗价"
+                },
+                "mzCorePart": {
+                    "maxPrice": "10.00",
+                    "minPrice": "5.00",
+                    "nowPrice": "10.00",
+                    "numOfJoiners": "1"
+                },
+                "mzInfoPart": {
+                    "desc": "仅剩1件宝贝,速抢!"
+                }
+            },
+            {
+                "mzBasePart": {
+                    "gid": "81",
+                    "itemId": "1500018383490",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "1_1000",
+                    "ruleDesc": "每集齐1人 立降10.00元",
+                    "status": "0",
+                    "title": "商城商品-预告阶段数据-自动化",
+                    "type": "0",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "0",
+                    "showName": "即将开始"
+                },
+                "mzCorePart": {
+                    "maxPrice": "100.00",
+                    "minPrice": "2.00"
+                },
+                "mzInfoPart": {
+                    "desc": "每集齐1人 立降10.00元",
+                    "startTime": "15:31"
+                }
+            },
+            {
+                "mzBasePart": {
+                    "gid": "95",
+                    "itemId": "1500009400029",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "1_1000",
+                    "status": "2",
+                    "title": "自动化商品标题",
+                    "type": "1",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "2",
+                    "showName": "立即购买"
+                },
+                "mzCorePart": {
+                    "maxPrice": "100.00",
+                    "minPrice": "10.00",
+                    "nowPrice": "10.00",
+                    "numOfJoiners": "2"
+                },
+                "mzInfoPart": {
+                    "desc": "仅剩10件宝贝 速抢!"
+                }
+            },
+            {
+                "mzBasePart": {
+                    "gid": "141",
+                    "itemId": "1500013198461",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "10_3500;20_3000;30_2500;40_1000",
+                    "status": "1",
+                    "title": "H5版拇指",
+                    "type": "1",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "1",
+                    "showName": "参与斗价"
+                },
+                "mzCorePart": {
+                    "maxPrice": "34.00",
+                    "minPrice": "10.00",
+                    "nowPrice": "35.00",
+                    "numOfJoiners": "11"
+                },
+                "mzInfoPart": {
+                    "desc": "仅剩50件宝贝,速抢!"
+                }
+            },
+            {
+                "mzBasePart": {
+                    "gid": "144",
+                    "itemId": "1500026295807",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "1_600",
+                    "ruleDesc": "每集齐1人 立降6.00元",
+                    "status": "2",
+                    "title": "即将售罄的宝贝",
+                    "type": "0",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "2",
+                    "showName": "立即购买"
+                },
+                "mzCorePart": {
+                    "maxPrice": "15.00",
+                    "minPrice": "3.00",
+                    "nowPrice": "3.00",
+                    "numOfJoiners": "2"
+                },
+                "mzInfoPart": {
+                    "desc": "仅剩10件宝贝 速抢!"
+                }
+            },
+            {
+                "mzBasePart": {
+                    "gid": "142",
+                    "itemId": "1500026295769",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "10_100",
+                    "status": "6",
+                    "title": "即将售罄的宝贝",
+                    "type": "1",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "6",
+                    "showName": "卖光了"
+                },
+                "mzCorePart": {
+                    "maxPrice": "2.00",
+                    "minPrice": "1.00",
+                    "nowPrice": "2.00",
+                    "numOfJoiners": "1"
+                },
+                "mzInfoPart": {
+                    "desc": "共0人购买 下次早点吧"
+                }
+            },
+            {
+                "mzBasePart": {
+                    "gid": "148",
+                    "itemId": "1500013233424",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "1_300",
+                    "ruleDesc": "每集齐1人 立降3.00元",
+                    "status": "6",
+                    "title": "还有机会宝贝",
+                    "type": "0",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "6",
+                    "showName": "卖光了"
+                },
+                "mzCorePart": {
+                    "maxPrice": "15.00",
+                    "minPrice": "3.00",
+                    "nowPrice": "6.00",
+                    "numOfJoiners": "3"
+                },
+                "mzInfoPart": {
+                    "desc": "共0人购买 下次早点吧"
+                }
+            },
+            {
+                "mzBasePart": {
+                    "gid": "147",
+                    "itemId": "1500013250500",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "1_100",
+                    "ruleDesc": "每集齐1人 立降1.00元",
+                    "status": "6",
+                    "title": "即将售罄的宝贝2",
+                    "type": "0",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "6",
+                    "showName": "卖光了"
+                },
+                "mzCorePart": {
+                    "maxPrice": "4.00",
+                    "minPrice": "2.00",
+                    "nowPrice": "2.00",
+                    "numOfJoiners": "3"
+                },
+                "mzInfoPart": {
+                    "desc": "共0人购买 下次早点吧"
+                }
+            },
+            {
+                "mzBasePart": {
+                    "gid": "149",
+                    "itemId": "1500013233426",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "2_300",
+                    "ruleDesc": "每集齐2人 立降3.00元",
+                    "status": "1",
+                    "title": "再一个即将售罄的",
+                    "type": "0",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "1",
+                    "showName": "参与斗价"
+                },
+                "mzCorePart": {
+                    "maxPrice": "8.00",
+                    "minPrice": "1.00",
+                    "nowPrice": "5.00",
+                    "numOfJoiners": "3"
+                },
+                "mzInfoPart": {
+                    "desc": "仅剩1件宝贝,速抢!"
+                }
+            },
+            {
+                "mzBasePart": {
+                    "gid": "146",
+                    "itemId": "1500026295808",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "1_1600",
+                    "ruleDesc": "每集齐1人 立降16.00元",
+                    "status": "2",
+                    "title": "拇指测试宝贝18",
+                    "type": "0",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "2",
+                    "showName": "立即购买"
+                },
+                "mzCorePart": {
+                    "maxPrice": "18.00",
+                    "minPrice": "2.00",
+                    "nowPrice": "2.00",
+                    "numOfJoiners": "1"
+                },
+                "mzInfoPart": {
+                    "desc": "仅剩15件宝贝 速抢!"
+                }
+            }
+        ]
+    },
+    "success": "true"
+}}

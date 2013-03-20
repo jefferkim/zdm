@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <meta charset="utf-8"/>
+    <title>手机淘宝网 For iPhone/Android</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta name="format-detection" content="telephone=no"/>
+
+    <link type="text/css" rel="styleSheet" href="../vendor/mixsln.css"/>
+
+    <link rel="stylesheet/less"  type="text/css" href="less/muzhi.less">
+    <script type="text/javascript" src="http://a.tbcdn.cn/mw/base/libs/less/1.3.0/less.js"></script>
+
+
+</head>
+<body>
+<div id="tbh5v0">
+
+
+    <!--begin of mix layout-->
+    <div class="viewport">
+        <header class="titlebar">
+            <ul>
+                <li>Title</li>
+                <li><button class="back">Back Btn</button></li>
+                <li><button class="func">Func Btn</button></li>
+            </ul>
+        </header>
+        <div class="tab-wrap">
+            <ul id="J-tab" class="tab-holder">
+                <li class="J-filter"><a href="#home" id="J-filterLink">宝贝<!--<small>:全部</small><span class="arr"></span>--></a></li>
+                <li><a href="#my/p1" id="J-My">我的斗价</a><em class="pop-num" id="J-myNum" style="display:none;"></em></li>
+                <li><a href="#!forecast" id="J-forecast">精彩预告</a></li>
+            </ul>
+        </div>
+        <section class="content">
+            <div>
+                <div class="active"></div>
+                <div class="inactive"></div>
+            </div>
+        </section>
+        <footer class="toolbar"></footer>
+    </div>
+
+
+    <footer class="footer">
+        <section class="footer-t">
+            <p class="user-info">
+                <span><a href="#">用户名1</a></span><span><a href="#">退出</a></span>
+            </p>
+            <p class="gotop"><a id="J_GoTop" href="#">top<b></b></a></p>
+        </section>
+        <nav class="footer-l">
+            <a href="#" title="">标准版</a><a href="http://www.taobao.com/index.php?from=wap&sprefer=pmm302" title="">电脑版</a>
+        </nav>
+        <p class="copyright">©2012 浙B2-20080224<a class="cr-sv" href="#" id="J_service">客服</a></p>
+    </footer>
+
+</div>
+<input type="hidden" id="J_app_key" value="12574478" />
+<!--<input type="hidden" id="J_app_key" value="4272" />-->
+
+<!--mask层-->
+<div id="J-mask" class="mask" style="display:none;"></div>
+
+<div id="J-cloneNode" style="display:none"></div>
+
+<script type="template" id="J-test">
+    <span class="test"><%= text%></span>
+</script>
+<script type="template" id="J-itemTemplate">
+        <div class="hd <%if(allowRefresh){%>allow-refresh<%}%>"><h3><a href="<%= link%>"><%= title%></a></h3>
+            <%if(allowRefresh){%><a href="#" class="J-refresh"><s>刷新</s></a><%}%></div>
+        <div class="bd">
+            <div class="pic">
+                <a href="<%= link%>"><img src="<%= pic%>"/></a>
+                <%if(startTime){%><span class="start-time"><s></s><%= startTime%>开抢</span><%}%>
+            </div>
+            <div class="J-priceBar price-section">
+                <span class="origin-price">&yen;<%= maxPrice%></span>
+                <span class="lowest-price">&yen;<%= minPrice%></span>
+                <div class="price-bar"><span class="current-pos" style="top:<%= region[0]%>px"><s></s></span></div>
+                <div class="dynamic" style="top:<%= region[1]%>px">
+                    <b class="current-price">&yen;<%= currentPrice %></b>
+                    <%if(numOfJoiners){%><em><%= numOfJoiners%>人斗价</em><%}%>
+                </div>
+            </div>
+        </div>
+        <div class="ft">
+            <div class="desc"><%= desc%></div>
+            <div class="handler">
+                <%if(btnClass[1]){%>
+                <a href="<%= detailUrl%>" class="btn <%= btnClass[0]%>"><%= btnTxt%></a>
+                <%}else{%>
+                  <span class="btn <%= btnClass[0]%>"><%= btnTxt%></span>
+                <%}%>
+            </div>
+        </div>
+</script>
+
+<input type="hidden" id="J_moreParams" value="mz_key=0&ttid=700770@cloudkey_yunos_1.0.0" />
+
+
+<script type="template" id="J-forecastItemTemplate">
+    <div class="forecast-list">
+        <% _.each(forecastList,function(forecastItem,index){%>
+        <li class="mod <%if(index == len){%>open<%}%>">
+            <div class="hd <%if(index == len){%>last<%}%>" onclick=""  data-gid="<%= forecastItem.gid%>"><h3><%= forecastItem.name%></h3><span class="start-time"><%= forecastItem.date%><b><%= forecastItem.time%></b>开始</span><a href="#" class="J-subscribe <% if(forecastItem.subed=='true'){%>subscribed<%}%>"></a><em class="arrow"></em></div>
+            <div class="bd <%if(index != len){%>hide<%}%>"><ul <%if(index != len){%> class="current" <%}%>><div class="loading"><span></span></div></ul></div>
+        </li>
+        <% }) %>
+    </div>
+</script>
+<script type="text/template" id="J-subsribe-box">
+    <div class="subscribe-box" id="J-subscribeBox">
+        <div class="subscribe-c">
+            <p class="tips">这场斗价开始前，通过手机短信提醒您，不产生任何费用。</p>
+            <div class="phone-input">
+                <label>手机号码：</label>
+                <a href="#" class="input-clear" style="display:none;"></a>
+                <input type="tel" class="J-input"/>
+                <a href="#" class="confirm-btn">确定</a>
+            </div>
+            <a href="#" id="J-close"></a>
+        </div>
+    </div>
+</script>
+
+<script src="../vendor/zepto.js"></script>
+<script src="../vendor/underscore.js" type="text/javascript"></script>
+
+<!--vendor lib-->
+<script src="../vendor/mixsln-debug.js" type="text/javascript"></script>
+
+<script src="util.js"></script>
+<script src="default/default.js"></script>
+<script src="my/my.js"></script>
+<script type="text/javascript">
+    app.config = {
+        viewport: document.querySelector('.viewport'),
+        enableTitlebar:true,
+        enableScroll:true,
+        enableTransition:true,
+        templateEngine:{
+            compile : function(text) {
+                return Object.isTypeof(text, 'string') ? _.template(text) : text;
+            },
+            render : function(compiled, datas) {
+                return compiled(datas);
+            }
+        }
+    };
+
+    app.start();
+</script>
+
+</body>
+</html>

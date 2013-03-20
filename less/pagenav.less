@@ -1,0 +1,297 @@
+@import '_func';
+
+
+#tbh5v0 {
+    //@c-pnav-bcircle:22px;
+    //翻页按钮
+    .c-pnav-scircle(@c-pnav-scircle:10,@color:#A9A9A9){
+        margin: 0;
+        padding: 0;
+        width: @c-pnav-scircle + 2px;
+        height: @c-pnav-scircle + 2px;
+        display: inline-block;
+        //-webkit-border-radius: @c-pnav-scircle/2;
+        background-image: -webkit-gradient(radial, center center, (@c-pnav-scircle/2) + 1, center center, @c-pnav-scircle/2, from(#EEE), to(@color));
+        //background-color:@color;
+    }
+    .c-pnav-ora{
+        #tbh5v0.c-pnav-scircle(10,#FF4400);
+    }
+    .c-pnav-grey{
+        #tbh5v0.c-pnav-scircle(10,#A9A9A9);
+    }
+
+    //翻页指示器. @r:背景圆半径；@a：箭头边长；@border:边粗细程度
+    .c-pnav-cc(@r:11, @a:8px , @orient:45deg,@border:3px) when (@orient=45deg){
+        width: @r * 2 + 2px;
+        height: @r * 2 + 2px;
+        display: inline-block;
+        //-webkit-border-radius: @r;
+        background-image: -webkit-gradient(radial, center center, @r + 1, center center, @r, from(#EEE), to(#A9A9A9));
+        line-height: @r * 2 + 2px;
+        text-align: center;
+        //background-color:#A9A9A9;
+        span{
+            display: inline-block;
+            height: @a;
+            width: @a;
+            position: relative;
+            border-right: solid @border white;
+            border-top:solid white @border;
+            margin-right:  0.5 * @a - 1px;
+            -webkit-transform:rotate(@orient);
+        }
+    }
+
+    .c-pnav-cc(@r:11, @a:8px , @orient:45deg,@border:3px) when (@orient=-135deg){
+        width: @r * 2 + 2px;
+        height: @r * 2 + 2px;
+        display: inline-block;
+        line-height: @r * 2 + 2px;
+        //-webkit-border-radius: @r;
+        background-image: -webkit-gradient(radial, center center, @r + 1, center center, @r, from(#EEE), to(#A9A9A9));
+        //background-color:#A9A9A9;
+        text-align: center;
+        span{
+            display: inline-block;
+            height: @a;
+            width: @a;
+            position: relative;
+            border-right: solid @border white;
+            border-top:solid white @border;
+            margin-left:  0.5 * @a - 1px;
+            -webkit-transform:rotate(@orient);
+        }
+    }
+
+    .c-pnav-right{
+        .c-pnav-cc(11,6px,45deg,3px);
+    }
+    .c-pnav-left{
+        .c-pnav-cc(11,6px,-135deg,3px);
+    }
+    //翻页指示器内部箭头.
+    .c-pnav-indicator{
+        display: inline-block;
+        height: 6px;
+        width: 6px;
+        position: absolute;
+        border-right: solid 3px white;
+        border-top:solid white 3px;
+        &.left{
+            margin-left: 5px;
+            margin-top: 7px;
+            border-bottom-right-radius: 1px;
+            border-top-left-radius: 1px;
+            -webkit-transform:rotate(45deg);
+        }
+        &.right{
+            margin-left: 7px;
+            margin-top: 7px;
+            border-bottom-right-radius: 1px;
+            border-top-left-radius: 1px;
+            -webkit-transform:rotate(-135deg);
+        }
+    }
+
+    .c-pnav-list{
+        height: 23px;
+        padding: 0;
+        margin: 1px auto;
+        vertical-align:top;
+        display: inline-block;
+        margin-left:10px;
+        li{
+            #tbh5v0.c-pnav-grey;
+            margin-right:10px;
+            &.cur{
+                #tbh5v0.c-pnav-ora;
+                margin-right:10px;
+            }
+        }
+    }
+
+	//分页.
+    .c-pnav-con{
+        text-align: center;
+        font-size: 18px;     //18px;
+		
+        //兼容老版本样式.
+        ul{
+            list-style: none;
+            display: inline-block;
+            li{
+                display: inline-block;
+                padding: 5px 15px;
+            }
+            li:nth-child(2){
+                width: 85px;
+            }
+            li:nth-child(3){
+                margin-left: -110px;
+            }
+			li:last-child {
+				margin-left: 0;
+			}
+        }
+		
+		//新版分页.
+		.c-p-sec{
+			display: inline-block;
+            margin: 20px auto;
+			div{
+				display: inline-block;
+			}
+
+            .tri(@left:6px,@border-left:1px,@border-right:1px){
+                width: 90px;
+                a{
+                    display: inline-block;
+                    width: 70px;
+                    height: 30px;
+                    line-height:30px;
+                    background:-webkit-gradient(linear,left top,left bottom,from(#fefefe),to(#e8e8e8));
+                    border:1px #D5D5D5 solid;
+                    overflow: hidden;
+                    border-radius:2px;
+                    -webkit-border-radius:2px;
+                    border-left: @border-left #D5D5D5 solid;
+                    border-right: @border-right #D5D5D5 solid;
+                }
+
+                //箭头效果.
+                .c-p-p{
+                    display: inline-block;
+                    width: 17px;
+                    height: 30px;
+                    position: relative;
+                    overflow: hidden;
+                    vertical-align: top;
+                    em{
+                        display: inline;
+                        -webkit-transform: rotate(45deg);
+                        background: -webkit-gradient(linear,left top,right bottom,from(#fefefe),to(#e8e8e8));
+                        position: absolute;
+                        top:4px;
+                        left: @left;
+                        width: 21px;
+                        height: 21px;
+                        border: 1px solid #dddddd;
+                    }
+                }
+            }
+            .c-p-pre{
+                .tri(6px,0px,1px);
+            }
+			.c-p-next{
+				.tri(-12px,1px,0px);
+                margin-left: 5px;
+			}
+
+
+
+			.c-p-cur{
+                position: relative;
+                height: 30px;
+                vertical-align: baseline;
+                text-align: center;
+                margin-left: 5px;
+
+                //页面上下箭头
+                .c-p-arrow{
+                    display: inline-block;
+                    width: 88px;
+                    line-height: 30px;
+                    border: 1px solid #dddddd;
+                    background:-webkit-gradient(linear,left top,left bottom,from(#fefefe),to(#e8e8e8));
+                    span:first-child{
+                        margin-right:5px;
+                        width: 50px;
+                        white-space:nowrap;
+                        overflow:hidden;
+                        text-overflow:ellipsis;
+                    }
+                }
+
+                .c-p-down{
+
+                    span:last-child{
+                        .border-arrow(5px,5px,#666,3px,180deg);
+                        margin-bottom: 3px;
+                    }
+                }
+
+                .c-p-up{
+                    span:last-child{
+                        .border-arrow(5px,5px,#666,3px,0deg);
+                    }
+                }
+			}
+
+            //不可用.
+            .c-p-grey{
+                display: inline-block;
+                a{
+                    color: #999;
+                }
+            }
+
+			//select style
+			.c-p-select{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				height: 30px;
+				width: 90px;
+				opacity: 0;
+                z-index: 10000;
+			}
+		}
+    }
+    
+
+
+
+    //信息展开
+    .c-pnav-wrapper{
+        display: block;
+        margin: 0 10px;
+        padding: 0;
+        border-top: 1px solid #DDDDDD;
+        a{
+           display: block;
+           position: relative;
+           height: 25px;
+           width: 60px;
+           top:-2px;
+           border: 1px solid #DDD;
+           border-top: 0;
+           background-color: #EEE;
+           background-position: center center;
+           background-repeat: no-repeat;
+           border-top-left-radius:2px;
+           border-top-right-radius:2px;
+           margin: auto;
+           &.down{
+               div{
+                    width: 100%;
+                    height: 100%;
+                    text-align:center;
+                    span{
+                        .border-arrow(5px, 5px, #666, 3px, 180deg);
+                    }
+               }
+           }
+           &.up{
+               div{
+                   width: 100%;
+                   height: 100%;
+                   text-align:center;
+                   span{
+                       .border-arrow(5px, 5px, #666, 3px, 0deg);
+                   }
+              }
+           }
+        }
+    }
+}

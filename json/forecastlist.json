@@ -1,0 +1,92 @@
+{"api":"mtop.mz.getMzPre", "v":"1.0", "ret":["SUCCESS::调用成功"], "data":{
+    "defaultData":{
+        "mzExtPart":{"page":"2","totalCount":"30"},
+        "mzPartList":[
+            {
+                "mzBasePart":{
+                    "gid":"81",
+                    "itemId":"1500018383490",
+                    "pic":"http://cdn.taobao.com/XX.gif",
+                    "rule":"2_1000",
+                    "ruleDesc":"每集齐2人 立降¥10.00",
+                    "status":"0",
+                    "title":"自动化1FGS",
+                    "type":"0",
+                    "userId":"0"
+                },
+                "mzClickPart":{
+                    "clickType":"0",
+                    "showName":"即将开始"
+                },
+                "mzCorePart":{
+                    "maxPrice":"100.00",
+                    "minPrice":"88.00"
+                },
+                "mzInfoPart":{
+                    "desc":"每集齐2人 立降¥10.00",
+                    "startTime":"15:31"
+                }
+            },
+            {
+                "mzBasePart":{
+                    "gid":"81",
+                    "itemId":"1500018383490",
+                    "pic":"http://cdn.taobao.com/XX.gif",
+                    "rule":"2_1000",
+                    "ruleDesc":"每集齐2人 立降¥10.00",
+                    "status":"0",
+                    "title":"自动化1FGS",
+                    "type":"0",
+                    "userId":"0"
+                },
+                "mzClickPart":{
+                    "clickType":"0",
+                    "showName":"即将开始"
+                },
+                "mzCorePart":{
+                    "maxPrice":"100.00",
+                    "minPrice":"88.00"
+                },
+                "mzInfoPart":{
+                    "desc":"每集齐2人 立降¥10.00",
+                    "startTime":"15:31"
+                }
+            },
+            {
+                "mzBasePart":{
+                    "gid":"81",
+                    "itemId":"1500018383490",
+                    "pic":"http://cdn.taobao.com/XX.gif",
+                    "rule":"2_1000",
+                    "ruleDesc":"每集齐2人 立降¥10.00",
+                    "status":"0",
+                    "title":"自动化1FGS",
+                    "type":"0",
+                    "userId":"0"
+                },
+                "mzClickPart":{
+                    "clickType":"0",
+                    "showName":"即将开始"
+                },
+                "mzCorePart":{
+                    "maxPrice":"100.00",
+                    "minPrice":"88.00"
+                },
+                "mzInfoPart":{
+                    "desc":"每集齐2人 立降¥10.00",
+                    "startTime":"15:31"
+                }
+            }
+        ],
+        "mzPrePromList":[
+            {
+                "date":"03月05日",
+                "gid":"81",
+                "name":"下一场预告",
+                "subed":"false",
+                "time":"15:31"
+            }
+        ]
+    },
+    "success":"true"
+}}

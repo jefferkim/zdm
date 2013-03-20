@@ -1,0 +1,40 @@
+{"api": "mtop.mz.getMyMzList", "v": "1.0", "ret": ["SUCCESS::调用成功"], "data": {
+    "defaultData": {
+        "mzExtPart": {
+            "page": "1",
+            "totalCount": "12"
+        },
+        "mzPartList": [
+
+
+
+            {
+                "mzBasePart": {
+                    "gid": "81",
+                    "itemId": "1500018383490",
+                    "pic": "http://cdn.taobao.com/XX.gif",
+                    "rule": "1_1000",
+                    "ruleDesc": "每集齐1人 立降10.00元",
+                    "status": "0",
+                    "title": "商城商品-预告阶段数据-自动化",
+                    "type": "0",
+                    "userId": "0"
+                },
+                "mzClickPart": {
+                    "clickType": "0",
+                    "showName": "即将开始"
+                },
+                "mzCorePart": {
+                    "maxPrice": "100.00",
+                    "minPrice": "2.00"
+                },
+                "mzInfoPart": {
+                    "desc": "每集齐1人 立降10.00元",
+                    "startTime": "15:31"
+                }
+            }
+
+        ]
+    },
+    "success": "true"
+}}

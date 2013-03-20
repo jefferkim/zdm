@@ -1,0 +1,32 @@
+{"api": "mtop.mz.getMzItemInfo", "v": "1.0", "ret": ["SUCCESS::调用成功"], "data": {
+    "defaultData": {
+        "mzBasePart": {
+            "gid": "150",
+            "itemId": "1500013399937",
+            "pic": "http://cdn.taobao.com/XX.gif",
+            "rule": "20_100",
+            "ruleDesc": "每集齐20人 立降1.00元",
+            "status": "1",
+            "title": "带sku的",
+            "type": "0",
+            "userId": "0"
+        },
+        "mzClickPart": {
+            "clickType": "1",
+            "showName": "参与斗价"
+        },
+        "mzCorePart": {
+            "maxPrice": "20.00",
+            "minPrice": "2.00",
+            "nowPrice": "18.00",
+            "numOfJoiners": "10"
+        },
+        "mzExtPart": {
+            "leftTime": "8756小时44分"
+        },
+        "mzInfoPart": {
+            "desc": "已优惠xx元,速抢!"
+        }
+    },
+    "success": "true"
+}}
