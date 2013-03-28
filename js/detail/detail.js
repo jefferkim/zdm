@@ -1,10 +1,10 @@
 (function (app, undef) {
 
-    var home = app.page.define({
-        name:"list",
-        title:'<h1 id="logo"></h1>', //title bar的文案
-        route:"home",
-        template:"./default/default.tpl",
+    var detail = app.page.define({
+        name:"detail",
+        title:'', //title bar的文案
+        route:"detail\/id(P<pageNo>\\d+)",
+        template:"js/detail/detail.tpl",
         //buttons of navigation
         buttons:[
             {
@@ -34,7 +34,9 @@
 
             content.html('<div class="loading"></div>');
             // implement super.ready
-            this.loadListData();
+
+            this.fill({});
+            //this.loadListData();
         },
 
         unload:function () {
