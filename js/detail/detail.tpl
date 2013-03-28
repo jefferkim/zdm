@@ -117,8 +117,8 @@
 
         <div id="zdm-comment" class="zdm-comment">
            <h2>用户评论</h2>
-           <ul>
-               <li class="mod">
+           <ul class="zdm-comment-block">
+               <li class="z-mod">
                   <div class="hd">
                     <img src="http://img04.taobaocdn.com/tps/i4/T12.4VXwpbXXbe.mPe-40-40.png"/>
                   </div>
@@ -134,7 +134,7 @@
                      </ul>
                   </div>
                </li>
-               <li class="mod">
+               <li class="z-mod">
                  <div class="hd">
                    <img src="http://img04.taobaocdn.com/tps/i4/T12.4VXwpbXXbe.mPe-40-40.png"/>
                  </div>
@@ -150,7 +150,7 @@
                     </ul>
                  </div>
               </li>
-              <li class="mod">
+              <li class="z-mod">
                    <div class="hd">
                      <img src="http://img04.taobaocdn.com/tps/i4/T12.4VXwpbXXbe.mPe-40-40.png"/>
                    </div>

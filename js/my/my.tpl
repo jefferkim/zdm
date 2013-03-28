@@ -1,40 +1,38 @@
+<div id="J-myGood">
 
-    <div id="J-content" class="content">
-       <ul id="J-list" class="list">
+    <ul class="good-block">
+        <li class="z-mod">
+            <div class="good-item">
+                <div class="hd good-hd">
+                    <img src="http://img03.taobaocdn.com/tps/i3/T12idWXyRbXXXmMqDm-70-70.png"/>
+                </div>
+                <div class="bd good-bd">
+                     <p>文艺气质彼得潘领系带七分袖宽松牛仔连衣裙女</p>
 
-                 <% _.each(list, function(item) { %>
-                 <li class="list-item">
-                  <div class="hd <%if(item.allowRefresh){%>allow-refresh<%}%>"><h3><a href="<%= item.link%>"><%= item.title%></a></h3>
-                       <%if(item.allowRefresh){%><a href="#" class="J-refresh"><s>刷新</s></a><%}%></div>
-                   <div class="bd">
-                       <div class="pic">
-                           <a href="<%= item.link%>"><img src="<%= item.pic%>"/></a>
-                           <%if(item.startTime){%><span class="start-time"><s></s><%= item.startTime%>开抢</span><%}%>
-                       </div>
-                       <div class="J-priceBar price-section">
-                           <span class="origin-price">&yen;<%= item.maxPrice%></span>
-                           <span class="lowest-price">&yen;<%= item.minPrice%></span>
-                           <div class="price-bar"><span class="current-pos" style="top:<%= item.region%>px"><s></s></span></div>
-                           <div class="dynamic" style="top:<%= item.region%>px">
-                               <b class="current-price">&yen;<%= item.currentPrice %></b>
-                               <%if(item.numOfJoiners){%><em><%= item.numOfJoiners%>人斗价</em><%}%>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="ft">
-                       <div class="desc"><%= item.desc%></div>
-                       <div class="handler">
-                           <%if(item.btnClass[1]){%>
-                           <a href="<%= item.detailUrl%>" class="btn <%= item.btnClass[0]%>"><%= item.btnTxt%></a>
-                           <%}else{%>
-                             <span class="btn <%= item.btnClass[0]%>"><%= item.btnTxt%></span>
-                           <%}%>
-                       </div>
-                   </div>
-                  </li>
+                </div>
+            </div>
+            <div class="comment-item">
+                <div class="hd">
+                    <img src="http://img04.taobaocdn.com/tps/i4/T12.4VXwpbXXbe.mPe-40-40.png"/>
+                </div>
+                <div class="bd">
+                    <h3><a href="#">小猪LULU</a></h3>
+                    <p>颜色特别美，做工特别好，潘领好可爱。。设计感很足。好喜欢。。我穿已经在膝盖了。。囧···哈哈。。但还是爱不释手啊。。</p>
+                    <ul class="pic-desc">
+                        <li><img src="http://img04.taobaocdn.com/tps/i4/T1mNFVXxlcXXXeF16k-62-62.png"/></li>
+                        <li><img src="http://img04.taobaocdn.com/tps/i4/T1mNFVXxlcXXXeF16k-62-62.png"/></li>
+                        <li><img src="http://img04.taobaocdn.com/tps/i4/T1mNFVXxlcXXXeF16k-62-62.png"/></li>
+                        <li><img src="http://img04.taobaocdn.com/tps/i4/T1mNFVXxlcXXXeF16k-62-62.png"/></li>
+                        <li><img src="http://img04.taobaocdn.com/tps/i4/T1mNFVXxlcXXXeF16k-62-62.png"/></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ft comment-ft"><!--<a class="fn view-comments" href="#">查看全部评论<em></em></a>--><a href="#" class="fn J-addPic">添加图片及评论<em></em></a></div>
 
-                  <% })%>
 
-       </ul>
-       <div id="J-pageNav" class="c-pnav-con"></div>
-    </div>
+        </li>
+    </ul>
+
+
+
+</div>
