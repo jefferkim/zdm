@@ -114,7 +114,9 @@
 
 
     <section class="d-master">
+
         <div id="zdm-comment" class="zdm-comment">
+           <h2>用户评论</h2>
            <ul>
                <li class="mod">
                   <div class="hd">
@@ -148,6 +150,16 @@
                     </ul>
                  </div>
               </li>
+              <li class="mod">
+                   <div class="hd">
+                     <img src="http://img04.taobaocdn.com/tps/i4/T12.4VXwpbXXbe.mPe-40-40.png"/>
+                   </div>
+                   <div class="bd">
+                      <h3><a href="#">小猪LULU</a></h3>
+                      <p>颜色特别美，做工特别好，潘领好可爱。。设计感很足。好喜欢。。我穿已经在膝盖了。。囧···哈哈。。但还是爱不释手啊。。</p>
+
+                   </div>
+               </li>
            </ul>
 
         </div><!--值得买评论区块-->
