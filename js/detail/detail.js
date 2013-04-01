@@ -13,8 +13,12 @@
             }
         ],
 
+        //是否支持上传图片
+        _supportImgUpload:function(){
 
 
+
+        },
 
         loadListData:function () {
             var that = this;

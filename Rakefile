@@ -2,7 +2,7 @@ require 'sprockets'
 require 'fileutils'
 require 'uglifier'
 
-app_name = 'muzhi'
+app_name = 'zdm'
 
 desc 'Concatenate and minify javascript files'
 task :js do

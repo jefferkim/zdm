@@ -1,0 +1,154 @@
+{
+    "api": "mtop.order.queryOrderList",
+    "v": "1.0",
+    "ret": [
+        "SUCCESS::调用成功"
+    ],
+    "data": {
+        "total": "3",
+        "cell": [
+            {
+                "boughtItem": [
+                    {
+                        "icon": [
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        "itemId": "1500009385306",
+                        "pic": "",
+                        "price": "500.10",
+                        "quantity": "1",
+                        "sPrice": "0",
+                        "title": "蜂蜜与四叶草-----测试测试"
+                    }
+                ],
+                "createTime": "2012-11-22 15:32:48",
+                "icon": [
+                    ""
+                ],
+                "itemPrice": "0",
+                "orderId": "92168362302274",
+                "orderOperate": [
+                    {
+                        "api": "mtop.order.doPay",
+                        "name": "pay",
+                        "param": {
+                            "payType": "0",
+                            "orderId": "92168362302274"
+                        }
+                    },
+                    {
+                        "api": "mtop.order.doPay",
+                        "name": "helpPay",
+                        "param": {
+                            "payType": "2",
+                            "orderId": "92168362302274"
+                        }
+                    },
+                    {
+                        "api": "mtop.trade.orderOperate",
+                        "name": "cancelOrder",
+                        "param": {
+                            "bizOrderId": "92168362302274",
+                            "type": "0"
+                        }
+                    }
+                ],
+                "orderStatus": "等待买家付款",
+                "payDesc": [],
+                "payPrice": "500.10",
+                "sellerId": "178675266",
+                "sellerNick": "weitest21",
+                "stepInfo": []
+            },
+            {
+                "boughtItem": [
+                    {
+                        "icon": [
+                            ""
+                        ],
+                        "itemId": "1500011595663",
+                        "pic": "",
+                        "price": "49.25",
+                        "quantity": "1",
+                        "sPrice": "0",
+                        "title": "大话西游II50元自动发货"
+                    }
+                ],
+                "createTime": "2012-11-05 13:37:22",
+                "icon": [],
+                "itemPrice": "0",
+                "orderId": "92160961392274",
+                "orderOperate": [
+                    {
+                        "api": "mtop.order.doPay",
+                        "name": "pay",
+                        "param": {
+                            "payType": "0",
+                            "orderId": "92160961392274"
+                        }
+                    },
+                    {
+                        "api": "mtop.order.doPay",
+                        "name": "helpPay",
+                        "param": {
+                            "payType": "2",
+                            "orderId": "92160961392274"
+                        }
+                    }
+                ],
+                "orderStatus": "等待买家付款",
+                "payDesc": [],
+                "payPrice": "49.25",
+                "sellerId": "2016335049",
+                "sellerNick": "wwtest16",
+                "stepInfo": []
+            },
+            {
+                "boughtItem": [
+                    {
+                        "icon": [
+                            ""
+                        ],
+                        "itemId": "1500011595663",
+                        "pic": "",
+                        "price": "49.25",
+                        "quantity": "1",
+                        "sPrice": "0",
+                        "title": "大话西游II50元自动发货"
+                    }
+                ],
+                "createTime": "2012-11-02 17:04:19",
+                "icon": [],
+                "itemPrice": "0",
+                "orderId": "92103831002274",
+                "orderOperate": [
+                    {
+                        "api": "mtop.order.doPay",
+                        "name": "pay",
+                        "param": {
+                            "payType": "0",
+                            "orderId": "92103831002274"
+                        }
+                    },
+                    {
+                        "api": "mtop.order.doPay",
+                        "name": "helpPay",
+                        "param": {
+                            "payType": "2",
+                            "orderId": "92103831002274"
+                        }
+                    }
+                ],
+                "orderStatus": "等待买家付款",
+                "payDesc": [],
+                "payPrice": "49.25",
+                "sellerId": "2016335049",
+                "sellerNick": "wwtest16",
+                "stepInfo": []
+            }
+        ]
+    }
+}

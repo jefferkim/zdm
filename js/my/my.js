@@ -2,21 +2,18 @@
 
     var myGood = app.page.define({
         name:"myGood",
-        title:'', //title bar的文案
+        title:'我的商品', //title bar的文案
         route:"my\/p(P<pageNo>\\d+)",
         template:"js/my/my.tpl",
+        templates:{
+           "commentItem":JST['template/comment_item'],
+           "goodItem":JST['template/good_item']
+        },
         //buttons of navigation
         buttons:[
             {
                 type:'back',
                 text:'返回'
-            },
-            {
-                type : 'func',
-                text : '下一页',
-                handler : function(e) {
-                    listPage.nextPage();
-                }
             }
         ],
 
@@ -27,6 +24,8 @@
 
             var that = this;
             var navigation = app.navigation;
+
+
           /*  self._hideNav();
             $("#J-list").html('<div class="loading"><span></span></div>');
             $("#J-pageNav").html('');
