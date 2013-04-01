@@ -1,15 +1,17 @@
+<%_.each(goods,function(good){%>
 <li class="z-mod">
     <div class="good-item">
         <div class="hd good-hd">
             <img src="http://img03.taobaocdn.com/tps/i3/T12idWXyRbXXXmMqDm-70-70.png"/>
         </div>
         <div class="bd good-bd">
-             <p>文艺气质彼得潘领系带七分袖宽松牛仔连衣裙女</p>
+             <p><%= good.boughtItem[0].title %></p>  <!--暂时用0-->
         </div>
     </div>
 
-   <div id="J-comment-<%= good.itemId %>">
+   <div id="J-comment-<%= good.boughtItem[0].itemId %>">
 
    </div>
     <div class="ft comment-ft"><!--<a class="fn view-comments" href="#">查看全部评论<em></em></a>--><a href="#" class="fn J-addPic">添加图片及评论<em></em></a></div>
 </li>
+<%})%>

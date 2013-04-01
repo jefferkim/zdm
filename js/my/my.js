@@ -4,8 +4,8 @@
         name:"myGood",
         title:'我的商品', //title bar的文案
         route:"my\/p(P<pageNo>\\d+)",
-        template:"js/my/my.tpl",
         templates:{
+           "layout":JST['template/good_layout'],
            "commentItem":JST['template/comment_item'],
            "goodItem":JST['template/good_item']
         },
@@ -19,44 +19,46 @@
 
 
 
+        // load good list
+        loadGoodList:function(){
 
-        loadListData:function(){
-
-            var that = this;
+            var self = this;
             var navigation = app.navigation;
-
-
-          /*  self._hideNav();
-            $("#J-list").html('<div class="loading"><span></span></div>');
-            $("#J-pageNav").html('');
-            $("#J-My").addClass('cur');*/
-
             var pageNo = navigation.getParameter("pageNo");
-
+            var result,goodList;
             var url = {api:"mtop.mz.getMyMzList",data:{"page": pageNo || 1, "pagesize": "12"}};
 
             $.ajax({
-                url:"json/list.json",
+                url:"json/goodlist.json",
                 dataType:"json",
                 success:function(resp){
 
-                    var data = resp.data.defaultData;
-                    var data1 = app.Util._parseData(data);
-                    that.fill({list:data1});
+                    console.log(resp);
+
+                    goodList = resp.data.cell;
+                    $("#J-goodList").html(self.templates['goodItem']({goods:goodList}));
+
+
+
+
+
+                 //   that.fill({list:data1});
 
                 }
             });
+
 
         },
 
         ready:function () {
           // implement super.ready
+          var self = this;
           var content = $(app.component.getActiveContent());
           var navigation = app.navigation;
 
-          content.html('<div class="loading"></div>');
+          content.html(self.templates['layout']());
 
-          this.fill({});
+          this.loadGoodList();
         },
 
         unload:function () {
