@@ -56,78 +56,17 @@
     </footer>
 
 </div>
+
+<div class="form-upload" style="display:none;">
+    <input type="file" name="" multiple id="J-upload"/>
+</div>
+
+
+
 <input type="hidden" id="J_app_key" value="12574478" />
-<!--<input type="hidden" id="J_app_key" value="4272" />-->
-
-<!--mask层-->
-<div id="J-mask" class="mask" style="display:none;"></div>
-
-<div id="J-cloneNode" style="display:none"></div>
-
-<script type="template" id="J-test">
-    <span class="test"><%= text%></span>
-</script>
-<script type="template" id="J-itemTemplate">
-        <div class="hd <%if(allowRefresh){%>allow-refresh<%}%>"><h3><a href="<%= link%>"><%= title%></a></h3>
-            <%if(allowRefresh){%><a href="#" class="J-refresh"><s>刷新</s></a><%}%></div>
-        <div class="bd">
-            <div class="pic">
-                <a href="<%= link%>"><img src="<%= pic%>"/></a>
-                <%if(startTime){%><span class="start-time"><s></s><%= startTime%>开抢</span><%}%>
-            </div>
-            <div class="J-priceBar price-section">
-                <span class="origin-price">&yen;<%= maxPrice%></span>
-                <span class="lowest-price">&yen;<%= minPrice%></span>
-                <div class="price-bar"><span class="current-pos" style="top:<%= region[0]%>px"><s></s></span></div>
-                <div class="dynamic" style="top:<%= region[1]%>px">
-                    <b class="current-price">&yen;<%= currentPrice %></b>
-                    <%if(numOfJoiners){%><em><%= numOfJoiners%>人斗价</em><%}%>
-                </div>
-            </div>
-        </div>
-        <div class="ft">
-            <div class="desc"><%= desc%></div>
-            <div class="handler">
-                <%if(btnClass[1]){%>
-                <a href="<%= detailUrl%>" class="btn <%= btnClass[0]%>"><%= btnTxt%></a>
-                <%}else{%>
-                  <span class="btn <%= btnClass[0]%>"><%= btnTxt%></span>
-                <%}%>
-            </div>
-        </div>
-</script>
-
-<input type="hidden" id="J_moreParams" value="mz_key=0&ttid=700770@cloudkey_yunos_1.0.0" />
 
 
-<script type="template" id="J-forecastItemTemplate">
-    <div class="forecast-list">
-        <% _.each(forecastList,function(forecastItem,index){%>
-        <li class="mod <%if(index == len){%>open<%}%>">
-            <div class="hd <%if(index == len){%>last<%}%>" onclick=""  data-gid="<%= forecastItem.gid%>"><h3><%= forecastItem.name%></h3><span class="start-time"><%= forecastItem.date%><b><%= forecastItem.time%></b>开始</span><a href="#" class="J-subscribe <% if(forecastItem.subed=='true'){%>subscribed<%}%>"></a><em class="arrow"></em></div>
-            <div class="bd <%if(index != len){%>hide<%}%>"><ul <%if(index != len){%> class="current" <%}%>><div class="loading"><span></span></div></ul></div>
-        </li>
-        <% }) %>
-    </div>
-</script>
-<script type="text/template" id="J-subsribe-box">
-    <div class="subscribe-box" id="J-subscribeBox">
-        <div class="subscribe-c">
-            <p class="tips">这场斗价开始前，通过手机短信提醒您，不产生任何费用。</p>
-            <div class="phone-input">
-                <label>手机号码：</label>
-                <a href="#" class="input-clear" style="display:none;"></a>
-                <input type="tel" class="J-input"/>
-                <a href="#" class="confirm-btn">确定</a>
-            </div>
-            <a href="#" id="J-close"></a>
-        </div>
-    </div>
-</script>
-
-
-
-<script src="http://127.0.0.1:9292/zdm.js"></script>
+<script src="http://10.13.117.101:9292/zdm.js"></script>
 
 <script type="text/javascript">
     app.config = {

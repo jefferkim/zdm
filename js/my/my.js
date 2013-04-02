@@ -19,6 +19,8 @@
 
 
 
+
+
         // load good list
         loadGoodList:function(){
 
@@ -50,6 +52,21 @@
 
         },
 
+        events:{
+            "click .J-addPic":"triggerUploader"
+
+        },
+
+        triggerUploader:function(e){
+            e.preventDefault();
+            $("#J-upload").trigger("click");
+
+           $("#J-upload").on("change",function(){
+                app.navigation.push("upload",{datas:{"picInput":$("#J-upload")}});
+           });
+
+        },
+
         ready:function () {
           // implement super.ready
           var self = this;
@@ -57,6 +74,10 @@
           var navigation = app.navigation;
 
           content.html(self.templates['layout']());
+
+          //delegate events
+          app.Util.Events.call(this,"#J-myGood",this.events);
+
 
           this.loadGoodList();
         },
