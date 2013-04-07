@@ -75,6 +75,9 @@
 
           content.html(self.templates['layout']());
 
+          //reset the input[type=file]  value to empty,so ensure of fire the change event
+          $("#J-upload").val("");
+
           //delegate events
           app.Util.Events.call(this,"#J-myGood",this.events);
 
