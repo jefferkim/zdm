@@ -1074,7 +1074,7 @@ header.titlebar{
     height:96px;
     .arrow{
         position:absolute;
-        left:15px;
+        left:32px;
         top:3px;
         width:7px;
         height:7px;
@@ -1083,27 +1083,44 @@ header.titlebar{
         border-right:1px solid #c3c3c3;
         -webkit-transform:rotate(-45deg);
         transform:rotate(-45deg);
-
          z-index:4;
     }
-    textarea{
-        text-indent:0;
-        text-align:start;
+    .cm-textarea{
+        margin-left:10px;
         position:absolute;
-        padding:0;
         left:0;
         top:7px;
         border:1px solid #c3c3c3;
-        width:265px;
-        height:65px;
+        width:255px;
+        height:55px;
+        padding:10px;
         -webkit-border-radius:5px;
         border-radius:5px;
         z-index:2;
+        background:#fff;
+    }
+    textarea{
+
+        text-align:start;
+        padding:0;
+        border:none;
+
+        width:255px;
+        height:55px;
+        font-size:14px;
+
+
     }
     .num{
         position:absolute;
-        right:0;
-        bottom:5px;
+        right:22px;
+        bottom:15px;
+        color:#bfbfbf;
         z-index:3;
     }
+}
+
+#J-uploader{
+    width:300px;
+    margin:15px auto 0 auto;
 }

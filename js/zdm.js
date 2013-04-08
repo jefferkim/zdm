@@ -2,6 +2,7 @@
 //= require vendor/underscore
 //= require vendor/mixsln-debug
 //= require util
+//= require vendor/mtop_h5
 
 //= require_directory ./template
 
