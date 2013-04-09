@@ -1,0 +1,34 @@
+<section id="J_commentCont" class="innercontent">
+    <section class="c-comm">
+        <% if(sellerType != 1){ %>
+        <div id="J_commtab" class="c-tab">
+            <ul>
+                <li class="cur" s="good"><a href="#">好评<em>(<%=feedGoodCount || 0%>)</em></a></li>
+                <li s="ok"><a href="#">中评<em>(<%=allNormalCount || 0%>)</em></a></li>
+                <li s="bad"><a href="#">差评<em>(<%=allBadCount || 0%>)</em></a></li>
+                <li s="addto"><a href="#">追加<em>(<%=allAppendCount || 0%>)</em></a></li>
+            </ul>
+        </div>
+        <% } %>
+        <div id="J_commcont" class="cc-cont">
+            <% if(items && items.length){ %>
+            <ul>
+                <% for (var i = 0; i < items.length; i ++) { %>
+                <li>
+                    <p><%= items[i].text %></p>
+                    <% if(items[i].reply){ %>
+                    <div class="reply"><strong>卖家回复：</strong><%=items[i].reply%></div>
+                    <% } %>
+                    <p><%= items[i].deal %></p>
+                    <p><%= items[i].buyer %><em><%= app.helper.rank(items[i].credit)%></em><%= items[i].date %></p>
+                </li>
+                <% } %>
+            </ul>
+            <% } %>
+        </div>
+        <div id="J_listload" class="c-loading dc-load none">
+            <span></span>
+        </div>
+        <div id="J_dcpage" class="c-pnav-con"></div>
+    </section>
+</section>
