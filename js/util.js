@@ -1,5 +1,6 @@
 (function (app, undef) {
 
+
     app.Util = {
 
         Events:function (el, events) {
@@ -26,6 +27,7 @@
     }
 
     app.ZDMData = {};
-
+    app.ZDMDetail = {}; //global data for zdm detail
+    app.helper = {};
 
 })(window['app']);

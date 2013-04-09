@@ -1,85 +1,8 @@
 (function (app, undef) {
 
-    var detail = app.page.define({
-        name:"detail",
-        title:'宝贝详情', //title bar的文案
-        route:"detail\/(P<id>\\d+)",
-        templates:{
-            "layout":JST['template/detail_layout'],
-            "slider":JST['template/detail_slider'],
-            "info":JST['template/detail_info'],
-            "merchant":JST['template/detail_merchant']
-        },
-        //buttons of navigation
-        buttons:[
-            {
-                type:'back',
-                text:'返回'
-            }
-        ],
-
-        //是否支持上传图片
-        _supportImgUpload:function () {
 
 
-        },
-
-
-        //query detail data
-        queryData:function () {
-
-            var self = this;
-            var id = app.navigation.getParameter("id");
-            var el = $("#J_detailCont");
-            app.mtopH5.getApi(
-                'mtop.wdetail.getItemDetail',
-                '3.0',
-                {'itemNumId':id},
-                {'ttid':'2000@taobao_h5_3.0'},
-                function (result) {
-                    // success callback
-                    if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-                        var item = result.data.item;
-                        if (item && item.h5Common && item.h5Common == 'true') {
-                            self.render(result);
-                        } else { //not common product
-                            el.html('<p class="itc-p">本应用暂不支持该宝贝</p>');
-                            //open.loadHide();
-                        }
-                    }
-                    else {
-                        el.html('<p class="itc-p">' + message.abnormalMessage + '</p>');
-                        //open.loadHide();
-
-                    }
-                }, function () {
-                    el.html('<p class="itc-p">' + message.errorMessage + '</p>');
-                    // open.loadHide();
-                }
-            )
-        },
-
-
-        render:function (json) {
-            var data = json.data;
-            this._parseJson(data);
-
-            //good slider
-            var sliderHtml = this.templates['slider']({sliders:app.ZDMDetail.images});
-            $("#J_slide").html(sliderHtml);
-
-            //good info
-            var infoHtml = this.templates['info']({});
-            $("#J-dInfo").html(infoHtml);
-
-
-
-            // merchant info
-            var merchantInfo = this.templates['merchant']({merchant:merchantInfo});
-            $("#J-merchant").html(merchantInfo);
-
-
-        },
+    Object.extend(app.helper,{
 
         fetchHost:function () {  //获取当前环境
             var host = location.host;
@@ -94,15 +17,17 @@
             return http;
         },
 
-        _parseJson:function (data) {
+        _parseDetailJson:function (data) {
+
             var newJson = {},
                 host = this.fetchHost();
 
-            console.log(data);
             //价格
             var pricep = data.priceUnits;
             newJson.price = pricep.length > 1 && pricep[1].price || pricep[0].price;
             newJson.itemId = data.item.itemNumId;
+            newJson.seller = data.seller;
+            newJson.guarantees = data.guarantees;
             newJson.tmall = data.seller.type == 'B';	//是否tmall
             newJson.taoPlus = true;   					//wap淘加true
             newJson.isIpad = false;   					//是否ipad,目前直接false
@@ -180,21 +105,15 @@
             app.ZDMDetail = newJson; //cache the detail data
         },
 
-        ready:function () {
-            var self = this;
-            var content = $(app.component.getActiveContent());
-            app.ZDMDetail = {}; //global data for zdm detail
-
-            // implement super.ready
-            content.html(self.templates["layout"]());
-
-
-            this.queryData();
-        },
-
-        unload:function () {
-            // implement super.unload
+        convertCredit:function(n){
+            var src = 'http://a.tbcdn.cn/mw/s/hi/tbtouch/icons/rank/b_';
+            src += Math.ceil(n/5);
+            src += '_';
+            src += (n%5 || 5);  //整除则认为是5
+            src += '.gif';
+            return src;
         }
+
 
     });
 

@@ -1,7 +1,16 @@
+<p class="dm-cp"><a href="#comment/<%= itemId%>">用户评论（8586）</a><b class="aw right"></b></p>
+<p class="dm-cp"><a href="#imaget/<%= itemId%>">图文详情（总12页）</a><b class="aw right"></b></p>
 <ul class="d-cul">
-    <li class="dmf-li"><label>卖家:</label><span class="dm-name">新博来珀珈琬之娜迪欧新博来珀珈琬之娜迪欧</span><img src="http://a.tbcdn.cn/mw/s/hi/tbtouch/icons/rank/b_2_4.gif" alt=""></li>
-    <li><label>地点:</label><span class="gray12">浙江 杭州</span></li>
-    <li><label>动态:</label><span class="gray12">描述 <i class="red">4.7</i> 服务 <i class="red">4.8</i> 物流 <i class="red">4.6</i>　好评率 98.7%</span></li>
-    <li><label>保障:</label><img src="http://a.tbcdn.cn/mw/s/hi/tbtouch/icons/trade/xb_quality_item.png"><img src="http://a.tbcdn.cn/mw/s/hi/tbtouch/icons/trade/xb_sevenday_return.png"><img src="http://a.tbcdn.cn/mw/s/hi/tbtouch/icons/trade/xb_truth.png"></li>
+    <li class="dmf-li"><label>卖家:</label><span class="dm-name"><%= seller.nick %></span><img src="<%= app.helper.convertCredit(seller.credit.level) %>"/></li>
+    <li><label>地点:</label><span class="gray12"><%= seller.location%></span></li>
+    <li><label>动态:</label><span class="gray12">
+        <%if(seller.evaluateInfo && seller.evaluateInfo.length == 3){ %>
+         描述 <i class="red"><%= seller.evaluateInfo[2].score %></i> 服务 <i class="red"><%= seller.evaluateInfo[1].score%></i> 物流 <i class="red"><%= seller.evaluateInfo[0].score %></i>　
+        <%}%>好评率 <%= seller.goodRatePercentage %>
+    </span></li>
+    <% if(guarantees && guarantees.length){ %>
+    <li><label>保障:</label><% _.each(guarantees,function(guarantee){ %>
+    <img src="<%= guarantee.icon%>_16x16.jpg" />
+    <% }) } %></li>
 </ul>
-<p class="dm-enter dm-five"><a href="#">进入店铺</a></p>
+<p class="dm-enter dm-five"><a href="http://shop.<%= app.helper.fetchHost()%>.taobao.com/shop/shopIndex.htm?user_id=<%= seller.userNumId%>">进入店铺</a></p>

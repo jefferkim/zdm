@@ -9,6 +9,7 @@
 //= require_directory ./detail
 //= require_directory ./my
 //= require_directory ./upload
+//= require_directory ./comment
 
 
 
