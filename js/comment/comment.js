@@ -62,6 +62,7 @@
                 "addto":{first:true, second:1, page:1, total:0, sel:null, list:[]}
             }
 
+
         },
 
         unload:function () {
@@ -69,18 +70,29 @@
         },
 
 
-        typeMap:{
-            "good":"1",
-            "ok":"0",
-            "bad":"-1",
-            "addto":"2"
+        /*
+        *   http://a.m.taobao.com/ajax/rate_list.do?item_id=8106997741&sid=78aac522a50135e8&t=1365563431088&rateRs=0&p=1&ps=10
+        *   first:是不是第一页，如果是第一页将好评中评差评数返回
+        *   rateRs：1为好评等等，对应下方typeMap
+        *   p:page 页码
+        *   ps:pagesize 一页有多少
+        *
+        * */
+
+         typeMap:{
+            "good":"1",//好评
+            "ok":"0",  //中评
+            "bad":"-1",  //差评
+            "addto":"2"  //追加
         },
+
        /* typePonit:{  //埋点数据
             "good":"saygood#h#detail",
             "ok":"saynormal#h#detail",
             "bad":"saybad#h#detail",
             "addto":"addsay#h#detail"
         },*/
+
         tabClick:function () {
             var that = this,
                 tabar = that.tabar;
