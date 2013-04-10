@@ -21,6 +21,24 @@
                     })(method));
                 }
             }
+        },
+
+        getWebpImg : function(url,size){  //处理图片后缀
+            if(!url) return;
+            size = ['_' , (size || '300x300') , '.jpg'].join('');
+            /*var arr = url.split('_.'),
+             src = arr[0].replace(/_\d+x\d+\.jpg?/g,''),  //去掉存在的后缀_100x100.jpg
+             suffix = arr[1],
+             isWebp = suffix && suffix.toLowerCase() == 'webp';
+             src += size;
+             return isWebp && (src + '_.webp') || src;*/
+            var arr = url.lastIndexOf('_.'),  //查找最后一个，url中可能存在_.
+                last = arr != -1 ? url.slice(arr+2) : null,  //取到_.后的字符串
+                isWebp = last && last.toLowerCase() == 'webp' ? true : false,  //是否webp
+                newurl = isWebp ? url.slice(0,arr) : url,
+                src = newurl.replace(/_\d+x\d+\.jpg?/g,'');  //去掉存在的后缀_100x100.jpg
+            src += size;
+            return isWebp && (src + '_.webp') || src;
         }
 
 

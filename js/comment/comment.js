@@ -22,23 +22,109 @@
 
             var content = $(app.component.getActiveContent());
 
-
             var html = this.templates(resp);
             content.html(html);
-            console.log(html);
 
         },
 
-        queryComments:function () {
-            var self = this;
+        queryComments:function (n) {
+            var that = this;
             var itemId = this.itemId;
 
+            var url = 'http://a.m.taobao.com/ajax/rate_list.do?item_id='+8106997741+'&type=jsonp&callback=?&first=1&rateRs=0&p=1&ps=10';
+
+
+
+
+            var type =  that.typeg;
+            var page = n;
+
             $.ajax({
-                url:'http://a.m.taobao.com/ajax/rate_list.do?type=jsonp&callback=?&item_id=' + itemId,
-                success:function (resp) {
-                    self.render(resp);
+                url: url,
+                data: {rateRs: that.typeMap[type], p: page, ps: 10},
+                success: function(data){
+
+
+                    if(data && data.items && data.items.length){
+                        //render data,output html
+                        that.render(data);
+
+
+                      /*  if(!that.pageNav){
+                            var pageInstance = that.pageNav = new pagenav({'id':'#J_dcpage','index':1,'pageCount':data.total,'disableHash':true});
+                            pageInstance.$container.on('P:switchPage',function(e,page){
+                                that.getData(page.index);
+                                that.tabCache[that.typeg].page = page.index;
+                                if(page.type == 'next'){ // 下一页埋点
+                                    utils.sendPoint('nextpage#h#detail');
+                                }
+                            });
+                            cache.total = data.total;
+                            cache.first = null;
+                        }
+*/
+
+                      /*  if(cache.first){  //Only initialize in first
+                            cache.first = null;
+                            cache.total = data.total;
+                            var pageInstance = that.pageNav;
+                            pageInstance.eventDetach();
+                            pageInstance.init({'index':page,'pageCount':data.total,'disableHash':true});
+                        }
+                        if(cache.second > 1){ //评论接口总页数出现问题，需要二次请求才正确，需要再次实例pagenav
+                            if(cache.second == 2){
+                                cache.total = data.total;
+                                var pageInstance = that.pageNav;
+                                pageInstance.eventDetach();
+                                pageInstance.init({'index':page,'pageCount':data.total,'disableHash':true});
+                                cache.second += 1;
+                            }
+                        }
+                        else{
+                            cache.second += 1;
+                        }*/
+                        that.pagebar.removeClass('none');
+                    }
+                    else{
+                        that.render(null,page);
+                        //that.$el.html('<p class="itc-p">无评论</p>');
+                    }
+                    if(that.isFirst && !that.tmall){  //第一次且不是tmall
+                        var arr = ["feedGoodCount","allNormalCount","allBadCount","allAppendCount"],
+                            ems = that.tabar.find('em');
+                        ems.each(function(index,item){
+                            item.innerHTML = ['(',data[arr[index]],')'].join(' ');
+                        });
+                    }
+                    that.isFirst = null;
+                    that.xhr = null;
+                    that.loading.addClass('none');
+                },
+                error: function(){
+                    if(judge && judge == 'router'){  //第一次请求失败的标记
+                        if(!tryAgain.length){
+                            that.$el.html('<p class="itc-p try-again">网络请求失败，请<a href="#">点击重试</a></p>');
+                            tryAgain = that.$('.try-again');
+                            tryAgain.find('a').on('click' , function(e){
+                                e.preventDefault();
+                                that.getData(undefined,'router');
+                            });
+                            //that.tabar.addClass('none');
+                        }
+                        else{
+                            tryAgain.removeClass('none');
+                        }
+                    }
+                    else{
+                        tip(message.errorMessage);
+                    }
+                    that.xhr = null;
+                    that.loading.addClass('none');
                 }
             });
+
+
+
         },
 
         ready:function () {

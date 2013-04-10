@@ -3,6 +3,7 @@
 //= require vendor/mixsln-debug
 //= require util
 //= require vendor/mtop_h5
+//= require_directory ./component
 
 //= require_directory ./template
 
@@ -10,6 +11,7 @@
 //= require_directory ./my
 //= require_directory ./upload
 //= require_directory ./comment
+//= require_directory ./imaglet
 
 
 
