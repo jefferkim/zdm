@@ -19,21 +19,39 @@
 
         _parseDetailJson:function (data) {
 
-            var newJson = {},
-                host = this.fetchHost();
+            //document : http://dev.wireless.taobao.net/mediawiki/index.php?title=Mtop.wdetail.getItemDetail_3.0
 
-            //价格
+            var newJson = {};
+            var host = this.fetchHost();
+            var item = data.item;
             var pricep = data.priceUnits;
-            newJson.price = pricep.length > 1 && pricep[1].price || pricep[0].price;
-            newJson.itemId = data.item.itemNumId;
+
+            //商品属性：
+            newJson.itemId = item.itemNumId;
+
+            //图片:图片区域
+            newJson.images = item.picsPath;
+
+            //商品信息:
+            newJson.info = {
+                 "price":pricep[0].price, //价格：值得买不需要输出原先的原价什么的，直接输出最终价格
+                 "delivery":data.delivery,  //运费相关:
+                 "totalSoldQuantity":item.totalSoldQuantity //总销量:
+            };
+
+            //商家信息:
             newJson.seller = data.seller;
+
+            //保障:
             newJson.guarantees = data.guarantees;
+
+
             newJson.tmall = data.seller.type == 'B';	//是否tmall
             newJson.taoPlus = true;   					//wap淘加true
             newJson.isIpad = false;   					//是否ipad,目前直接false
             newJson.hasProps = data.item.sku == 'true';			//是否有sku
             newJson.taoPlus = true;  //是否显示淘加
-            newJson.images = data.item.picsPath;
+
 
 
             var numid = newJson.itemId;
@@ -51,6 +69,8 @@
             newJson.cleannowUrl = 'http://d.' + host + '.taobao.com/my_cart.htm?pds=cleannow%23h%23cart';
             newJson.myCartUrl = 'http://d.' + host + '.taobao.com/my_bag.htm?pds=gotocart%23h%23detail';
 
+
+            newJson.mallInfo = data.mallInfo;
 
             if (data.mallInfo) {
                 newJson.soldAreas = data.mallInfo.soldAreas;
@@ -102,7 +122,11 @@
                 skuData.availSKUs = tempskus;
                 newJson.skuData = skuData;
             }
+
+
+
             app.ZDMDetail = newJson; //cache the detail data
+
         },
 
         convertCredit:function(n){

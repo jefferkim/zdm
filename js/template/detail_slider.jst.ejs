@@ -1,13 +1,12 @@
-<div id="dSlider" class="dSlider">
+<div id="sliderWrap" class="dSlider">
     <div class="js-bton">
         <a href="#" class="jsb-back">返 回</a>
         <a href="#" class="jsb-ori">原 图</a>
     </div>
-    <div class="slider-outer">
+    <div class="goods-slider" id="J-sliderShow">
         <ul>
             <% _.each(sliders,function(slider){ %>
-              <!--<li><img src="http://a.tbcdn.cn/mw/webapp/fav/img/grey.gif" dataimg="<%= slider%>" /></li>-->
-              <li><img src="<%= slider%>" dataimg="<%= slider%>" /></li>
+              <li><img src="http://a.tbcdn.cn/mw/webapp/fav/img/grey.gif"  class="lazy" data-src="<%= app.Util.getWebpImg(slider,'180x180')%>" /></li>
             <%})%>
         </ul>
     </div>

@@ -25,27 +25,39 @@
         },
 
 
+
+
+
+
+        ready:function () {
+            var self = this;
+            var content = $(app.component.getActiveContent());
+            content.html(self.templates["layout"]());
+
+            this.queryData();
+        },
+
+
         //query detail data
         queryData:function () {
 
             var self = this;
             var id = app.navigation.getParameter("id");
             var el = $("#J_detailCont");
-            app.mtopH5.getApi(
-                'mtop.wdetail.getItemDetail',
-                '3.0',
-                {'itemNumId':id},
-                {'ttid':'2000@taobao_h5_3.0'},
-                function (result) {
+
+            app.mtopH5.getApi( 'mtop.wdetail.getItemDetail', '3.0',  {'itemNumId':id}, {'ttid':'2000@taobao_h5_3.0'},  function (result) {
                     // success callback
                     if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
+
                         var item = result.data.item;
+
                         if (item && item.h5Common && item.h5Common == 'true') {
                             self.render(result);
                         } else { //not common product
                             el.html('<p class="itc-p">本应用暂不支持该宝贝</p>');
                             //open.loadHide();
                         }
+
                     }
                     else {
                         el.html('<p class="itc-p">' + message.abnormalMessage + '</p>');
@@ -69,29 +81,21 @@
             var sliderHtml = this.templates['slider']({sliders:detailData.images});
             $("#J_slide").html(sliderHtml);
 
+
             //good info
-            var infoHtml = this.templates['info']({});
+            console.log(detailData);
+            var infoHtml = this.templates['info']({info:detailData.info,mallInfo:detailData.mallInfo});
             $("#J-dInfo").html(infoHtml);
 
-
-
-            console.log(detailData);
             // merchant info
             var merchantInfo = this.templates['merchant']({itemId:detailData.itemId,seller:detailData.seller,guarantees:detailData.guarantees});
             $("#J-merchant").html(merchantInfo);
 
 
+            new Swipe($('#J-sliderShow')[0], {"fixWidth":200,"preload": 4});
+
         },
 
-        ready:function () {
-            var self = this;
-            var content = $(app.component.getActiveContent());
-
-            // implement super.ready
-            content.html(self.templates["layout"]());
-
-            this.queryData();
-        },
 
         unload:function () {
             // implement super.unload

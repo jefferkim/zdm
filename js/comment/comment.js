@@ -18,6 +18,8 @@
 
         },
 
+
+
         render:function (resp) {
 
             var content = $(app.component.getActiveContent());
@@ -26,6 +28,8 @@
             content.html(html);
 
         },
+
+
 
         queryComments:function (n) {
             var that = this;

@@ -1192,3 +1192,29 @@ header.titlebar{
     display: block;
     margin: 0 auto;
 }
+
+
+
+.goods-slider{
+    width:284px;
+    height:180px;
+    ul{
+        width:284px;
+        overflow:hidden;
+        li{
+            img{
+                max-width:284px;
+                max-height:180px;
+                &.lazyImg{
+                    background:url("http://a.tbcdn.cn/mw/base/styles/component/more/images/loading.gif") no-repeat scroll center center;
+                    background-size:15%;
+                }
+            }
+            width:284px;
+            height:180px;
+            vertical-align:middle !important;
+            text-align:center;
+            display:table-cell;
+        }
+    }
+}
