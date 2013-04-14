@@ -5,14 +5,14 @@
 
         <li class="z-mod">
             <div class="hd">
-                <img src="http://img04.taobaocdn.com/tps/i4/T12.4VXwpbXXbe.mPe-40-40.png"/>
+                <img src="http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=<%=comment.raterUid%>&width=40&height=40&type=sns"/>
             </div>
             <div class="bd">
-                <h3><a href="#">小猪LULU</a></h3>
-                <p>颜色特别美，做工特别好，潘领好可爱。。设计感很足。好喜欢。。我穿已经在膝盖了。。囧···哈哈。。但还是爱不释手啊。。</p>
+                <h3><a href="#"><%= comment.raterUserNick%></a></h3>
+                <p><%= comment.feedback%></p>
                 <ul class="pic-desc">
-                    <%_.each(comment.pics,function(pic){%>
-                      <li><img src="http://img04.taobaocdn.com/tps/i4/T1mNFVXxlcXXXeF16k-62-62.png"/></li>
+                    <%_.each(comment.feedItemPicDOList,function(pic){%>
+                      <li><img src="pic.path"/></li>
                     <%})%>
                 </ul>
             </div>

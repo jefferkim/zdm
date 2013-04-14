@@ -98,16 +98,13 @@
             $("#J-orderNow").html(orderNow);
 
 
-            //comment block
-            // var comments = this.templates['comments']({comments:comments});
-           // $("#zdm-comment").html(comments);
-
 
 
             this.detailSlider = new Swipe($('#J-sliderShow')[0], {"fixWidth":200,"preload": 4});
             this.detailSlider.load();
 
 
+            //query comment
             this.queryComment();
 
         },
@@ -115,16 +112,34 @@
 
         queryComment:function(){
 
-
+/*
             var data = {"ratedUid":"179331639","raterUid":"0","itemIds":"1600188384","pageSize":"10","pageIndex":"1"};
 
             console.log(data);
-            app.mtopH5.getApi( 'mtop.gene.feedCenter.queryFeedItems', '3.0',data, function (result) {
+            app.mtopH5.getApi( 'mtop.gene.feedCenter.queryFeedItems', '1.0',data, function (result) {
                 console.log(result);
 
 
 
-            });
+            });*/
+
+
+           // http://api.waptest.taobao.com/rest/api3.do?sign=3aac42550c861c6bdd7ddc3fa1dc1dbc&sid=8381f0ebe24450ca8b04b36070867a31&ttid=123@taobao_android_1.0&v=1.0&t=1365929315424&imei=123456789012345&api=mtop.gene.feedCenter.queryFeedItems&imsi=123456789012345&appKey=4272&data={"ratedUid":"179331639","itemIds":"1600188384","pageSize":"10","pageIndex":"1"}
+            var self = this;
+
+            $.ajax({
+                url:"json/list2.json",
+                dataType:"json",
+                success:function(result){
+                    if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
+                        var comments = result.data.dataList;
+                        console.log(comments);
+                        var html = self.templates['comments']({comments:comments});
+                        $("#zdm-comment").html(html);
+                    }
+
+                }
+            })
 
         },
 

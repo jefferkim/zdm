@@ -1,40 +1,175 @@
-{"api": "mtop.mz.getMyMzList", "v": "1.0", "ret": ["SUCCESS::调用成功"], "data": {
-    "defaultData": {
-        "mzExtPart": {
-            "page": "1",
-            "totalCount": "12"
-        },
-        "mzPartList": [
-
-
-
+{
+    "api": "mtop.gene.feedCenter.queryFeedItems",
+    "v": "1.0",
+    "ret": [
+        "SUCCESS::调用成功"
+    ],
+    "data": {
+        "success": "true",
+        "total": "1",
+        "dataList": [
             {
-                "mzBasePart": {
-                    "gid": "81",
-                    "itemId": "1500018383490",
-                    "pic": "http://cdn.taobao.com/XX.gif",
-                    "rule": "1_1000",
-                    "ruleDesc": "每集齐1人 立降10.00元",
-                    "status": "0",
-                    "title": "商城商品-预告阶段数据-自动化",
-                    "type": "0",
-                    "userId": "0"
+                "dbRoute": {
+                    "xid": "dbfbRo",
+                    "routingStrategy": "0",
+                    "empty": "false"
                 },
-                "mzClickPart": {
-                    "clickType": "0",
-                    "showName": "即将开始"
+                "feedId": "60000555930",
+                "ratedUid": "179331639",
+                "ratedUserNick": "waptest02",
+                "raterUid": "180351130",
+                "raterUserNick": "refund11",
+                "raterType": "0",
+                "status": "0",
+                "validscore": "0",
+                "rate": "1",
+                "tradeId": "92098332073011",
+                "parentTradeId": "92098332073011",
+                "gmtTradeCreate": "2013-03-29 15:56:53",
+                "gmtTradeFinished": "2013-04-06 15:53:57",
+                "aucNumId": "1600188384",
+                "auctionTitle": "满50减20元商品--50元",
+                "auctionPicUrl": "i3/T1QEBbXd4yXXcSYu6b_093652.jpg",
+                "auctionPrice": "50.0",
+                "auctionVirtual": "2",
+                "leafCatId": "50008901",
+                "rootCatId": "16",
+                "spuId": "0",
+                "feedback": "asfasfsa",
+                "feedbackLength": "8",
+                "validfeedback": "1",
+                "lastModifyFrom": "0",
+                "editStatus": "0",
+                "bizType": "8",
+                "source": "0",
+                "buyState": "1",
+                "raterPic": "0",
+                "propertiesMap": {},
+                "anony": "0",
+                "privacy": "0",
+                "albumId": "0",
+                "voteUseful": "0",
+                "raterStar": "0",
+                "sortWeight": "0",
+                "attributesMap": {},
+                "number1": "92098332073011",
+                "number2": "0",
+                "number3": "0",
+                "gmtCreate": "2013-04-12 15:45:32",
+                "gmtModified": "2013-04-12 15:45:43",
+                "lockVersion": "0",
+                "feedAppendedDOList": [],
+                "displayUserDO": {
+                    "buyerSum": "89",
+                    "sellerSum": "0",
+                    "userTag": "1572864",
+                    "phote": "http://wsapi.jianghu.daily.taobao.net/avatar/getAvatar.do?userId=180351130&width=40&height=40&type=sns",
+                    "sellerType": "0",
+                    "level": "0",
+                    "userId": "180351130",
+                    "userTag2": "8",
+                    "userTag3": "0",
+                    "userTag4": "4647785184190545921"
                 },
-                "mzCorePart": {
-                    "maxPrice": "100.00",
-                    "minPrice": "2.00"
+                "feedItemPicDOList": [],
+                "rateUtil": {
+                    "b2CMappingProcess": "false",
+                    "rateInfo": "false",
+                    "c2CProcess": "false",
+                    "rateAppended": "false",
+                    "xinNongye": "false",
+                    "domesticAir": "false",
+                    "internationalAir": "false"
                 },
-                "mzInfoPart": {
-                    "desc": "每集齐1人 立降10.00元",
-                    "startTime": "15:31"
-                }
+                "shareInfoDO": {
+                    "flag": "0"
+                },
+                "xid": "dbfbRo",
+                "gmtModifiedFormatStr": "2013-04-12 15:45:43",
+                "appended": "false"
             }
-
-        ]
-    },
-    "success": "true"
-}}
+        ],
+        "currentPageNum": "1",
+        "hasNext": "false",
+        "data": {
+            "dbRoute": {
+                "xid": "dbfbRo",
+                "routingStrategy": "0",
+                "empty": "false"
+            },
+            "feedId": "60000555930",
+            "ratedUid": "179331639",
+            "ratedUserNick": "waptest02",
+            "raterUid": "180351130",
+            "raterUserNick": "refund11",
+            "raterType": "0",
+            "status": "0",
+            "validscore": "0",
+            "rate": "1",
+            "tradeId": "92098332073011",
+            "parentTradeId": "92098332073011",
+            "gmtTradeCreate": "2013-03-29 15:56:53",
+            "gmtTradeFinished": "2013-04-06 15:53:57",
+            "aucNumId": "1600188384",
+            "auctionTitle": "满50减20元商品--50元",
+            "auctionPicUrl": "i3/T1QEBbXd4yXXcSYu6b_093652.jpg",
+            "auctionPrice": "50.0",
+            "auctionVirtual": "2",
+            "leafCatId": "50008901",
+            "rootCatId": "16",
+            "spuId": "0",
+            "feedback": "asfasfsa",
+            "feedbackLength": "8",
+            "validfeedback": "1",
+            "lastModifyFrom": "0",
+            "editStatus": "0",
+            "bizType": "8",
+            "source": "0",
+            "buyState": "1",
+            "raterPic": "0",
+            "propertiesMap": {},
+            "anony": "0",
+            "privacy": "0",
+            "albumId": "0",
+            "voteUseful": "0",
+            "raterStar": "0",
+            "sortWeight": "0",
+            "attributesMap": {},
+            "number1": "92098332073011",
+            "number2": "0",
+            "number3": "0",
+            "gmtCreate": "2013-04-12 15:45:32",
+            "gmtModified": "2013-04-12 15:45:43",
+            "lockVersion": "0",
+            "feedAppendedDOList": [],
+            "displayUserDO": {
+                "buyerSum": "89",
+                "sellerSum": "0",
+                "userTag": "1572864",
+                "phote": "http://wsapi.jianghu.daily.taobao.net/avatar/getAvatar.do?userId=180351130&width=40&height=40&type=sns",
+                "sellerType": "0",
+                "level": "0",
+                "userId": "180351130",
+                "userTag2": "8",
+                "userTag3": "0",
+                "userTag4": "4647785184190545921"
+            },
+            "feedItemPicDOList": [],
+            "rateUtil": {
+                "b2CMappingProcess": "false",
+                "rateInfo": "false",
+                "c2CProcess": "false",
+                "rateAppended": "false",
+                "xinNongye": "false",
+                "domesticAir": "false",
+                "internationalAir": "false"
+            },
+            "shareInfoDO": {
+                "flag": "0"
+            },
+            "xid": "dbfbRo",
+            "gmtModifiedFormatStr": "2013-04-12 15:45:43",
+            "appended": "false"
+        }
+    }
+}
