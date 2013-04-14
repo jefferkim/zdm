@@ -1,0 +1,24 @@
+<div class="ds-action">
+    <a href="#" class="ds-coma ww">
+        <img src="http://im.m.taobao.com/ww/status.do?_input_charset=utf-8&amp;nick=%E5%A5%A5%E6%84%8F%E7%8E%9B%E6%97%97%E8%88%B0%E5%BA%97&amp;sid=a43dc100fd92d4d3f446405857471d10" alt="联系卖家">
+    </a>
+    <a href="#" class="ds-coma fav">收藏</a>
+
+
+    <% if(item.soldout == 'false'){ %>
+    <% if(trade.buySupport && trade.buySupport == 'true'){ %><a href="#" class="immbuy<% if(seller.type == 'B'){ %> c-btn-tmall-buy<% } else{ %> c-btn-oran<% } %>"><span>立即购买</span></a><% } %>
+    <% if(trade.cartSupport && trade.cartSupport == 'true'){ %><a href="#" class="c-btn-blue addcart"><span>加入购物车</span></a><% } %>
+    <% } else { %>
+    <b class="ds-coma ds-bs"><span>宝贝不能购买</span></b>
+    <% } %>
+
+
+    <form id="order-form" name="orderForm" style="display: none;" action="http://b.m.taobao.com/buy.htm?sid=fa5ef1c3e6848fa9433c0ebf894b1e5a&amp;pds=buynow%23h%23detail" method="post">
+        <input type="hidden" name="_input_charset" value="utf-8"/>
+        <input type="hidden" name="item_id" value="4846668057"/>
+        <input type="hidden" name="item_num_id" value="4846668057"/>
+        <input type="hidden" name="tks" value="" />
+        <input type="hidden" id="sku-id" name="skuId" value=""/>
+        <input type="hidden" name="buyNow" value="true" />
+    </form>
+</div>
