@@ -1,5 +1,6 @@
-<p class="dm-cp"><a href="#comment/<%= itemId%>">用户评论（8586）</a><b class="aw right"></b></p>
-<p class="dm-cp"><a href="#imaglet/<%= itemId%>">图文详情（总12页）</a><b class="aw right"></b></p>
+<p class="dm-cp"><a href="#comment/<%= itemId%>">用户评论（<%=evaluateCount%>）</a><b class="aw right"></b></p>
+<p class="dm-cp"><a href="#imaglet/<%= itemId%>">图文详情</a><b class="aw right"></b></p>
+
 <ul class="d-cul">
     <li class="dmf-li"><label>卖家:</label><span class="dm-name"><%= seller.nick %></span><img src="<%= app.helper.convertCredit(seller.credit.level) %>"/></li>
     <li><label>地点:</label><span class="gray12"><%= seller.location%></span></li>

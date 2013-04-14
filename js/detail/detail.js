@@ -7,6 +7,7 @@
         templates:{
             "layout":JST['template/detail_layout'],
             "slider":JST['template/detail_slider'],
+            "orderNow":JST['template/detail_extra'],
             "info":JST['template/detail_info'],
             "merchant":JST['template/detail_merchant']
         },
@@ -92,7 +93,12 @@
             $("#J-merchant").html(merchantInfo);
 
 
-            new Swipe($('#J-sliderShow')[0], {"fixWidth":200,"preload": 4});
+            var orderNow = this.templates['orderNow']({item:detailData.info,trade:detailData.trade,seller:detailData.seller});
+            $("#J-orderNow").html(orderNow);
+
+
+            this.detailSlider = new Swipe($('#J-sliderShow')[0], {"fixWidth":200,"preload": 4});
+            this.detailSlider.load();
 
         },
 
