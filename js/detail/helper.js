@@ -37,7 +37,8 @@
                  "price":pricep[0].price, //价格：值得买不需要输出原先的原价什么的，直接输出最终价格
                  "delivery":data.delivery,  //运费相关:
                  "totalSoldQuantity":item.totalSoldQuantity, //总销量:
-                 "soldout":item.soldout //是否售完:
+                 "soldout":item.soldout, //是否售完:
+                 "evaluateCount":item.evaluateCount
             };
 
             newJson.trade = data.trade;

@@ -9,6 +9,7 @@
             "slider":JST['template/detail_slider'],
             "orderNow":JST['template/detail_extra'],
             "info":JST['template/detail_info'],
+            "comments":JST['template/comment_item'],
             "merchant":JST['template/detail_merchant']
         },
         //buttons of navigation
@@ -89,7 +90,7 @@
             $("#J-dInfo").html(infoHtml);
 
             // merchant info
-            var merchantInfo = this.templates['merchant']({itemId:detailData.itemId,seller:detailData.seller,guarantees:detailData.guarantees});
+            var merchantInfo = this.templates['merchant']({evaluateCount:detailData.info.evaluateCount,itemId:detailData.itemId,seller:detailData.seller,guarantees:detailData.guarantees});
             $("#J-merchant").html(merchantInfo);
 
 
@@ -97,11 +98,35 @@
             $("#J-orderNow").html(orderNow);
 
 
+            //comment block
+            // var comments = this.templates['comments']({comments:comments});
+           // $("#zdm-comment").html(comments);
+
+
+
             this.detailSlider = new Swipe($('#J-sliderShow')[0], {"fixWidth":200,"preload": 4});
             this.detailSlider.load();
 
+
+            this.queryComment();
+
         },
 
+
+        queryComment:function(){
+
+
+            var data = {"ratedUid":"179331639","raterUid":"0","itemIds":"1600188384","pageSize":"10","pageIndex":"1"};
+
+            console.log(data);
+            app.mtopH5.getApi( 'mtop.gene.feedCenter.queryFeedItems', '3.0',data, function (result) {
+                console.log(result);
+
+
+
+            });
+
+        },
 
         unload:function () {
             // implement super.unload
