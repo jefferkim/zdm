@@ -1,6 +1,8 @@
 (function (app, undef) {
 
-
+    var win = window,
+        isAndroid = (/android/gi).test(navigator.appVersion),
+        resize = 'onorientationchange' in window ? 'orientationchange' : 'resize';
     app.Util = {
 
         Events:function (el, events) {
@@ -39,6 +41,64 @@
                 src = newurl.replace(/_\d+x\d+\.jpg?/g,'');  //去掉存在的后缀_100x100.jpg
             src += size;
             return isWebp && (src + '_.webp') || src;
+        },
+
+
+        timeout : 30000,
+        resize : function(callback){  //旋转
+            win.addEventListener(resize,function(){
+                setTimeout(function(){
+                    callback();
+                },isAndroid ? 200 : 0);
+            },false);
+        },
+        getActualSize : function(el,callback){  //获取el真实宽高
+            el.css({'position':'absolute','width':'100%','left':-20000,'top':-20000}).removeClass('none');
+            callback();
+            el.css({'position':'static','width':'auto','left':0,'top':0}).addClass('none');
+        },
+        encode : function(str){
+            return encodeURIComponent(str);
+        },
+        sendPoint : function(pds){  //埋点
+            /*var beacon = new Image();
+             beacon.src = logURL + '?pds=' + pds;
+             beacon.onload = beacon.onerror = function(){
+             beacon.onload = beacon.onerror = null;
+             beacon = null;
+             }*/
+            var host = this.fetchHost(),
+                logURL = 'http://a.'+host+'.taobao.com/ajax/pds.do';
+            $.ajax({
+                url : logURL,
+                type : "get",
+                dataType : 'jsonp',
+                data : { pds : pds , t:new Date().getTime()}
+            });
+        },
+
+
+        storage : {
+            get : function(key){
+                try{
+                    return localStorage.getItem(key);
+
+                }catch(e){
+                    return null;
+                }
+            },
+            set : function(key,value){
+                try{
+                    localStorage.setItem(key,value);
+                }catch(e){
+                    console.log('localstorage异常');
+                }
+            }
+        },
+        pointJudge : function(str){  //宝贝积分判断
+            if(!str) return str;
+            var tarr = str.split('-');
+            return (tarr.length > 1 && tarr[0] == tarr[1]) ? tarr[0] : str;
         }
 
 

@@ -1043,7 +1043,12 @@ header.titlebar{
         display:inline-block;
         width:282px;
         padding:10px 9px;
+
         .good-hd{
+            img{
+                max-width:70px;
+                max-height:70px;
+            }
             width:70px;
         }
         .good-bd{
@@ -1206,6 +1211,7 @@ header.titlebar{
 .goods-slider{
     width:284px;
     height:180px;
+    z-index:49;
     ul{
         width:284px;
         overflow:hidden;
@@ -1231,6 +1237,7 @@ header.titlebar{
     width: 140px;
     height: 30px;
     background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAA8CAYAAAC9xKUYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDkvMjgvMTLDJIlRAAAC6UlEQVR4nO3aMU8UURTF8XNnmF2JJITGQhMbKCzsmGhnDAUFX2ArKynwA+CHcCo7Cqy02c7KgoLCYpM10BljQ2OihdmEkECUHZhrsbvJhkQRmeuK+f+qt5spXnVy3n3P3F3j8jw3SSYplZQM1wDwKy6pknQqyXd2dlySzN2V5/noo0TSlKRMUmO4TkXIAPg51yBYTiT1JZXDdTU19lGiQbBMr6+v31leXn46MzNzP8uym399uwCulLIsvxweHna3traeFUXxUdI3SeWowZgG4XK93W4/np+fLya7XQBX1d7e3nqr1Xoh6WgUMKmk6Y2NjZXFxcX2pDcI4Grb3d1tra2tvUmGvxNJjYWFhSeT3BSA/8MwSxrjAZPNzs4+nNyWAPwvhlmSjYa8pkHI6Oy1NQBclJlJUpKc9yEA/Knxa2q5Ow0GQG1oMADCEDAAwnBEAhCGBgMgDAEDIMzU2T84IgG4rOE7GBoMgDgMeQHUbpQjNBgAYQgYAGEY8gIIQ4MBEIaAARCGWyQAteMWCUA4GgyA2tFgAIQjYACE4R0MgDA0GABhCBgAYbhFAlA7bpEAhKPBAKgdDQZAOAIGQBjewQAIQ4MBEIaAARCGWyQAteMWCUA4hrwAwtBgAIQhYACEYcgLoHYMeQGEI2AAhOGIBKB2HJEAhOMdDIAwNBgAYQgYAGEY8gKo3dkhr0uqzExmNrFNAbj6xnKkGgVMJans9XrvCBgAl2Fm6vV67ySVoyNSJanf7XZfrays3Ds+PuaoBODCzExZlqnb7b6S1B9vMP2iKF53Op3nzWZTaZpyXALwW8xMaZqq2Wyq0+k8L4ritaS+ubvyPJcG85gsSZJbS0tLD1ZXVx/Nzc3dbTQaNya7dQD/un6//3V/f//95ubmy+3t7bdVVX2WVI4HjDQImSkzu25mtyXNmtk1SVQZAD/j7v5d0oG7f3L3I0knkqqzL3krSaW7H7j7Bw0Ch3ABcB7XID9Oh2uXpB++GRpfJPvmqAAAAABJRU5ErkJggg==") no-repeat scroll 0 0;
+    background-size: contain;
     .h-tab{
         width: 70px;
         height: 30px;
@@ -1241,6 +1248,29 @@ header.titlebar{
         -webkit-box-sizing: border-box;
         float: left;
         font-size: 12px;
+        text-align:center;
+        &:nth-child(2){
+            border-left:1px solid #dcdcdc;
+        }
+    }
+}
+
+.price-f{
+    width:180px;
+    height:20px;
+    position:absolute;
+    bottom:0;
+    left:60px;
+    top:50;
+    background:rgba(0,0,0,.3);
+    line-height:20px;
+    .p{
+        font-size:14px;
+        color:#fff;
+    }
+    .t{
+        font-size:14px;
+        color:#fff;
     }
 }
 

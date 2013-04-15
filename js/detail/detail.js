@@ -36,12 +36,8 @@
             var content = $(app.component.getActiveContent());
             content.html(self.templates["layout"]());
 
+
             this.queryData();
-
-
-
-
-
 
         },
 
@@ -94,7 +90,7 @@
             var detailData =  app.ZDMDetail;
 
             //good slider
-            var sliderHtml = this.templates['slider']({sliders:detailData.images});
+            var sliderHtml = this.templates['slider']({sliders:detailData.images,info:detailData.info});
             $("#J_slide").html(sliderHtml);
 
 
@@ -112,6 +108,10 @@
 
             this.detailSlider = new Swipe($('#J-sliderShow')[0], {"fixWidth":200,"preload": 4});
             this.detailSlider.load();
+
+
+            console.log(detailData);
+            app.sku.init(detailData);
 
 
             //query comment
@@ -136,7 +136,8 @@
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
                     var comments = result.data.dataList;
                     var html = self.templates['comments']({comments:comments});
-                    $("#zdm-comment").html(html);
+
+                    $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户评论</h2><ul class="zdm-comment-block">'+html+'</ul>');
                 }
 
             });

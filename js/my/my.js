@@ -18,32 +18,40 @@
         ],
 
 
+        events:{
+            "click .J-addPic":"triggerUploader",
+            "click .view-comments":"gotoViewAll"
+        },
 
 
+        gotoViewAll:function(e){
+            e.preventDefault();
+            app.navigation.push("viewAll/p1");
 
-        _queryComments:function(ids){
+        },
+
+
+        _queryComments:function(ids,itemIdForBind,orderIdArr){
 
             var self = this;
-            $.ajax({
-                url:"json/querycomment.json?itemIds="+ids,
-                dataType:"json",
-                success:function(resp){
-                    var  list = resp.data.dataList;
-
-                    _.each(ids,function(id){
-
-                       var t = _.where(list,{"aucNumId":id});
-
-                       var comment = t.length >0  ? t[0] : '';
-                        console.log(comment);
-                       $("#J-commentItem-"+id).find(".good-item").after( self.templates['commentItem']({comment:comment}));
-
-                    })
 
 
-                }
+            var data = {"ratedUid":"0","tradeId":"0","itemIds":ids.join(","),"pageSize":"10","pageIndex":"1"};
+
+            app.mtopH5Api.getApi( 'mtop.gene.feedCenter.queryFeedItems', '1.0',  data,{},  function (resp) {
+                var  list = resp.data.dataList;
+
+                _.each(ids,function(id,index){
+
+                    var t = _.where(list,{"aucNumId":id,"tradeId":orderIdArr[index]});
+
+                    var comment1 = t.length >0  ? t[0] : false;
+
+
+                    $("#J-comment-"+itemIdForBind[index]).html( self.templates['commentItem']({comment:comment1}));
+
+                })
             });
-
 
         },
         // load good list
@@ -53,44 +61,70 @@
             var navigation = app.navigation;
             var pageNo = navigation.getParameter("pageNo");
             var itemIdsArr = [];
-            var url = {api:"mtop.mz.getMyMzList",data:{"page": pageNo || 1, "pagesize": "12"}};
-
-            $.ajax({
-                url:"json/goodlist.json",
-                dataType:"json",
-                success:function(resp){
-
-                    console.log(resp);
-
-                    //TODO:write a parse function to flatten the child order
-                    var goodList = resp.data.cell;
-
-                    $("#J-goodList").html(self.templates['goodItem']({goods:goodList}));
+            var itemIdForBind = [];
+            var orderIdArr = [];
 
 
-                    $(".z-mod").each(function(index,node){
-                        itemIdsArr.push($(node).attr("data-itemId"));
-                    });
+            var data = {"archive":"false","statusId":"2","page":pageNo || 1,"pageSize":"10"};
 
-                    self._queryComments(itemIdsArr);
+            app.mtopH5Api.getApi( 'mtop.order.queryOrderList', '1.0',  data,{},  function (resp) {
 
 
 
+                console.log(resp);
 
-                }
+                //TODO:write a parse function to flatten the child order
+                var goodList = resp.data.cell;
+
+
+                $(app.component.getActiveContent()).find("#J-goodList").html(self.templates['goodItem']({goods:goodList}));
+
+
+
+                $(".z-mod").each(function(index,node){
+                    itemIdsArr.push($(node).attr("data-itemId"));
+                    itemIdForBind.push($(node).attr("data-id"));
+                    orderIdArr.push($(node).attr("data-orderId"));
+                });
+
+                self._queryComments(itemIdsArr,itemIdForBind,orderIdArr);
+
             });
 
 
-        },
-
-        events:{
-            "click .J-addPic":"triggerUploader"
 
         },
+
+
+
+        _testCanUpload:function(){
+            var canUpload;
+            if (navigator.userAgent.indexOf("OS") > -1) {
+                var ua = navigator.userAgent;
+                var c = ua.charAt(ua.indexOf("OS") + 3);
+                canUpload = c >= 6;
+            }else{
+                canUpload = false;
+            }
+
+            return canUpload;
+        },
+
 
         triggerUploader:function(e){
             e.preventDefault();
             $("#J-upload").trigger("click");
+
+            var currentTarget = e.currentTarget;
+            var item = $(currentTarget).parents(".z-mod");
+            var canUpload = this._testCanUpload();
+
+            if(!canUpload) alert("抱歉！您的手机浏览器暂不支持网页上传图片功能。");
+
+            app.ZDMData.ratedUid = item.attr("data-rateduid");
+            app.ZDMData.tradeId = item.attr("data-tradeid");
+            app.ZDMData.parentTradeId = item.attr("data-parentTradeId");
+
 
            $("#J-upload").on("change",function(){
                 app.navigation.push("upload",{datas:{"picInput":$("#J-upload")}});
@@ -110,7 +144,7 @@
           $("#J-upload").val("");
 
           //delegate events
-          app.Util.Events.call(this,"#J-myGood",this.events);
+          app.Util.Events.call(this,"#tbh5v0",this.events);
 
 
           this.loadGoodList();
@@ -118,6 +152,7 @@
 
         unload:function () {
             // implement super.unload
+
         }
 
     });

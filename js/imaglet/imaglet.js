@@ -66,6 +66,33 @@
 
         },
 
+
+        imaget: function(e) {
+            var t = this;
+            t.toSlide("imaget", 3, function() {
+                t.allRun();
+                var n = r(".headers .imaget .main");
+                if (t.isIF)
+                    t.imagetViewInstance = new c({el: "#imaget"}), t.imagetViewInstance.fetch(e), t.iItem = e, t.isIF = !1, t.isParamFirst = !0, n.on("click", function(i) {
+                        i.preventDefault();
+                        var o = r(i.target);
+                        if (o.hasClass("highlight"))
+                            return;
+                        var u = n.find("a.highlight"), a = "#J_";
+                        a += o.attr("s"), curdiv = r(a);
+                        if (!curdiv.length)
+                            return;
+                        u.removeClass("highlight"), o.addClass("highlight"), r("#J_" + u.attr("s")).addClass("none"), curdiv.removeClass("none"), a == "#J_param" && t.isParamFirst && (t.imagetViewInstance.fetchParam(e), t.isParamFirst = null), s.sendPoint(a != "#J_param" ? "picdetail#h#detail" : "pddetail#h#detail")
+                    });
+                else if (t.iItem != e) {
+                    t.imagetViewInstance && t.imagetViewInstance.destroy(), t.isParamFirst = !0;
+                    var i = n.children()[0];
+                    i.className != "highlight" && (i.className = "highlight", n.children()[1].className = ""), t.imagetViewInstance = new c({el: "#imaget"}), t.imagetViewInstance.fetch(e), t.iItem = e
+                } else
+                    d.loadHide()
+            }), t.calcelFullScreen()
+        },
+
         unload:function () {
             // implement super.unload
         },

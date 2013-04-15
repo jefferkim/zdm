@@ -1,6 +1,6 @@
 <%_.each(goods,function(good){%>
     <% _.each(good.boughtItem,function(boughtItem){%>
-    <li class="z-mod" id="J-commentItem-<%= boughtItem.itemId %>"  data-itemId="<%= boughtItem.itemId %>">
+    <li class="z-mod" id="J-commentItem-<%= good.orderId %>-<%= boughtItem.itemId%>" data-orderId="<%= good.orderId%>" data-id="<%= good.orderId %>-<%= boughtItem.itemId %>" data-itemId="<%= boughtItem.itemId %>"  data-ratedUid="<%= good.sellerId%>"  data-tradeId="<%= good.orderId %>" data-parentTradeId="<%= good.orderId %>">
         <div class="good-item">
             <div class="hd good-hd">
                 <img src="<%= boughtItem.pic %>"/>
@@ -9,7 +9,7 @@
                  <p><%= boughtItem.title %></p>
             </div>
         </div>
-
+        <div id="J-comment-<%= good.orderId %>-<%= boughtItem.itemId %>"> </div>
     </li>
     <% })%>
 <%})%>
