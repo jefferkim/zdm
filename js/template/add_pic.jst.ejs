@@ -1,5 +1,5 @@
 <div id="J-uploader">
-   <form action="" name="" id="J-imgForm">
+   <form action="http://wo.waptest.taobao.com/uploadPicture.htm"  method="post" enctype="multipart/form-data" id="J-imgForm">
     <div class="add-pic" id="J-addPicWrap">
        <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>
        <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>
@@ -11,5 +11,14 @@
           <textarea name=""></textarea>
         </div>
     </div>
+
+       <input type="hidden" name="action" value="upload_picture_action"/>
+       <input type="hidden" name="event_submit_do_upload_pictrue" value="anything"/>
+
+       <input type="hidden" name="ratedUid" value="179331639"/>
+       <input type="hidden" name="raterUid" value="180351130"/>
+       <input type="hidden" name="tradeId" value="92097650033011"/>
+       <input type="hidden" name="raterNick" value="refund11"/>
+
   </form>
 </div>

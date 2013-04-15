@@ -37,6 +37,12 @@
             content.html(self.templates["layout"]());
 
             this.queryData();
+
+
+
+
+
+
         },
 
 
@@ -44,21 +50,30 @@
         queryData:function () {
 
             var self = this;
-            var id = app.navigation.getParameter("id");
+            this.itemQid = id = app.navigation.getParameter("id");
             var el = $("#J_detailCont");
 
-            app.mtopH5.getApi( 'mtop.wdetail.getItemDetail', '3.0',  {'itemNumId':id}, {'ttid':'2000@taobao_h5_3.0'},  function (result) {
+
+
+
+            app.mtopH5Api.getApi( 'mtop.wdetail.getItemDetail', '3.0',  {'itemNumId':id},{ttid: "2000@taobao_h5_3.0"},  function (result) {
+
                     // success callback
                     if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
 
                         var item = result.data.item;
 
-                        if (item && item.h5Common && item.h5Common == 'true') {
+                      /*  if (item && item.h5Common && item.h5Common == 'true') {
                             self.render(result);
                         } else { //not common product
                             el.html('<p class="itc-p">本应用暂不支持该宝贝</p>');
                             //open.loadHide();
-                        }
+                        }*/
+
+
+                        //-------for test
+                        self.render(result);
+
 
                     }
                     else {
@@ -69,8 +84,7 @@
                 }, function () {
                     el.html('<p class="itc-p">' + message.errorMessage + '</p>');
                     // open.loadHide();
-                }
-            )
+                });
         },
 
 
@@ -85,7 +99,6 @@
 
 
             //good info
-            console.log(detailData);
             var infoHtml = this.templates['info']({info:detailData.info,mallInfo:detailData.mallInfo});
             $("#J-dInfo").html(infoHtml);
 
@@ -97,49 +110,38 @@
             var orderNow = this.templates['orderNow']({item:detailData.info,trade:detailData.trade,seller:detailData.seller});
             $("#J-orderNow").html(orderNow);
 
-
-
-
             this.detailSlider = new Swipe($('#J-sliderShow')[0], {"fixWidth":200,"preload": 4});
             this.detailSlider.load();
 
 
             //query comment
-            this.queryComment();
+            this.queryComment(detailData.seller.userNumId);
 
         },
 
 
-        queryComment:function(){
-
-/*
-            var data = {"ratedUid":"179331639","raterUid":"0","itemIds":"1600188384","pageSize":"10","pageIndex":"1"};
-
-            console.log(data);
-            app.mtopH5.getApi( 'mtop.gene.feedCenter.queryFeedItems', '1.0',data, function (result) {
-                console.log(result);
+        queryComment:function(ratedId){
 
 
 
-            });*/
 
+           // http://api.waptest.taobao.com/rest/api3.do?ttid=123@taobao_android_1.0&v=1.0&t=1365929315424&imei=123456789012345&api=mtop.gene.feedCenter.queryFeedItems&imsi=123456789012345&appKey=4272&data={"ratedUid":"179331639","itemIds":"1600188384","pageSize":"10","pageIndex":"1"}
 
-           // http://api.waptest.taobao.com/rest/api3.do?sign=3aac42550c861c6bdd7ddc3fa1dc1dbc&sid=8381f0ebe24450ca8b04b36070867a31&ttid=123@taobao_android_1.0&v=1.0&t=1365929315424&imei=123456789012345&api=mtop.gene.feedCenter.queryFeedItems&imsi=123456789012345&appKey=4272&data={"ratedUid":"179331639","itemIds":"1600188384","pageSize":"10","pageIndex":"1"}
             var self = this;
+            var data = {"ratedUid":ratedId,"itemIds":this.itemQid,"pageSize":"10","pageIndex":"1"};
 
-            $.ajax({
-                url:"json/list2.json",
-                dataType:"json",
-                success:function(result){
-                    if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-                        var comments = result.data.dataList;
-                        console.log(comments);
-                        var html = self.templates['comments']({comments:comments});
-                        $("#zdm-comment").html(html);
-                    }
 
+            app.mtopH5Api.getApi( 'mtop.gene.feedCenter.queryFeedItems', '1.0',  data,{},  function (result) {
+
+                if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
+                    var comments = result.data.dataList;
+                    var html = self.templates['comments']({comments:comments});
+                    $("#zdm-comment").html(html);
                 }
-            })
+
+            });
+
+
 
         },
 

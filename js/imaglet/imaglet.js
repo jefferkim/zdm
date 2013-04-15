@@ -2,7 +2,7 @@
 
     var imaglet = app.page.define({
         name:"imaglet",
-        title:'<span class="h-tab">图文详情</span><span class="h-tab">产品参数</span>', //title bar的文案
+        title:'<div class="headerTab"><span class="h-tab">图文详情</span><span class="h-tab">产品参数</span></div>', //title bar的文案
         route:"imaglet\/(P<id>\\d+)",
         templates:JST['template/imaglet'],
         //buttons of navigation
