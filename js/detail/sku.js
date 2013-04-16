@@ -4,16 +4,20 @@
        init:function(data){
 
 
+           console.log(data);
           // var data = $.TBDetail || {};
            //this.url = data.propsAjaxUrl;
            this.isIpad = data.isIpad;  //ipad客户端
            this.isJu = null;//TBDetail.jhsData;  //聚划算
 
 
-
            this.el = $(".d-sku");
 
 
+
+           this.template = JST['template/detail_sku'];
+
+           $("#J-dSKU").html(this.template({item:data.item,seller:data.seller,sku:data.skuData}));
 
            //定义常用变量，避免重复操作DOM
            this.skuId = $('#sku-id');
@@ -31,13 +35,13 @@
            this.promoTxt = ppromo && ppromo.prev() && ppromo.prev().text().slice(0,-1) || '价格';
            this.firstLoad = true;
 
-           console.log(data);
+
            //数据
            var skudata = data.skuData || {};
            this.skuProps = skudata.skuProps || [];
            this.availSKUs = skudata.availSKUs || {};
 
-           console.log(skudata);
+
 
 
            app.Util.Events.call(this,"#tbh5v0",this.events);
@@ -121,7 +125,7 @@
             !isScroll && utils.sendPoint('showsku%23h%23detail');*/
            skuAll.css('height',28).removeClass('none').animate({'height':height},500,'ease-out',function(){
                skuAll.css('height','auto');
-               !isScroll && app.Util.sendPoint('showsku#h#detail');
+            //   !isScroll && app.Util.sendPoint('showsku#h#detail');
            });
        },
        fold : function(e){
@@ -138,7 +142,7 @@
            skuAll.css('height',height).animate({'height':28},500,'ease-out',function(){
                skuLimit.removeClass('none');
                skuAll.addClass('none').css('height','auto');
-               app.Util.sendPoint('hidesku#h#detail');
+           //    app.Util.sendPoint('hidesku#h#detail');
            });
        },
        showImg : function(obj){
@@ -320,8 +324,11 @@
            if(skuProps.length) this.el.show();
            else this.el.hide();
            var content = that.outputHtml(skuProps);
+           console.log(that.skuAll);
            console.log(content);
+
            that.skuAll.html(content);
+
            if(that.firstLoad){
                that.contract();
                //that.options.action.previousAction(that.availSKUs,that);

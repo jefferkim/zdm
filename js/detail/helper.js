@@ -26,6 +26,7 @@
             var item = data.item;
             var pricep = data.priceUnits;
 
+            newJson.item = item;
             //商品属性：
             newJson.itemId = item.itemNumId;
 

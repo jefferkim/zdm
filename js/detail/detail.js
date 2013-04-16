@@ -110,7 +110,7 @@
             this.detailSlider.load();
 
 
-            console.log(detailData);
+
             app.sku.init(detailData);
 
 

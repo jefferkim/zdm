@@ -139,6 +139,7 @@
             app.ZDMData.parentTradeId = item.attr("data-parentTradeId");
             app.ZDMData.aucNumId = item.attr("data-itemId");
 
+
             app.navigation.push("upload", {datas:{"canUpload":canUpload}});
 
 

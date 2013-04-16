@@ -1,2 +1,16 @@
-<p class="ds-props" id="sku-limit"><span class="ds-skup">尺码</span>:　<span class="gray12">M　L　XL　XXL　颜色: 半身渐变蓝 全身黑 半身紫</span><b class="aw down"></b></p>
-<div class="ds-main none" id="sku-all"></div>
+<% if(item.sku == 'true'){ %>
+<section class="d-sku<% if(seller.type == 'B'){ %> d-tmall<% } %>">
+   <p class="ds-props" id="sku-limit">
+       <span class="gray12">
+           <%=_.map(sku.skuProps,function(item){
+              var tempa = _.map(item.values,function(el){
+                    return el.valueAlias || el.name;
+               });
+               tempa.unshift(item.name+': ');
+               return tempa.join(' ');}).join(' ')
+           %></span>
+       <b class="aw down"></b>
+   </p>
+   <div class="ds-main none" id="sku-all"></div>
+</section>
+<% } %>

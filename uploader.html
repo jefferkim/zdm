@@ -24,9 +24,8 @@
     <!--begin of mix layout-->
     <div class="viewport">
         <header class="titlebar" style="display:block;">
-            <ul>
+            <ul>                          <!--todo :去掉button-->
                 <li>发布图片</li>
-                <li><button class="back"></button></li>
                 <li><button class="func" id="J-uploadNow">发布</button></li>
             </ul>
         </header>
@@ -93,24 +92,9 @@
 <input type="hidden" id="J_pics" value="" />
 
 
-<script src="http://10.7.24.132:9292/zdm.js"></script>
+<script src="http://127.0.0.1:9292/zdm.js"></script>
 
-<script type="text/javascript">
-      $("#J-uploadNow").on("click",function(){
-         var data = {"pics":$("#J-pics").val(),
-             "ratedUid":$("#J-ratedUid").val(),
-             "parentTradeId":$("#J-parentTradeId").val(),
-             "tradeId":$("#J-tradeId").val(),
-             "aucNumId":$("#J-aucNumId").val(),    //商品id
-             "feedback":$("#J_CommentPoster").val()};
-
-         app.mtopH5Api.getApi('mtop.gene.feedCenter.createItemFeed', '1.0', data, {}, function (result) {
-             if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-                 window.location.href = window.location.href.toString().replace("uploader.html","index.html#my/p1");
-             }
-         });
-     });
-</script>
+<script type="text/javascript" src="js/upload.js"></script>
 
 </body>
 </html>

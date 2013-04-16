@@ -67,6 +67,7 @@
                 }
                 $("#J-ratedUid").val(app.ZDMData.ratedUid);
                 $("#J-tradeId").val(app.ZDMData.tradeId);
+                $("#J-itemId").val(app.ZDMData.aucNumId);
             }
 
             $("#J_CommentPoster").keyup(function () {
