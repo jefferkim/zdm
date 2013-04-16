@@ -1,0 +1,128 @@
+//@import '../../base/less/base';
+
+#tbh5v0 {
+	
+	/*单行块状*/
+	.thumb-block (@width: 60px, @height: 30px) {
+		min-width : @width;
+		height : @height;
+		line-height : @height;
+	}
+	
+	//颜色块
+	.color-block (@width:58px, @height:38px, @color:#333333, @bg-color:#eeeeee){
+		display: inline-block;
+		min-width: @width;
+		height: @height;
+		padding: 0 15px;
+		border:none;
+		background: @bg-color;
+		text-align: center;
+		text-decoration: none;
+		line-height: @height;
+		color: @color;
+		font-size: @normal-font-size;
+		font-weight: 700;
+	}
+
+
+
+	/*
+	公共按钮
+	*/
+	
+	#bundle-btn {
+	
+		.btn-grey() {
+			.color-block(58px, 38px, @text-main-color, #eeeeee);
+			.border-radius(2px);
+			border:1px solid #dddddd;
+			border-bottom-color: #bbbbbb;
+			background: -webkit-gradient(linear,0 0,0 100%,color-stop(0, #f8f8f8),color-stop(1, #eeeeee));
+		}
+		
+		.btn-oran() {
+			.color-block(60px, 40px, #fff, @standard-main-color);
+			.border-radius(2px);
+			background: -webkit-gradient(linear,0 0,0 100%,color-stop(0, #ff5500),color-stop(1, #ff4400));
+			text-shadow: 0 -1px 1px #CA3511;
+			-webkit-box-shadow:0 -1px 0 #bf3210 inset;
+		}
+	
+		.btn-blue() {
+			.color-block(60px, 40px, #FFF, #1885EE);
+			.border-radius(2px);
+			background: -webkit-gradient(linear,0 0,0 100%,color-stop(0, #358AFC),color-stop(1, #0782E7));
+			-webkit-box-shadow:0 -1px 0 #046ABE inset;
+		}
+
+		.btn-darkRed() {
+			.color-block(60px, 40px, #FFF, #A70900);
+			.border-radius(2px);
+			background: -webkit-gradient(linear,0 0,0 100%,color-stop(0, #9B0800),color-stop(1, #AE0900));
+			-webkit-box-shadow: 0 0 1px #B4250A inset;
+		}
+	
+	}
+	
+	//常用按钮
+	.c-btn-nomal {
+		#bundle-btn > .btn-grey();
+
+		&.disabled {
+            color: #ccc;
+        }
+	}
+	//灰色按钮
+	.c-btn-grey {
+		#bundle-btn > .btn-grey();
+	}
+	//黄色按钮
+	.c-btn-oran {
+		#bundle-btn > .btn-oran();
+	}
+	//蓝色按钮
+	.c-btn-blue {
+		#bundle-btn > .btn-blue();
+	}
+    //蓝色小按钮
+    .c-btn-blue-small {
+      #bundle-btn > .btn-blue();
+      .thumb-block(28px, 28px);
+    }
+	//灰色小按钮
+	.c-btn-grey-small {
+		#bundle-btn > .btn-grey();
+		.thumb-block(28px, 28px);
+	}
+	//黄色小按钮
+	.c-btn-oran-small {
+		#bundle-btn > .btn-oran();
+		.thumb-block(30px, 30px);
+	}
+	
+	//黄色大按钮
+	.c-btn-oran-big {
+		#bundle-btn > .btn-oran();
+		.thumb-block(100%, 44px);
+		padding: 0;
+		font-size: @normal-font-size + 10;
+		text-shadow: 0 -1px 0 #441307;
+	}
+
+	//天猫按钮
+	.c-btn-tmall-buy {
+		#bundle-btn > .btn-darkRed();
+		
+		span{
+			display: block;
+			height: 40px;
+			padding: 0 15px;
+			line-height: 34px;
+			//background: url(../images/tmall.png) 50% 100% no-repeat;
+			background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAANCAYAAADMvbwhAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGtSURBVHjaYmYAAmV5hX4hAYEdQOwAxBfff/zwgoGGAGifANCe5UC8AogFgPbtZAQKOgDl9iOp+wDEhncfPnhAK0dA7TNAEg5kAhIOaGpBCtdDNdDDESDgD3KIPRY9IIX7qekYPI4AAQUmPHpBGs5Do45SR4DMOI/DEWDAQsAMBWjIXADSG4H4AIlucICGOEHPYISIq5sbw8EjhxlkZGTgbE0tLZBP6qFBSwquB+p1WLpiOUNwSAgDHx8f2DwQG69DQBZPnzWT4cmTJ2C8e9cuBmmgg0AGgRxGKgBZDNJrbmEBNuvTp09gczt7usF24XRIQlIimL5+7RpcDMQGGQiTQ7cIZAkIg9joIAgaCiAHgDAInDxxEkznFeTjTiMgA0Hg06fPcDGYAcAgxuoQUAiCaAcbW7hahHnmGB6DAXTzUBzyFBhs0jiiACSHDkDB3NrUDGfj0oMtWtEdjRI1a9esRfEJssthctgcg80RILB7124wjew5GRlpML1g3nzcDpk0YQLDujVr4JaDaFCwl5eUAuP2BFbLQGkHW/qBpIcTYL3I0Q5LuCC7kAFAgAEAfK+tiOfRxb4AAAAASUVORK5CYII=) 50% 100% no-repeat;
+		}
+	}
+
+
+}
