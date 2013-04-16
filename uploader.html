@@ -13,7 +13,6 @@
 
     <link rel="stylesheet/less"  type="text/css" href="less/zdm.less"/>
     <link rel="stylesheet/less" type="text/css" href="less/detail.less"/>
-
     <script type="text/javascript" src="http://a.tbcdn.cn/mw/base/libs/less/1.3.0/less.js"></script>
 
 
@@ -24,11 +23,11 @@
 
     <!--begin of mix layout-->
     <div class="viewport">
-        <header class="titlebar">
+        <header class="titlebar" style="display:block;">
             <ul>
-                <li>Title</li>
-                <li><button class="back">Back Btn</button></li>
-                <li><button class="func">Func Btn</button></li>
+                <li>发布图片</li>
+                <li><button class="back"></button></li>
+                <li><button class="func" id="J-uploadNow">发布</button></li>
             </ul>
         </header>
 
@@ -39,51 +38,79 @@
 
 
                     <div id="J-uploader">
-                        <form action="" name="">
-                            <div class="add-pic">
-                               <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>
-                               <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>
+
+                            <div class="add-pic" id="J-addPicWrap">
+                                <div id="J-uploaderTrigger">
+                                    <ul class="uploaded-pics">
+                                        <li><img src="http://img04.taobaocdn.com/tps/i4/T1mNFVXxlcXXXeF16k-62-62.png"/></li>
+                                        <li><img src="http://img04.taobaocdn.com/tps/i4/T1mNFVXxlcXXXeF16k-62-62.png"/></li>
+                                        <li><img src="http://img04.taobaocdn.com/tps/i4/T1mNFVXxlcXXXeF16k-62-62.png"/></li>
+                                        <li><img src="http://img04.taobaocdn.com/tps/i4/T1mNFVXxlcXXXeF16k-62-62.png"/></li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="comment-area">
                                 <em class="arrow"></em>
-                                <em class="num">1/140</em>
-                                <textarea name="">
-
-                                </textarea>
+                                <em class="num"><span id="J-num">0</span>/140</em>
+                                <div class="cm-textarea">
+                                    <textarea name="" id="J_CommentPoster"></textarea>
+                                </div>
                             </div>
-                        </form>
+
+                        <input type="hidden" name="" id="J-ratedUid"/>
+                        <input type="hidden" name="" id="J-parentTradeId"/>
+                        <input type="hidden" name="" id="J-tradeId"/>
+                        <input type="hidden" name="" id="J-aucNumId"/>
+
                     </div>
-
-
-
-
-
-
 
 
                 </div>
                 <div class="inactive"></div>
             </div>
         </section>
-        <footer class="toolbar"></footer>
+
+        <footer class="footer" style="margin-top:0;">
+            <section class="footer-t">
+                <p class="user-info">
+                    <span><a href="#">用户名1</a></span><span><a href="#">退出</a></span>
+                </p>
+                <p class="gotop"><a id="J_GoTop" href="#">top<b></b></a></p>
+            </section>
+            <nav class="footer-l">
+                <a href="#" title="">标准版</a><a href="http://www.taobao.com/index.php?from=wap&sprefer=pmm302" title="">电脑版</a>
+            </nav>
+            <p class="copyright">©2012 浙B2-20080224<a class="cr-sv" href="#" id="J_service">客服</a></p>
+        </footer>
+
     </div>
 
 
-    <footer class="footer">
-        <section class="footer-t">
-            <p class="user-info">
-                <span><a href="#">用户名1</a></span><span><a href="#">退出</a></span>
-            </p>
-            <p class="gotop"><a id="J_GoTop" href="#">top<b></b></a></p>
-        </section>
-        <nav class="footer-l">
-            <a href="#" title="">标准版</a><a href="http://www.taobao.com/index.php?from=wap&sprefer=pmm302" title="">电脑版</a>
-        </nav>
-        <p class="copyright">©2012 浙B2-20080224<a class="cr-sv" href="#" id="J_service">客服</a></p>
-    </footer>
 
 </div>
-<input type="hidden" id="J_app_key" value="12574478" />
+
+<input type="hidden" id="J_app_key" value="4272" />
+<input type="hidden" id="J_pics" value="" />
+
+
+<script src="http://10.7.24.132:9292/zdm.js"></script>
+
+<script type="text/javascript">
+      $("#J-uploadNow").on("click",function(){
+         var data = {"pics":$("#J-pics").val(),
+             "ratedUid":$("#J-ratedUid").val(),
+             "parentTradeId":$("#J-parentTradeId").val(),
+             "tradeId":$("#J-tradeId").val(),
+             "aucNumId":$("#J-aucNumId").val(),    //商品id
+             "feedback":$("#J_CommentPoster").val()};
+
+         app.mtopH5Api.getApi('mtop.gene.feedCenter.createItemFeed', '1.0', data, {}, function (result) {
+             if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
+                 window.location.href = window.location.href.toString().replace("uploader.html","index.html#my/p1");
+             }
+         });
+     });
+</script>
 
 </body>
 </html>

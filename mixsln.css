@@ -189,8 +189,8 @@ header.titlebar button.back:before {
 
 
 .viewport.enableTitlebar > section {
-    margin-top: -43px;
-    padding-top: 43px;
+    margin-top: -50px;
+    padding-top: 50px;
 }
 
 .viewport.enableScroll,

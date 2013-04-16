@@ -9,11 +9,12 @@
 //= require vendor/h5_utils
 //= require vendor/uri
 //= require vendor/uriBroker
-
+//= require vendor/notification
 //= require vendor/h5_common
 //= require vendor/h5_base
 //= require vendor/mtop_h5_chunk
 //= require vendor/mtop_h5api
+
 
 
 //= require util

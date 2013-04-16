@@ -1,8 +1,20 @@
 <div id="J-uploader">
    <form action="http://wo.waptest.taobao.com/uploadPicture.htm"  method="post" enctype="multipart/form-data" id="J-imgForm">
     <div class="add-pic" id="J-addPicWrap">
-       <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>
-       <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>
+        <div id="J-uploaderTrigger">
+          <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>
+         <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>
+        </div>
+        <div id="J-uploaded" class="uploader-file" style="display:block;">
+          <form action="http://wo.waptest.taobao.com/uploadPicture.htm" method="post" enctype="multipart/form-data">
+              <input type="file" name="picture"  id="J-upload" class="upload-input" multiple/>
+              <input type="hidden" name="action" value="upload_picture_action"/>
+              <input type="hidden" name="event_submit_do_upload_pictrue" value="anything"/>
+              <input type="hidden" name="ratedUid" id="J-ratedUid" value=""/> <!--被评价的uid-->
+              <input type="hidden" name="tradeId" id="J-tradeId" value=""/>  <!---orderId-->
+              <input type="submit" name="" value="上传"/>
+          </form>
+        </div>
     </div>
     <div class="comment-area">
         <em class="arrow"></em>
@@ -12,11 +24,7 @@
         </div>
     </div>
 
-       <input type="hidden" name="action" value="upload_picture_action"/>
-       <input type="hidden" name="event_submit_do_upload_pictrue" value="anything"/>
 
-       <input type="hidden" name="ratedUid" id="J-ratedUid" value=""/> <!--被评价的uid-->
-       <input type="hidden" name="tradeId" id="J-tradeId" value=""/>  <!---orderId-->
 
   </form>
 </div>

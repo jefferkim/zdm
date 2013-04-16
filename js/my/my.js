@@ -5,9 +5,9 @@
         title:'我的商品', //title bar的文案
         route:"my\/p(P<pageNo>\\d+)",
         templates:{
-           "layout":JST['template/good_layout'],
-           "commentItem":JST['template/good_commentItem'],
-           "goodItem":JST['template/good_item']
+            "layout":JST['template/good_layout'],
+            "commentItem":JST['template/good_commentItem'],
+            "goodItem":JST['template/good_item']
         },
         //buttons of navigation
         buttons:[
@@ -24,38 +24,44 @@
         },
 
 
-        gotoViewAll:function(e){
+        gotoViewAll:function (e) {
             e.preventDefault();
             app.navigation.push("viewAll/p1");
 
         },
 
 
-        _queryComments:function(ids,itemIdForBind,orderIdArr){
+        _queryComments:function (ids, itemIdForBind, orderIdArr) {
 
             var self = this;
 
 
-            var data = {"ratedUid":"0","tradeId":"0","itemIds":ids.join(","),"pageSize":"10","pageIndex":"1"};
+            var data = {"ratedUid":"0", "tradeId":"0", "itemIds":ids.join(","), "pageSize":"10", "pageIndex":"1"};
 
-            app.mtopH5Api.getApi( 'mtop.gene.feedCenter.queryFeedItems', '1.0',  data,{},  function (resp) {
-                var  list = resp.data.dataList;
+            app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (resp) {
 
-                _.each(ids,function(id,index){
+                    if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
 
-                    var t = _.where(list,{"aucNumId":id,"tradeId":orderIdArr[index]});
+                var list = resp.data.dataList;
 
-                    var comment1 = t.length >0  ? t[0] : false;
+                _.each(ids, function (id, index) {
+
+                    var t = _.where(list, {"aucNumId":id, "tradeId":orderIdArr[index]});
+
+                    var comment1 = t.length > 0 ? t[0] : false;
 
 
-                    $("#J-comment-"+itemIdForBind[index]).html( self.templates['commentItem']({comment:comment1}));
+                    $("#J-comment-" + itemIdForBind[index]).html(self.templates['commentItem']({comment:comment1}));
 
                 })
+                    }else{
+                        notification.flash("请求商品评论失败，请刷新");
+                    }
             });
 
         },
         // load good list
-        loadGoodList:function(){
+        loadGoodList:function () {
 
             var self = this;
             var navigation = app.navigation;
@@ -65,89 +71,95 @@
             var orderIdArr = [];
 
 
-            var data = {"archive":"false","statusId":"2","page":pageNo || 1,"pageSize":"10"};
+            var data = {"archive":"false", "statusId":"2", "page":pageNo || 1, "pageSize":"10"};
 
-            app.mtopH5Api.getApi( 'mtop.order.queryOrderList', '1.0',  data,{},  function (resp) {
+            app.mtopH5Api.getApi('mtop.order.queryOrderList', '1.0', data, {}, function (resp) {
 
+                if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
 
+                    //TODO:write a parse function to flatten the child order
+                    var goodList = resp.data.cell;
 
-                console.log(resp);
+                    $(app.component.getActiveContent()).find("#J-goodList").html(self.templates['goodItem']({goods:goodList}));
 
-                //TODO:write a parse function to flatten the child order
-                var goodList = resp.data.cell;
+                    $(".z-mod").each(function (index, node) {
+                        itemIdsArr.push($(node).attr("data-itemId"));
+                        itemIdForBind.push($(node).attr("data-id"));
+                        orderIdArr.push($(node).attr("data-orderId"));
+                    });
 
+                    self._queryComments(itemIdsArr, itemIdForBind, orderIdArr);
 
-                $(app.component.getActiveContent()).find("#J-goodList").html(self.templates['goodItem']({goods:goodList}));
-
-
-
-                $(".z-mod").each(function(index,node){
-                    itemIdsArr.push($(node).attr("data-itemId"));
-                    itemIdForBind.push($(node).attr("data-id"));
-                    orderIdArr.push($(node).attr("data-orderId"));
-                });
-
-                self._queryComments(itemIdsArr,itemIdForBind,orderIdArr);
+                } else {
+                    notification.flash("请求我的商品失败，请刷新").show();
+                }
 
             });
-
 
 
         },
 
 
-
-        _testCanUpload:function(){
+        _testCanUpload:function () {
             var canUpload;
             if (navigator.userAgent.indexOf("OS") > -1) {
                 var ua = navigator.userAgent;
                 var c = ua.charAt(ua.indexOf("OS") + 3);
                 canUpload = c >= 6;
-            }else{
+            } else {
                 canUpload = false;
             }
+
+
+
+
+            canUpload = true;
+
+
 
             return canUpload;
         },
 
 
-        triggerUploader:function(e){
+        triggerUploader:function (e) {
             e.preventDefault();
-            $("#J-upload").trigger("click");
+
 
             var currentTarget = e.currentTarget;
             var item = $(currentTarget).parents(".z-mod");
             var canUpload = this._testCanUpload();
 
-            if(!canUpload) alert("抱歉！您的手机浏览器暂不支持网页上传图片功能。");
+            if (!canUpload) {
+                alert("抱歉！您的手机浏览器暂不支持网页上传图片功能。");
+            }
+            //$("#J-upload").trigger("click");
 
             app.ZDMData.ratedUid = item.attr("data-rateduid");
             app.ZDMData.tradeId = item.attr("data-tradeid");
             app.ZDMData.parentTradeId = item.attr("data-parentTradeId");
+            app.ZDMData.aucNumId = item.attr("data-itemId");
 
+            app.navigation.push("upload", {datas:{"canUpload":canUpload}});
 
-           $("#J-upload").on("change",function(){
-                app.navigation.push("upload",{datas:{"picInput":$("#J-upload")}});
-           });
 
         },
 
         ready:function () {
-          // implement super.ready
-          var self = this;
-          var content = $(app.component.getActiveContent());
-          var navigation = app.navigation;
+            // implement super.ready
+            var self = this;
+            var content = $(app.component.getActiveContent());
+            var navigation = app.navigation;
 
-          content.html(self.templates['layout']());
+            content.html(self.templates['layout']());
 
-          //reset the input[type=file]  value to empty,so ensure of fire the change event
-          $("#J-upload").val("");
+            //reset the input[type=file]  value to empty,so ensure of fire the change event
+            $("#J-upload").val("");
 
-          //delegate events
-          app.Util.Events.call(this,"#tbh5v0",this.events);
+            //delegate events
+            app.Util.Events.call(this, "#tbh5v0", this.events);
 
 
-          this.loadGoodList();
+            this.loadGoodList();
         },
 
         unload:function () {
