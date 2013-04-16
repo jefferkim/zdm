@@ -73,12 +73,12 @@
 
                     }
                     else {
-                        el.html('<p class="itc-p">' + message.abnormalMessage + '</p>');
+                        notification.flash("请求失败,请重试").show();
                         //open.loadHide();
 
                     }
                 }, function () {
-                    el.html('<p class="itc-p">' + message.errorMessage + '</p>');
+                    notification.flash("请求失败，请重试").show();;
                     // open.loadHide();
                 });
         },
@@ -128,8 +128,7 @@
            // http://api.waptest.taobao.com/rest/api3.do?ttid=123@taobao_android_1.0&v=1.0&t=1365929315424&imei=123456789012345&api=mtop.gene.feedCenter.queryFeedItems&imsi=123456789012345&appKey=4272&data={"ratedUid":"179331639","itemIds":"1600188384","pageSize":"10","pageIndex":"1"}
 
             var self = this;
-            var data = {"ratedUid":ratedId,"itemIds":this.itemQid,"pageSize":"10","pageIndex":"1"};
-
+            var data = {"ratedUid":ratedId,"tradeId":"0", "itemIds":this.itemQid,"pageSize":"10","pageIndex":"1"};
 
             app.mtopH5Api.getApi( 'mtop.gene.feedCenter.queryFeedItems', '1.0',  data,{},  function (result) {
 
@@ -138,6 +137,8 @@
                     var html = self.templates['comments']({comments:comments});
 
                     $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户评论</h2><ul class="zdm-comment-block">'+html+'</ul>');
+                }else{
+                    notification.flash("评论请求失败，请重试").show();
                 }
 
             });

@@ -33,6 +33,7 @@
 
             var host = app.helper.fetchHost();
             this.typeg = 'good';
+
             //this.url = 'json/comment.json';
             this.url = 'http://a.' + host + '.taobao.com/ajax/rate_list.do';
             this.isFirst = true;
@@ -106,7 +107,7 @@
                 htmldom = that.templates(json),
                 $htmldom = $(htmldom),
                 ul = json.items && json.items.length && $htmldom.find('#J_commcont ul') || $('<p class="itc-p">无评论</p>');
-            console.log(htmldom);
+
             if (that.isFirst) {  //only once
 
                 $("#J_commentCont").append($htmldom);

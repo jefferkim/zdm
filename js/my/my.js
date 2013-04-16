@@ -71,7 +71,7 @@
             var orderIdArr = [];
 
 
-            var data = {"archive":"false", "statusId":"2", "page":pageNo || 1, "pageSize":"10"};
+            var data = {"archive":"false", "statusId":"2", "page":pageNo || 1, "pageSize":"12"};
 
             app.mtopH5Api.getApi('mtop.order.queryOrderList', '1.0', data, {}, function (resp) {
 
