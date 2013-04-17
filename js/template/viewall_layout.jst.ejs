@@ -1,11 +1,36 @@
-<section id="J_viewAllLayout" class="innercontent">
-       <div class="good-section"><div class="z-mod" id="J-goodSection"></div></div>
-       <p class="comments-num"><em></em><span>已有23位买家发布了他们的购买体验：</span></p>
-       <div class="comment-section" id="zdm-comment">
+<div class="good-section">
+    <div class="z-mod">
+        <div class="good-item">
+            <div class="hd good-hd">
+                <a href="#detail/<%= good.aucNumId%>"><img src="<%= good.auctionPicUrl %>"/></a>
+            </div>
+            <div class="bd good-bd">
+                <p><a href="#detail/<%= good.aucNumId%>"><%= good.auctionTitle %></a></p>
+                <div class="price">￥<%= good.auctionPrice %></div>
+            </div>
+        </div>
+    </div>
+</div>
+<p class="comments-num"><em></em><span>已有23位买家发布了他们的购买体验：</span></p>
+<div class="comment-section" id="zdm-comment">
+    <ul>
+    <%_.each(comments,function(comment){%>
+    <li class="z-mod">
+        <div class="hd">
+            <img src="http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=<%=comment.raterUid%>&width=40&height=40&type=sns"/>
+        </div>
+        <div class="bd">
+            <h3><%= comment.raterUserNick%></h3>
+            <p><%= comment.feedback%></p>
+            <ul class="pic-desc">
+                <%_.each(comment.feedItemPicDOList,function(pic){%>
+                <li><img src="pic.path"/></li>
+                <%})%>
+            </ul>
+        </div>
+    </li>
 
-
-       </div>
-
-
-       
-</section>
+    <% })%>
+    </ul>
+</div>
+<div id="J-allComments" class="c-pnav-con"></div>

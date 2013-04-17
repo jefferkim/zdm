@@ -8,7 +8,7 @@
         <p><%= comment.feedback %></p>
         <ul class="pic-desc">
             <%_.each(comment.feedItemPicDOList,function(pic){%>
-               <li><img src="pic.path"/></li>
+               <li><img src="<%= pic.path%>"/></li>
             <%})%>
         </ul>
     </div>

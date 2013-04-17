@@ -20,17 +20,6 @@
             }
         ],
 
-        //是否支持上传图片
-        _supportImgUpload:function () {
-
-
-        },
-
-
-
-
-
-
         ready:function () {
             var self = this;
             var content = $(app.component.getActiveContent());
@@ -83,6 +72,17 @@
                 });
         },
 
+        queryDesc:function(){
+
+            console.log(this.itemId);
+
+            app.mtopH5Api.getApi('mtop.gene.feedCenter.getConfigByItemId', '1.0', {"aucNumId":this.itemQid}, {}, function (result) {
+                if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
+                   $("#J-desc").html(result.data.result);
+
+                }
+            })
+        },
 
         render:function (json) {
             var data = json.data;
@@ -109,7 +109,7 @@
             this.detailSlider = new Swipe($('#J-sliderShow')[0], {"fixWidth":200,"preload": 4});
             this.detailSlider.load();
 
-
+            this.queryDesc();
 
             app.sku.init(detailData);
 
@@ -125,15 +125,16 @@
            // http://api.waptest.taobao.com/rest/api3.do?ttid=123@taobao_android_1.0&v=1.0&t=1365929315424&imei=123456789012345&api=mtop.gene.feedCenter.queryFeedItems&imsi=123456789012345&appKey=4272&data={"ratedUid":"179331639","itemIds":"1600188384","pageSize":"10","pageIndex":"1"}
 
             var self = this;
-            var data = {"ratedUid":ratedId,"tradeId":"0", "itemIds":this.itemQid,"pageSize":"10","pageIndex":"1"};
+            var data = {"ratedUid":ratedId,"tradeId":"0", "itemIds":this.itemQid,"pageSize":"5","pageIndex":"1"};
 
             app.mtopH5Api.getApi( 'mtop.gene.feedCenter.queryFeedItems', '1.0',  data,{},  function (result) {
 
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
                     var comments = result.data.dataList;
                     var html = self.templates['comments']({comments:comments});
+                    console.log("fff");
 
-                    $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户评论</h2><ul class="zdm-comment-block">'+html+'</ul>');
+                    $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户晒单</h2><ul class="zdm-comment-block">'+html+'</ul>');
                 }else{
                     notification.flash("评论请求失败，请重试").show();
                 }

@@ -5,9 +5,7 @@
         title:'所有评论', //title bar的文案
         route:"viewAll\/(P<itemId>\\d+)\/(P<ratedUid>\\d+)\/p(P<pageNo>\\d+)",
         templates:{
-           "layout":JST['template/viewall_layout'],
-           "comments":JST['template/comment_item'],
-           "goodItem":JST['template/good_item']
+           "layout":JST['template/viewall_layout']
         },
         //buttons of navigation
         buttons:[
@@ -26,25 +24,27 @@
 
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
                     var comments = result.data.dataList;
-                    var html = self.templates['comments']({comments:comments});
-                    console.log(html);
+                    var html = self.templates['layout']({good:result.data.data,comments:comments});
 
-                    $(app.component.getActiveContent()).find("#zdm-comment").html('<ul class="zdm-comment-block">'+html+'</ul>');
+
+                    $(app.component.getActiveContent()).find("#J_viewAllLayout").html(html);
+                    console.log(result);
+
+                   /* self.pageNav = new PageNav({'id':'#J-allComments', 'index':1, 'pageCount':data.total, 'disableHash':true});
+                    self.pageNav.$container.on('P:switchPage', function (e, page) {
+                        that.getData(page.index);
+                        that.tabCache[that.typeg].page = page.index;
+                        if (page.type == 'next') { // 下一页埋点
+                            //     utils.sendPoint('nextpage#h#detail');暂时不设置埋点
+                        }
+                    });*/
+
                 }else{
                     notification.flash("评论请求失败，请重试").show();
                 }
 
             });
 
-        },
-
-        renderItem:function(){
-
-            if(app.ZDMData.itemHtml){
-                $("#J-goodSection").html(app.ZDMData.itemHtml);
-            }else{
-
-            }
         },
 
 
@@ -64,7 +64,6 @@
         },
 
         ready:function () {
-          console.log("view all");
           // implement super.ready
           var self = this;
           var content = $(app.component.getActiveContent());
@@ -73,12 +72,11 @@
           this.itemId = navigation.getParameter("itemId");
           this.ratedUid = navigation.getParameter("ratedUid");
 
-          content.html(self.templates['layout']());
+          content.html('<section id="J_viewAllLayout" class="innercontent"></section>');
 
           //delegate events
          // app.Util.Events.call(this,"#J-myGood",this.events);
 
-          this.renderItem();
           this._queryComments();
         },
 

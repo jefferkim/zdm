@@ -4,7 +4,7 @@ $("#J-uploadNow").on("click", function () {
         notification.flash("评论不得超出140个字").show();
         return;
     }
-    var data = {"pics":$("#J-pics").val(),
+    var data = {"pics":$("#J-fileIds").val(),
         "ratedUid":$("#J-ratedUid").val(),
         "parentTradeId":$("#J-parentTradeId").val(),
         "tradeId":$("#J-tradeId").val(),

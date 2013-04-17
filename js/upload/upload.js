@@ -17,20 +17,9 @@
             },
             {
                 type:"func",
-                text:"发布",
+                text:"上传图片",
                 handler:function () {
-                    //$("#J-imgForm").submit();
-                    var data = {"pics":$("#J-pics").val(),
-                                "ratedUid":app.ZDMData.ratedUid,
-                                "parentTradeId":app.ZDMData.parentTradeId,
-                                "tradeId":app.ZDMData.tradeId,
-                                "aucNumId":app.ZDMData.aucNumId,    //商品id
-                                "feedback":$("#J_CommentPoster").val()};
-                    app.mtopH5Api.getApi('mtop.gene.feedCenter.createItemFeed', '1.0', data, {}, function (result) {
-                        if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-                            app.navigation.push("my/p1");
-                        }
-                    });
+                    $("#J-imgForm").submit();
                 }
             }
         ],

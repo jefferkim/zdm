@@ -29,9 +29,6 @@
             var mod = $(e.currentTarget).parents(".z-mod");
             var itemId = mod.attr("data-itemid");
             var ratedUid = mod.attr("data-rateduid");
-
-            app.ZDMData.itemHtml = mod.find(".good-item"); //将商品暂存下来，进入后直接填充
-
             app.navigation.push("viewAll/"+itemId+"/"+ratedUid+"/p1");
 
         },
@@ -42,7 +39,7 @@
             var self = this;
 
 
-            var data = {"ratedUid":"0", "tradeId":"0", "itemIds":ids.join(","), "pageSize":"10", "pageIndex":"1"};
+            var data = {"ratedUid":"0", "itemIds":ids.join(","), "pageSize":"50", "pageIndex":"1"};
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (resp) {
 
@@ -77,7 +74,7 @@
             var orderIdArr = [];
 
 
-            var data = {"archive":"false", "statusId":"2", "page":pageNo || 1, "pageSize":"12"};
+            var data = {"archive":"false", "statusId":"2", "page":pageNo || 1, "pageSize":"10"};
 
             app.mtopH5Api.getApi('mtop.order.queryOrderList', '1.0', data, {}, function (resp) {
 
