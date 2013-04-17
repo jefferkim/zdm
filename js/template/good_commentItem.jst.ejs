@@ -4,7 +4,7 @@
         <img src="http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=<%=comment.raterUid%>&width=40&height=40&type=sns"/>
     </div>
     <div class="bd">
-        <h3><a href="#"><%= comment.raterUserNick %></a></h3>
+        <h3><%= comment.raterUserNick %></h3>
         <p><%= comment.feedback %></p>
         <ul class="pic-desc">
             <%_.each(comment.feedItemPicDOList,function(pic){%>

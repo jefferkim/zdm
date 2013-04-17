@@ -122,9 +122,6 @@
 
         queryComment:function(ratedId){
 
-
-
-
            // http://api.waptest.taobao.com/rest/api3.do?ttid=123@taobao_android_1.0&v=1.0&t=1365929315424&imei=123456789012345&api=mtop.gene.feedCenter.queryFeedItems&imsi=123456789012345&appKey=4272&data={"ratedUid":"179331639","itemIds":"1600188384","pageSize":"10","pageIndex":"1"}
 
             var self = this;

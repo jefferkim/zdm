@@ -8,9 +8,13 @@
             var host = location.host;
             var http = 'm';
             if (!host.match('m.(taobao|tmall|etao|alibaba|alipay|aliyun)')) {
-                if (host == '127.0.0.1' || host == 'localhost' || host.match('(?:.*\\.)?waptest\\.(taobao|tmall|etao|alibaba|alipay|aliyun)\\.com.*')) {
+               //if (host == '127.0.0.1' || host == 'localhost' || host.match('(?:.*\\.)?waptest\\.(taobao|tmall|etao|alibaba|alipay|aliyun)\\.com.*')) {
+                if (host == '127.0.0.1' || host == 'localhost') {
                     http = 'm';
-                } else if (host.match('(?:.*\\.)?wapa\\.(taobao|tmall|etao|alibaba|alipay|aliyun)\\.com.*')) {
+                }else if(host.match('(?:.*\\.)?waptest\\.(taobao|tmall|etao|alibaba|alipay|aliyun)\\.com.*')){
+                    http = 'waptest';
+
+                }else if (host.match('(?:.*\\.)?wapa\\.(taobao|tmall|etao|alibaba|alipay|aliyun)\\.com.*')) {
                     http = 'wapa';
                 }
             }

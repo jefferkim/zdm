@@ -26,7 +26,13 @@
 
         gotoViewAll:function (e) {
             e.preventDefault();
-            app.navigation.push("viewAll/p1");
+            var mod = $(e.currentTarget).parents(".z-mod");
+            var itemId = mod.attr("data-itemid");
+            var ratedUid = mod.attr("data-rateduid");
+
+            app.ZDMData.itemHtml = mod.find(".good-item"); //将商品暂存下来，进入后直接填充
+
+            app.navigation.push("viewAll/"+itemId+"/"+ratedUid+"/p1");
 
         },
 
@@ -40,23 +46,23 @@
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (resp) {
 
-                    if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
+                if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
 
-                var list = resp.data.dataList;
+                    var list = resp.data.dataList;
 
-                _.each(ids, function (id, index) {
+                    _.each(ids, function (id, index) {
 
-                    var t = _.where(list, {"aucNumId":id, "tradeId":orderIdArr[index]});
+                        var t = _.where(list, {"aucNumId":id, "tradeId":orderIdArr[index]});
 
-                    var comment1 = t.length > 0 ? t[0] : false;
+                        var comment1 = t.length > 0 ? t[0] : false;
 
 
-                    $("#J-comment-" + itemIdForBind[index]).html(self.templates['commentItem']({comment:comment1}));
+                        $("#J-comment-" + itemIdForBind[index]).html(self.templates['commentItem']({comment:comment1}));
 
-                })
-                    }else{
-                        notification.flash("请求商品评论失败，请刷新");
-                    }
+                    })
+                } else {
+                    notification.flash("请求商品评论失败，请刷新");
+                }
             });
 
         },
@@ -75,12 +81,14 @@
 
             app.mtopH5Api.getApi('mtop.order.queryOrderList', '1.0', data, {}, function (resp) {
 
+                var content = $(app.component.getActiveContent()).find("#J-goodList");
+                var ret = resp.ret[0];
                 if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
 
                     //TODO:write a parse function to flatten the child order
                     var goodList = resp.data.cell;
 
-                    $(app.component.getActiveContent()).find("#J-goodList").html(self.templates['goodItem']({goods:goodList}));
+                    content.html(self.templates['goodItem']({goods:goodList}));
 
                     $(".z-mod").each(function (index, node) {
                         itemIdsArr.push($(node).attr("data-itemId"));
@@ -90,8 +98,10 @@
 
                     self._queryComments(itemIdsArr, itemIdForBind, orderIdArr);
 
-                } else {
-                    notification.flash("请求我的商品失败，请刷新").show();
+                } else if(ret.indexOf("ORDER_NOT_FOUND") > 0){
+                    content.html('<span>您没有相关订单</span>');
+                }else{
+                    notification.flash(ret.split("::")[1]).show();
                 }
 
             });
@@ -111,10 +121,7 @@
             }
 
 
-
-
             canUpload = true;
-
 
 
             return canUpload;
