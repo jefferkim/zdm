@@ -10,8 +10,7 @@
             <%})%>
         </ul>
     </div>
-    <div class="price-f"><span class="p">￥<%= info.price %></span><span class="t">运费：<% if(info.delivery.deliveryFeeType != 0){ %><% if(info.delivery.deliveryFeeType == 2){%><%= info.delivery.title %><%} else if(info.delivery.deliveryFeeType == 1){%> <%= info.delivery.deliveryFees[0].title%><%}%>
-      <%}%></span></div>
+    <div class="price-f"><span class="p">￥<%= info.price %></span></div>
     <b class="prev">上一个</b>
     <b class="next">下一个</b>
 </div>

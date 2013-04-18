@@ -7,7 +7,8 @@
         templates:{
             "layout":JST['template/good_layout'],
             "commentItem":JST['template/good_commentItem'],
-            "goodItem":JST['template/good_item']
+            "goodItem":JST['template/good_item'],
+            "no_order":JST['template/error_no_order']
         },
         //buttons of navigation
         buttons:[
@@ -29,7 +30,7 @@
             var mod = $(e.currentTarget).parents(".z-mod");
             var itemId = mod.attr("data-itemid");
             var ratedUid = mod.attr("data-rateduid");
-            app.navigation.push("viewAll/"+itemId+"/"+ratedUid+"/p1");
+            app.navigation.push("viewAll/" + itemId + "/" + ratedUid + "/p1");
 
         },
 
@@ -39,7 +40,7 @@
             var self = this;
 
 
-            var data = {"ratedUid":"0", "itemIds":ids.join(","), "pageSize":"50", "pageIndex":"1"};
+            var data = {"ratedUid":"0", "itemIds":ids.join(","), "pageSize":"150", "pageIndex":"1"};
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (resp) {
 
@@ -47,9 +48,15 @@
 
                     var list = resp.data.dataList;
 
-                    _.each(ids, function (id, index) {
+                    console.log(ids);
 
-                        var t = _.where(list, {"aucNumId":id, "tradeId":orderIdArr[index]});
+                    _.each(ids, function (id, index) {
+                        console.log(id);
+
+                        var t = _.where(list, {"aucNumId":id, "parentTradeId":orderIdArr[index]});
+
+                       console.log({"aucNumId":id, "parentTradeId":orderIdArr[index]});
+                        console.log(t);
 
                         var comment1 = t.length > 0 ? t[0] : false;
 
@@ -95,9 +102,13 @@
 
                     self._queryComments(itemIdsArr, itemIdForBind, orderIdArr);
 
-                } else if(ret.indexOf("ORDER_NOT_FOUND") > 0){
-                    content.html('<span>您没有相关订单</span>');
-                }else{
+                    self.pageNav = new PageNav({'id':'#J-goodsPage', 'index':1, 'pageCount':Math.ceil(resp.data.total / 10), 'objId':'p'});
+
+
+
+                } else if (ret.indexOf("ORDER_NOT_FOUND") > -1) {
+                    content.html(self.templates['no_order']());
+                } else {
                     notification.flash(ret.split("::")[1]).show();
                 }
 
@@ -120,14 +131,12 @@
 
             canUpload = true;
 
-
             return canUpload;
         },
 
 
         triggerUploader:function (e) {
             e.preventDefault();
-
 
             var currentTarget = e.currentTarget;
             var item = $(currentTarget).parents(".z-mod");
@@ -136,7 +145,6 @@
             if (!canUpload) {
                 alert("抱歉！您的手机浏览器暂不支持网页上传图片功能。");
             }
-            //$("#J-upload").trigger("click");
 
             app.ZDMData.ratedUid = item.attr("data-rateduid");
             app.ZDMData.tradeId = item.attr("data-tradeid");
@@ -156,9 +164,6 @@
             var navigation = app.navigation;
 
             content.html(self.templates['layout']());
-
-            //reset the input[type=file]  value to empty,so ensure of fire the change event
-            $("#J-upload").val("");
 
             //delegate events
             app.Util.Events.call(this, "#tbh5v0", this.events);

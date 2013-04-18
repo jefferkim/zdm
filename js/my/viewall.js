@@ -18,8 +18,10 @@
         _queryComments:function(){
 
             var self = this;
-            var data = {"ratedUid":this.ratedUid,"tradeId":"0", "itemIds":this.itemId,"pageSize":"10","pageIndex":"1"};
 
+            var pageNo = app.navigation.getParameter("pageNo");
+            var data = {"ratedUid":this.ratedUid,"tradeId":"0", "itemIds":this.itemId,"pageSize":"10","pageIndex":pageNo || 1};
+            var totalPage = 1;
             app.mtopH5Api.getApi( 'mtop.gene.feedCenter.queryFeedItems', '1.0',  data,{},  function (result) {
 
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
@@ -28,16 +30,17 @@
 
 
                     $(app.component.getActiveContent()).find("#J_viewAllLayout").html(html);
-                    console.log(result);
 
-                   /* self.pageNav = new PageNav({'id':'#J-allComments', 'index':1, 'pageCount':data.total, 'disableHash':true});
-                    self.pageNav.$container.on('P:switchPage', function (e, page) {
-                        that.getData(page.index);
-                        that.tabCache[that.typeg].page = page.index;
-                        if (page.type == 'next') { // 下一页埋点
-                            //     utils.sendPoint('nextpage#h#detail');暂时不设置埋点
-                        }
-                    });*/
+                    var totalSize = result.data.total;
+                    if(totalSize < 10){
+                        totalPage = 1;
+                    }else if(totalSize == 10 && result.data.hasNext == "true"){
+                        totalPage = 50;
+                    }else if(totalSize <= 10 && result.data.hasNext == "false" ){
+                        totalPage = 1;
+                    }
+
+                    var pageInstance = self.pageNav = new PageNav({'id':'#J-allComments', 'index':1, 'pageCount':totalPage,'objId':'p'});
 
                 }else{
                     notification.flash("评论请求失败，请重试").show();
