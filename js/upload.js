@@ -9,14 +9,15 @@ $("#J-uploadNow").on("click", function () {
         "parentTradeId":$("#J-parentTradeId").val(),
         "tradeId":$("#J-tradeId").val(),
         "aucNumId":$("#J-aucNumId").val(), //商品id
-        "feedback":_.escape(commentPoster)
+        "feedback": commentPoster
     };
 
 
     app.mtopH5Api.getApi('mtop.gene.feedCenter.createItemFeed', '1.0', data, {}, function (result) {
         if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-            console.log(result);
-            //  window.location.href = window.location.href.toString().replace("uploader.html","index.html#my/p1");
+            window.location.href = window.location.href.toString().replace("uploadPicture.html","zdm.html#my/p1");
+        }else{
+             notification.flash(result.ret[0]).show();
         }
     });
 });

@@ -51,15 +51,10 @@
                     console.log(ids);
 
                     _.each(ids, function (id, index) {
-                        console.log(id);
 
                         var t = _.where(list, {"aucNumId":id, "parentTradeId":orderIdArr[index]});
 
-                       console.log({"aucNumId":id, "parentTradeId":orderIdArr[index]});
-                        console.log(t);
-
                         var comment1 = t.length > 0 ? t[0] : false;
-
 
                         $("#J-comment-" + itemIdForBind[index]).html(self.templates['commentItem']({comment:comment1}));
 
@@ -111,6 +106,9 @@
                 } else {
                     notification.flash(ret.split("::")[1]).show();
                 }
+
+            },function(error){
+                console.log(error);
 
             });
 

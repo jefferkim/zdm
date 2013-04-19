@@ -6,7 +6,7 @@
                 <a href="#detail/<%= boughtItem.itemId%>"><img src="<%= boughtItem.pic %>"/></a>
             </div>
             <div class="bd good-bd">
-                 <p><a href="#detail/<%= boughtItem.itemId%>"><%= boughtItem.title %></a></p>
+                 <p><a href="#detail/<%= boughtItem.itemId%>"><%= _.escape(boughtItem.title) %></a></p>
                  <div class="price">￥<%= boughtItem.price %></div>
             </div>
         </div>

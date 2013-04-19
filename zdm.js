@@ -6956,7 +6956,7 @@ Swipe.prototype = {
 };
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/add_pic"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="J-uploader">\n   <form action="http://wo.wapa.taobao.com/uploadPicture.htm"  method="post" enctype="multipart/form-data" id="J-imgForm">\n    <div class="add-pic" id="J-addPicWrap">\n        <div id="J-uploaderTrigger">\n          <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>\n         <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>\n        </div>\n        <div id="J-uploaded" class="uploader-file" style="display:none;">\n          <form action="http://wo.waptest.taobao.com/uploadPicture.htm" method="post" enctype="multipart/form-data">\n              <input type="file" name="picture"  id="J-upload" class="upload-input" multiple/>\n              <input type="hidden" name="ratedUid" id="J-ratedUid" value=""/> <!--被评价的uid-->\n              <input type="hidden" name="itemId" id="J-itemId" value=""/> <!--itemId-->\n              <input type="hidden" name="tradeId" id="J-tradeId" value=""/>  <!---orderId-->\n              <input type="submit" name="" value="上传"/>\n          </form>\n        </div>\n    </div>\n    <div class="comment-area">\n        <em class="arrow"></em>\n        <em class="num"><span id="J-num">0</span>/140</em>\n        <div class="cm-textarea">\n          <textarea name="" id="J_CommentPoster"></textarea>\n        </div>\n    </div>\n\n\n\n  </form>\n</div>\n');}return __p.join('');};
+  this.JST["template/add_pic"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="J-uploader">\n    <div class="add-pic" id="J-addPicWrap">\n        <div id="J-uploaderTrigger">\n          <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>\n         <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>\n        </div>\n        <div id="J-uploaded" class="uploader-file" style="display:none;">\n          <form action="http://wo.waptest.taobao.com/uploadPicture.htm" method="post" enctype="multipart/form-data">\n              <input type="file" name="picture"  id="J-upload" class="upload-input" multiple/>\n              <input type="hidden" name="ratedUid" id="J-ratedUid" value=""/> <!--被评价的uid-->\n              <input type="hidden" name="itemId" id="J-itemId" value=""/> <!--itemId-->\n              <input type="hidden" name="tradeId" id="J-tradeId" value=""/>  <!---orderId-->\n              <input type="submit" name="" value="上传"/>\n          </form>\n        </div>\n    </div>\n    <div class="comment-area">\n        <em class="arrow"></em>\n        <em class="num"><span id="J-num">0</span>/140</em>\n        <div class="cm-textarea">\n          <textarea name="" id="J_CommentPoster"></textarea>\n        </div>\n    </div>\n\n</div>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -6964,7 +6964,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/comment_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push(''); _.each(comments,function(comment){; __p.push('\n    <li class="z-mod">\n        <div class="hd">\n           <img src="http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=', comment.raterUid,'&width=40&height=40&type=sns"/>\n        </div>\n        <div class="bd">\n            <h3>',  comment.raterUserNick,'</h3>\n            <p>',  _.escape(comment.feedback),'</p>\n            <ul class="pic-desc">\n                '); _.each(comment.feedItemPicDOList,function(pic){; __p.push('\n                  <li><img src="pic.path"/></li>\n                '); }); __p.push('\n            </ul>\n        </div>\n    </li>\n');  }); __p.push('\n\n');}return __p.join('');};
+  this.JST["template/comment_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push(''); _.each(comments,function(comment){; __p.push('\n    <li class="z-mod">\n        <div class="hd">\n           <img src="http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=', comment.raterUid,'&width=40&height=40&type=sns"/>\n        </div>\n        <div class="bd">\n            <h3>',  comment.raterUserNick,'</h3>\n\n            <p>',  _.escape(comment.feedback),'</p>\n            <ul class="pic-desc">\n                '); _.each(comment.feedItemPicDOList,function(pic){; __p.push('\n                  <li><img src="pic.path"/></li>\n                '); }); __p.push('\n            </ul>\n        </div>\n    </li>\n');  }); __p.push('\n\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -6984,7 +6984,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/detail_layout"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<section id="J_detailCont" class="innercontent">\n\n\n       <section id="J_slide"><div class="loading"></div></section>\n\n       <section id="J-dInfo" class="d-info"></section>\n\n       <section id="J-dSKU"> </section>\n\n\n       <section class="d-sure" id="J-orderNow"> </section>\n\n       <section class="d-master">\n\n           <div id="zdm-comment" class="zdm-comment"><div class="loading"></div></div><!--值得买评论区块-->\n\n           <div id="J-merchant"> </div>  <!--merchant info-->\n\n       </section>\n\n\n       <section class="d-search">\n           <form action="http://s.waptest.taobao.com/search.htm?v=0&amp;sid=adf3a2909bff87c3&amp;pds=search%23h%23detail" method="get" name="qsearch">\n               <input name="atype" type="hidden" value="b">\n               <input type="hidden" value="3" name="searchfrom">\n               <input type="text" name="q" placeholder="请输入宝贝关键字" class="bton-keyword" value="">\n               <input class="bton-search" name="search-bton" type="submit" value="">\n           </form>\n           <!--<input type="text" name="q" class="bton-keyword" value="" /><input class="bton-search" name="search-bton" type="submit" value="">-->\n       </section>\n   </section>\n</section>\n');}return __p.join('');};
+  this.JST["template/detail_layout"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<section id="J_detailCont" class="innercontent">\n\n\n       <section id="J_slide"><div class="loading"></div></section>\n\n       <section id="J-dInfo" class="fold"></section>\n\n       <section id="J-dSKU"> </section>\n\n\n       <section class="d-sure" id="J-orderNow"> </section>\n\n       <section class="d-master">\n\n           <div id="zdm-comment" class="zdm-comment"><div class="loading"></div></div><!--值得买评论区块-->\n\n           <div id="J-merchant"> </div>  <!--merchant info-->\n\n       </section>\n\n\n       <section class="d-search">\n           <form action="http://s.waptest.taobao.com/search.htm?v=0&amp;sid=adf3a2909bff87c3&amp;pds=search%23h%23detail" method="get" name="qsearch">\n               <input name="atype" type="hidden" value="b">\n               <input type="hidden" value="3" name="searchfrom">\n               <input type="text" name="q" placeholder="请输入宝贝关键字" class="bton-keyword" value="">\n               <input class="bton-search" name="search-bton" type="submit" value="">\n           </form>\n           <!--<input type="text" name="q" class="bton-keyword" value="" /><input class="bton-search" name="search-bton" type="submit" value="">-->\n       </section>\n   </section>\n</section>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7002,7 +7002,15 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/detail_slider"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="sliderWrap" class="dSlider">\n    <div class="js-bton">\n        <a href="#" class="jsb-back">返 回</a>\n        <a href="#" class="jsb-ori">原 图</a>\n    </div>\n    <div class="goods-slider" id="J-sliderShow">\n        <ul>\n            ');  _.each(sliders,function(slider){ ; __p.push('\n              <li><img src="http://a.tbcdn.cn/mw/webapp/fav/img/grey.gif"  class="lazy" data-src="',  app.Util.getWebpImg(slider,'180x180'),'" /></li>\n            '); }); __p.push('\n        </ul>\n    </div>\n    <div class="price-f"><span class="p">￥',  info.price ,'</span><span class="t">运费：');  if(info.delivery.deliveryFeeType != 0){ ; __p.push('');  if(info.delivery.deliveryFeeType == 2){; __p.push('',  info.delivery.title ,''); } else if(info.delivery.deliveryFeeType == 1){; __p.push(' ',  info.delivery.deliveryFees[0].title,''); }; __p.push('\n      '); }; __p.push('</span></div>\n    <b class="prev">上一个</b>\n    <b class="next">下一个</b>\n</div>\n');}return __p.join('');};
+  this.JST["template/detail_slider"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="sliderWrap" class="dSlider">\n    <div class="js-bton">\n        <a href="#" class="jsb-back">返 回</a>\n        <a href="#" class="jsb-ori">原 图</a>\n    </div>\n    <div class="goods-slider" id="J-sliderShow">\n        <ul>\n            ');  _.each(sliders,function(slider){ ; __p.push('\n              <li><img src="http://a.tbcdn.cn/mw/webapp/fav/img/grey.gif"  class="lazy" data-src="',  app.Util.getWebpImg(slider,'180x180'),'" /></li>\n            '); }); __p.push('\n        </ul>\n    </div>\n    <div class="price-f"><span class="p">￥',  info.price ,'</span></div>\n    <b class="prev">上一个</b>\n    <b class="next">下一个</b>\n</div>\n');}return __p.join('');};
+}).call(this);
+(function() {
+  this.JST || (this.JST = {});
+  this.JST["template/error_no_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="c-msg">\n   <div class="c-msg-img error"></div>\n   <div class="c-msg-info">\n    <p>温馨提示</p>\n    <p><br/>很抱歉，您查看的宝贝不存在，可能已下架或被转移<br/></p>\n   </div>\n</div>\n');}return __p.join('');};
+}).call(this);
+(function() {
+  this.JST || (this.JST = {});
+  this.JST["template/error_no_order"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="c-msg">\n   <div class="c-msg-img error"></div>\n   <div class="c-msg-info">\n    <p>温馨提示</p>\n    <p><br/>很抱歉，您当前没有任何商品订单<br/></p>\n   </div>\n</div>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7010,7 +7018,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/good_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push(''); _.each(goods,function(good){; __p.push('\n    ');  _.each(good.boughtItem,function(boughtItem){; __p.push('\n    <li class="z-mod" id="J-commentItem-',  good.orderId ,'-',  boughtItem.itemId,'" data-orderId="',  good.orderId,'" data-id="',  good.orderId ,'-',  boughtItem.itemId ,'" data-itemId="',  boughtItem.itemId ,'"  data-ratedUid="',  good.sellerId,'"  data-tradeId="',  good.orderId ,'" data-parentTradeId="',  good.orderId ,'">\n        <div class="good-item">\n            <div class="hd good-hd">\n                <a href="#detail/',  boughtItem.itemId,'"><img src="',  boughtItem.pic ,'"/></a>\n            </div>\n            <div class="bd good-bd">\n                 <p><a href="#detail/',  boughtItem.itemId,'">',  boughtItem.title ,'</a></p>\n                 <div class="price">￥',  boughtItem.price ,'</div>\n            </div>\n        </div>\n        <div id="J-comment-',  good.orderId ,'-',  boughtItem.itemId ,'"> </div>\n    </li>\n    ');  }); __p.push('\n'); }); __p.push('\n\n');}return __p.join('');};
+  this.JST["template/good_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push(''); _.each(goods,function(good){; __p.push('\n    ');  _.each(good.boughtItem,function(boughtItem){; __p.push('\n    <li class="z-mod" id="J-commentItem-',  good.orderId ,'-',  boughtItem.itemId,'" data-orderId="',  good.orderId,'" data-id="',  good.orderId ,'-',  boughtItem.itemId ,'" data-itemId="',  boughtItem.itemId ,'"  data-ratedUid="',  good.sellerId,'"  data-tradeId="',  good.orderId ,'" data-parentTradeId="',  good.orderId ,'">\n        <div class="good-item">\n            <div class="hd good-hd">\n                <a href="#detail/',  boughtItem.itemId,'"><img src="',  boughtItem.pic ,'"/></a>\n            </div>\n            <div class="bd good-bd">\n                 <p><a href="#detail/',  boughtItem.itemId,'">',  _.escape(boughtItem.title) ,'</a></p>\n                 <div class="price">￥',  boughtItem.price ,'</div>\n            </div>\n        </div>\n        <div id="J-comment-',  good.orderId ,'-',  boughtItem.itemId ,'"> </div>\n    </li>\n    ');  }); __p.push('\n'); }); __p.push('\n\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7022,7 +7030,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/viewall_layout"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="good-section">\n    <div class="z-mod">\n        <div class="good-item">\n            <div class="hd good-hd">\n                <a href="#detail/',  good.aucNumId,'"><img src="',  good.auctionPicUrl ,'"/></a>\n            </div>\n            <div class="bd good-bd">\n                <p><a href="#detail/',  good.aucNumId,'">',  good.auctionTitle ,'</a></p>\n                <div class="price">￥',  good.auctionPrice ,'</div>\n            </div>\n        </div>\n    </div>\n</div>\n<p class="comments-num"><em></em><span>已有23位买家发布了他们的购买体验：</span></p>\n<div class="comment-section" id="zdm-comment">\n    <ul>\n    '); _.each(comments,function(comment){; __p.push('\n    <li class="z-mod">\n        <div class="hd">\n            <img src="http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=', comment.raterUid,'&width=40&height=40&type=sns"/>\n        </div>\n        <div class="bd">\n            <h3>',  comment.raterUserNick,'</h3>\n            <p>',  comment.feedback,'</p>\n            <ul class="pic-desc">\n                '); _.each(comment.feedItemPicDOList,function(pic){; __p.push('\n                <li><img src="pic.path"/></li>\n                '); }); __p.push('\n            </ul>\n        </div>\n    </li>\n\n    ');  }); __p.push('\n    </ul>\n</div>\n<div id="J-allComments" class="c-pnav-con"></div>\n');}return __p.join('');};
+  this.JST["template/viewall_layout"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="good-section">\n    <div class="z-mod">\n        <div class="good-item">\n            <div class="hd good-hd">\n                <a href="#detail/',  good.aucNumId,'"><img src="',  good.auctionPicUrl ,'"/></a>\n            </div>\n            <div class="bd good-bd">\n                <p><a href="#detail/',  good.aucNumId,'">',  good.auctionTitle ,'</a></p>\n                <div class="price">￥',  good.auctionPrice ,'</div>\n            </div>\n        </div>\n    </div>\n</div>\n<p class="comments-num"><em></em><a href="#" id="J-gotoMy">发表你的购物体验，赢取奖励!</a></p>\n<div class="comment-section" id="zdm-comment">\n    <ul>\n    '); _.each(comments,function(comment){; __p.push('\n    <li class="z-mod">\n        <div class="hd">\n            <img src="http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=', comment.raterUid,'&width=40&height=40&type=sns"/>\n        </div>\n        <div class="bd">\n            <h3>',  comment.raterUserNick,'</h3>\n            <p>',  comment.feedback,'</p>\n            <ul class="pic-desc">\n                '); _.each(comment.feedItemPicDOList,function(pic){; __p.push('\n                <li><img src="',  pic.path ,'_60x60.jpg"/></li>\n                '); }); __p.push('\n            </ul>\n        </div>\n    </li>\n\n    ');  }); __p.push('\n    </ul>\n</div>\n<div id="J-allComments" class="c-pnav-con"></div>\n');}return __p.join('');};
 }).call(this);
 (function (app, undef) {
 
@@ -7036,7 +7044,8 @@ Swipe.prototype = {
             "orderNow":JST['template/detail_extra'],
             "info":JST['template/detail_info'],
             "comments":JST['template/comment_item'],
-            "merchant":JST['template/detail_merchant']
+            "merchant":JST['template/detail_merchant'],
+            "item_non_existent":JST['template/error_no_item']
         },
         //buttons of navigation
         buttons:[
@@ -7055,77 +7064,65 @@ Swipe.prototype = {
             app.Util.Events.call(this, "#tbh5v0", this.events);
 
             this.queryData();
-
         },
-
 
 
         events:{
-            'click .goods-slider li img' : 'fullscreen',
-            'click .jsb-back' : 'recover',
-            'click .jsb-ori' : 'original'
+            'click .goods-slider':'fullscreen1',
+            'click .dc-delivery':'recover',
+            'click .jsb-ori':'original'
         },
 
-        fullscreen:function(){
-           alert("fff");
-        },
-        recover:function(){
-
-        },
-        original:function(){
-
-
+        fullscreen1:function () {
+            alert("fff");
         },
 
+        recover:function () {
+            alert("fsss");
+        },
 
-        //query detail data
+        original:function () {
+
+
+        },
+
+        //请求详情页信息
         queryData:function () {
 
             var self = this;
+            var el = $(app.component.getActiveContent()).find("#J_detailCont");
             this.itemQid = id = app.navigation.getParameter("id");
-            var el = $("#J_detailCont");
 
+            app.mtopH5Api.getApi('mtop.wdetail.getItemDetail', '3.0', {'itemNumId':id}, {}, function (result) {
 
+                // success callback
+                if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
 
+                    var item = result.data.item;
 
-            app.mtopH5Api.getApi( 'mtop.wdetail.getItemDetail', '3.0',  {'itemNumId':id},{ttid: "2000@taobao_h5_3.0"},  function (result) {
-
-                    // success callback
-                    if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-
-                        var item = result.data.item;
-
-                      /*  if (item && item.h5Common && item.h5Common == 'true') {
-                            self.render(result);
-                        } else { //not common product
-                            el.html('<p class="itc-p">本应用暂不支持该宝贝</p>');
-                            //open.loadHide();
-                        }*/
-
-
-                        //-------for test
+                    if (item && item.h5Common && item.h5Common == 'true') {
                         self.render(result);
-
-
+                    } else {
+                        console.log("本应用暂不支持该宝贝");//模板暂时不支持
+                        self.render(result);
                     }
-                    else {
-                        notification.flash("请求失败,请重试").show();
-                        //open.loadHide();
+                } else if (result.ret[0].indexOf("ERRCODE_QUERY_DETAIL_FAIL") > -1) { //宝贝不存在
+                    el.html(self.templates['item_non_existent']());
+                }
 
-                    }
-                }, function () {
-                    notification.flash("请求失败，请重试").show();;
-                    // open.loadHide();
-                });
+            }, function () {
+                notification.flash("请求失败，请重试").show();
+            });
+
         },
 
-        queryDesc:function(){
+        queryDesc:function () {
 
-            console.log(this.itemId);
+
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.getConfigByItemId', '1.0', {"aucNumId":this.itemQid}, {}, function (result) {
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-                   $("#J-desc").html(result.data.result);
+                    $("#J-desc").html(result.data.result);
 
                 }
             })
@@ -7134,26 +7131,26 @@ Swipe.prototype = {
         render:function (json) {
             var data = json.data;
             app.helper._parseDetailJson(data);
-            var detailData =  app.ZDMDetail;
+            var detailData = app.ZDMDetail;
 
             //good slider
-            var sliderHtml = this.templates['slider']({sliders:detailData.images,info:detailData.info});
+            var sliderHtml = this.templates['slider']({sliders:detailData.images, info:detailData.info});
             $("#J_slide").html(sliderHtml);
 
 
             //good info
-            var infoHtml = this.templates['info']({info:detailData.info,mallInfo:detailData.mallInfo});
+            var infoHtml = this.templates['info']({info:detailData.info, mallInfo:detailData.mallInfo});
             $("#J-dInfo").html(infoHtml);
 
             // merchant info
-            var merchantInfo = this.templates['merchant']({evaluateCount:detailData.info.evaluateCount,itemId:detailData.itemId,seller:detailData.seller,guarantees:detailData.guarantees});
+            var merchantInfo = this.templates['merchant']({evaluateCount:detailData.info.evaluateCount, itemId:detailData.itemId, seller:detailData.seller, guarantees:detailData.guarantees});
             $("#J-merchant").html(merchantInfo);
 
 
-            var orderNow = this.templates['orderNow']({item:detailData.info,trade:detailData.trade,seller:detailData.seller});
+            var orderNow = this.templates['orderNow']({item:detailData.info, trade:detailData.trade, seller:detailData.seller});
             $("#J-orderNow").html(orderNow);
 
-            this.detailSlider = new Swipe($('#J-sliderShow')[0], {"fixWidth":200,"preload": 4});
+            this.detailSlider = new Swipe($('#J-sliderShow')[0], {"fixWidth":200, "preload":4});
             this.detailSlider.load();
 
             this.queryDesc();
@@ -7167,29 +7164,23 @@ Swipe.prototype = {
         },
 
 
-        queryComment:function(ratedId){
+        queryComment:function (ratedId) {
 
-           // http://api.waptest.taobao.com/rest/api3.do?ttid=123@taobao_android_1.0&v=1.0&t=1365929315424&imei=123456789012345&api=mtop.gene.feedCenter.queryFeedItems&imsi=123456789012345&appKey=4272&data={"ratedUid":"179331639","itemIds":"1600188384","pageSize":"10","pageIndex":"1"}
+           var self = this;
+            var data = {"ratedUid":ratedId, "tradeId":"0", "itemIds":this.itemQid, "pageSize":"5", "pageIndex":"1"};
 
-            var self = this;
-            var data = {"ratedUid":ratedId,"tradeId":"0", "itemIds":this.itemQid,"pageSize":"5","pageIndex":"1"};
-
-            app.mtopH5Api.getApi( 'mtop.gene.feedCenter.queryFeedItems', '1.0',  data,{},  function (result) {
+            app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (result) {
 
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
                     var comments = result.data.dataList;
-                    var html = self.templates['comments']({comments:comments});
-                    console.log("fff");
 
-                    $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户晒单</h2><ul class="zdm-comment-block">'+html+'</ul>');
-                }else{
+                    var html = self.templates['comments']({comments:comments});
+
+                    $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户晒单</h2><ul class="zdm-comment-block">' + html + '</ul>');
+                } else {
                     notification.flash("评论请求失败，请重试").show();
                 }
-
             });
-
-
-
         },
 
         unload:function () {
@@ -7473,8 +7464,9 @@ Swipe.prototype = {
                skuAll = that.skuAll,
                height = that.height;
            if(skuLimit.hasClass('none')){return;}
-           !isScroll && scrollTo(0,skuLimit.offset().top - 58);
 
+           !isScroll && scrollTo(0,skuLimit.offset().top - 58);
+           $("#J-dInfo").removeClass("fold");
            skuLimit.addClass('none');
            /*skuAll.removeClass('none');
             !isScroll && utils.sendPoint('showsku%23h%23detail');*/
@@ -7489,7 +7481,11 @@ Swipe.prototype = {
                skuLimit = that.skuLimit,
                skuAll = that.skuAll,
                height = that.height;
-           scrollTo(0,skuAll.offset().top - 58);
+           $("#J-dInfo").addClass("fold");
+           setTimeout(function(){
+               scrollTo(0,skuAll.offset().top - 58);
+           },200);
+
 
            /*skuLimit.removeClass('none');
             skuAll.addClass('none');
@@ -7726,7 +7722,8 @@ Swipe.prototype = {
         templates:{
             "layout":JST['template/good_layout'],
             "commentItem":JST['template/good_commentItem'],
-            "goodItem":JST['template/good_item']
+            "goodItem":JST['template/good_item'],
+            "no_order":JST['template/error_no_order']
         },
         //buttons of navigation
         buttons:[
@@ -7748,7 +7745,7 @@ Swipe.prototype = {
             var mod = $(e.currentTarget).parents(".z-mod");
             var itemId = mod.attr("data-itemid");
             var ratedUid = mod.attr("data-rateduid");
-            app.navigation.push("viewAll/"+itemId+"/"+ratedUid+"/p1");
+            app.navigation.push("viewAll/" + itemId + "/" + ratedUid + "/p1");
 
         },
 
@@ -7758,7 +7755,7 @@ Swipe.prototype = {
             var self = this;
 
 
-            var data = {"ratedUid":"0", "itemIds":ids.join(","), "pageSize":"50", "pageIndex":"1"};
+            var data = {"ratedUid":"0", "itemIds":ids.join(","), "pageSize":"150", "pageIndex":"1"};
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (resp) {
 
@@ -7766,12 +7763,13 @@ Swipe.prototype = {
 
                     var list = resp.data.dataList;
 
+                    console.log(ids);
+
                     _.each(ids, function (id, index) {
 
-                        var t = _.where(list, {"aucNumId":id, "tradeId":orderIdArr[index]});
+                        var t = _.where(list, {"aucNumId":id, "parentTradeId":orderIdArr[index]});
 
                         var comment1 = t.length > 0 ? t[0] : false;
-
 
                         $("#J-comment-" + itemIdForBind[index]).html(self.templates['commentItem']({comment:comment1}));
 
@@ -7814,12 +7812,13 @@ Swipe.prototype = {
 
                     self._queryComments(itemIdsArr, itemIdForBind, orderIdArr);
 
+                    self.pageNav = new PageNav({'id':'#J-goodsPage', 'index':1, 'pageCount':Math.ceil(resp.data.total / 10), 'objId':'p'});
 
-                    self.pageNav = new PageNav({'id':'#J-goodsPage', 'index':1, 'pageCount':Math.ceil(resp.data.total/10), 'objId':'p'});
 
-                } else if(ret.indexOf("ORDER_NOT_FOUND") > 0){
-                    content.html('<span>您没有相关订单</span>');
-                }else{
+
+                } else if (ret.indexOf("ORDER_NOT_FOUND") > -1) {
+                    content.html(self.templates['no_order']());
+                } else {
                     notification.flash(ret.split("::")[1]).show();
                 }
 
@@ -7842,14 +7841,12 @@ Swipe.prototype = {
 
             canUpload = true;
 
-
             return canUpload;
         },
 
 
         triggerUploader:function (e) {
             e.preventDefault();
-
 
             var currentTarget = e.currentTarget;
             var item = $(currentTarget).parents(".z-mod");
@@ -7858,7 +7855,6 @@ Swipe.prototype = {
             if (!canUpload) {
                 alert("抱歉！您的手机浏览器暂不支持网页上传图片功能。");
             }
-            //$("#J-upload").trigger("click");
 
             app.ZDMData.ratedUid = item.attr("data-rateduid");
             app.ZDMData.tradeId = item.attr("data-tradeid");
@@ -7878,9 +7874,6 @@ Swipe.prototype = {
             var navigation = app.navigation;
 
             content.html(self.templates['layout']());
-
-            //reset the input[type=file]  value to empty,so ensure of fire the change event
-            $("#J-upload").val("");
 
             //delegate events
             app.Util.Events.call(this, "#tbh5v0", this.events);
@@ -7905,7 +7898,7 @@ Swipe.prototype = {
         title:'所有评论', //title bar的文案
         route:"viewAll\/(P<itemId>\\d+)\/(P<ratedUid>\\d+)\/p(P<pageNo>\\d+)",
         templates:{
-           "layout":JST['template/viewall_layout']
+            "layout":JST['template/viewall_layout']
         },
         //buttons of navigation
         buttons:[
@@ -7915,31 +7908,35 @@ Swipe.prototype = {
             }
         ],
 
-        _queryComments:function(){
+
+        _queryComments:function () {
 
             var self = this;
-            var data = {"ratedUid":this.ratedUid,"tradeId":"0", "itemIds":this.itemId,"pageSize":"10","pageIndex":"1"};
 
-            app.mtopH5Api.getApi( 'mtop.gene.feedCenter.queryFeedItems', '1.0',  data,{},  function (result) {
+            var pageNo = app.navigation.getParameter("pageNo");
+            var data = {"ratedUid":this.ratedUid, "tradeId":"0", "itemIds":this.itemId, "pageSize":"10", "pageIndex":pageNo || 1};
+            var totalPage = 1;
+            app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (result) {
 
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
                     var comments = result.data.dataList;
-                    var html = self.templates['layout']({good:result.data.data,comments:comments});
+                    var html = self.templates['layout']({good:result.data.data, comments:comments});
 
 
                     $(app.component.getActiveContent()).find("#J_viewAllLayout").html(html);
-                    console.log(result);
 
-                   /* self.pageNav = new PageNav({'id':'#J-allComments', 'index':1, 'pageCount':data.total, 'disableHash':true});
-                    self.pageNav.$container.on('P:switchPage', function (e, page) {
-                        that.getData(page.index);
-                        that.tabCache[that.typeg].page = page.index;
-                        if (page.type == 'next') { // 下一页埋点
-                            //     utils.sendPoint('nextpage#h#detail');暂时不设置埋点
-                        }
-                    });*/
+                    var totalSize = result.data.total;
+                    if (totalSize < 10) {
+                        totalPage = 1;
+                    } else if (totalSize == 10 && result.data.hasNext == "true") {
+                        totalPage = 50;
+                    } else if (totalSize <= 10 && result.data.hasNext == "false") {
+                        totalPage = 1;
+                    }
 
-                }else{
+                    var pageInstance = self.pageNav = new PageNav({'id':'#J-allComments', 'index':1, 'pageCount':totalPage, 'objId':'p'});
+
+                } else {
                     notification.flash("评论请求失败，请重试").show();
                 }
 
@@ -7949,35 +7946,42 @@ Swipe.prototype = {
 
 
         events:{
-            "click .J-addPic":"triggerUploader"
+            "click #J-gotoMy":"gotoMyGood"
 
         },
 
-        triggerUploader:function(e){
+        gotoMyGood:function (e) {
+            e.preventDefault();
+            app.navigation.push("my/p1");
+
+        },
+
+
+        triggerUploader:function (e) {
             e.preventDefault();
             $("#J-upload").trigger("click");
 
-           $("#J-upload").on("change",function(){
-                app.navigation.push("upload",{datas:{"picInput":$("#J-upload")}});
-           });
+            $("#J-upload").on("change", function () {
+                app.navigation.push("upload", {datas:{"picInput":$("#J-upload")}});
+            });
 
         },
 
         ready:function () {
-          // implement super.ready
-          var self = this;
-          var content = $(app.component.getActiveContent());
-          var navigation = app.navigation;
+            // implement super.ready
+            var self = this;
+            var content = $(app.component.getActiveContent());
+            var navigation = app.navigation;
 
-          this.itemId = navigation.getParameter("itemId");
-          this.ratedUid = navigation.getParameter("ratedUid");
+            this.itemId = navigation.getParameter("itemId");
+            this.ratedUid = navigation.getParameter("ratedUid");
 
-          content.html('<section id="J_viewAllLayout" class="innercontent"></section>');
+            content.html('<section id="J_viewAllLayout" class="innercontent"></section>');
 
-          //delegate events
-         // app.Util.Events.call(this,"#J-myGood",this.events);
+            //delegate events
+            app.Util.Events.call(this, "#J_viewAllLayout", this.events);
 
-          this._queryComments();
+            this._queryComments();
         },
 
         unload:function () {
@@ -8096,20 +8100,16 @@ Swipe.prototype = {
             this.itemId = app.navigation.getParameter("id");
 
             var content = $(app.component.getActiveContent());
-
             var id = app.navigation.getParameter("id");
             var pageNo = app.navigation.getParameter("pageNo");
+            var host = app.helper.fetchHost();
 
-            content.html('<section id="J_commentCont" class="innercontent">');
+            content.html('<section id="J_commentCont" class="innercontent"><div class="loading"></div></section>');
 
             //delegate events
             app.Util.Events.call(this, "#J_commentCont", this.events);
 
-
-            var host = app.helper.fetchHost();
             this.typeg = 'good';
-
-            //this.url = 'json/comment.json';
             this.url = 'http://a.' + host + '.taobao.com/ajax/rate_list.do';
             this.isFirst = true;
             this.tabCache = {
@@ -8119,13 +8119,7 @@ Swipe.prototype = {
                 "addto":{first:true, second:1, page:1, total:0, sel:null, list:[]}
             };
 
-
             this.fetch(id, pageNo);
-
-        },
-
-        unload:function () {
-            // implement super.unload
         },
 
 
@@ -8148,11 +8142,9 @@ Swipe.prototype = {
         },
 
         tabClick:function (e) {
-            /*var that = this,
-             tabar = that.tabar;
-             that.curLi = tabar.find('li.cur');
-             tabar.on('click','li',function(e){*/
+
             e.preventDefault();
+
             scrollTo(0, 0);
             var that = this,
                 target = $(e.currentTarget);
@@ -8185,7 +8177,7 @@ Swipe.prototype = {
 
             if (that.isFirst) {  //only once
 
-                $("#J_commentCont").append($htmldom);
+                $("#J_commentCont").html($htmldom);
                 that.contbar || (that.contbar = $('#J_commcont'));
                 that.loading || (that.loading = $('#J_listload'));
                 that.pagebar || (that.pagebar = $('#J_dcpage'));
@@ -8218,7 +8210,6 @@ Swipe.prototype = {
                 data:{item_id:id, rateRs:that.typeMap[that.typeg], p:page, ps:10},
                 dataType:'jsonp',
                 success:function (data) {
-                    console.log(data);
                     if (data && typeof data == 'string') {
                         data = data.replace(//gi, "");
                         data = JSON.parse(data);
@@ -8227,7 +8218,7 @@ Swipe.prototype = {
                     that.xhr = null;
                 },
                 error:function () {
-                    tip(message.errorMessage);
+                   // tip(message.errorMessage);
                     that.xhr = null;
                     that.loading.addClass('none');
                 }
@@ -8320,70 +8311,9 @@ Swipe.prototype = {
         },
 
 
-        creditToRank:function (credit) {
-            var rank = 0;
-            if (credit >= 4 && credit <= 10) {
-                rank = 1;
-            } else if (credit >= 11 && credit <= 40) {
-                rank = 2;
-            } else if (credit >= 41 && credit <= 90) {
-                rank = 3;
-            } else if (credit >= 91 && credit <= 150) {
-                rank = 4;
-            } else if (credit >= 151 && credit <= 250) {
-                rank = 5;
-            } else if (credit >= 251 && credit <= 500) {
-                rank = 6;
-            } else if (credit >= 501 && credit <= 1000) {
-                rank = 7;
-            } else if (credit >= 1001 && credit <= 2000) {
-                rank = 8;
-            } else if (credit >= 2001 && credit <= 5000) {
-                rank = 9;
-            } else if (credit >= 5001 && credit <= 10000) {
-                rank = 10;
-            } else if (credit >= 10001 && credit <= 20000) {
-                rank = 11;
-            } else if (credit >= 20001 && credit <= 50000) {
-                rank = 12;
-            } else if (credit >= 50001 && credit <= 100000) {
-                rank = 13;
-            } else if (credit >= 100001 && credit <= 200000) {
-                rank = 14;
-            } else if (credit >= 200001 && credit <= 500000) {
-                rank = 15;
-            } else if (credit >= 500001 && credit <= 1000000) {
-                rank = 16;
-            } else if (credit >= 1000001 && credit <= 2000000) {
-                rank = 17;
-            } else if (credit >= 2000001 && credit <= 5000000) {
-                rank = 18;
-            } else if (credit >= 5000001 && credit <= 10000000) {
-                rank = 19;
-            } else if (credit >= 10000001) {
-                rank = 20;
-            }
-            return rank;
-        },
-
-
-        rank:function (credit) {
-            var rank = this.creditToRank(credit),
-                ranks = [ '', '颗心', '颗黄钻', '金冠', '紫冠' ],
-                r = Math.ceil(rank / 5),
-                n = ( rank - 5 * ( r - 1 ) ) % 6;
-            return rank ? ( n + ' ' + ranks[ r ] ) : "";
+        unload:function () {
+            // implement super.unload
         }
-
-
-
-
-
-
-
-
-
-
     });
 
 

@@ -32,7 +32,7 @@ window.Swipe = function(element, options) {
   // static css
   this.container.style.overflow = 'hidden';
   this.element.style.listStyle = 'none';
-  this.element.style.margin = 0;
+  this.element.style.marginLeft = "58px";
 
   // trigger slider initialization
   this.setup();

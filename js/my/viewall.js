@@ -5,7 +5,7 @@
         title:'所有评论', //title bar的文案
         route:"viewAll\/(P<itemId>\\d+)\/(P<ratedUid>\\d+)\/p(P<pageNo>\\d+)",
         templates:{
-           "layout":JST['template/viewall_layout']
+            "layout":JST['template/viewall_layout']
         },
         //buttons of navigation
         buttons:[
@@ -15,34 +15,35 @@
             }
         ],
 
-        _queryComments:function(){
+
+        _queryComments:function () {
 
             var self = this;
 
             var pageNo = app.navigation.getParameter("pageNo");
-            var data = {"ratedUid":this.ratedUid,"tradeId":"0", "itemIds":this.itemId,"pageSize":"10","pageIndex":pageNo || 1};
+            var data = {"ratedUid":this.ratedUid, "tradeId":"0", "itemIds":this.itemId, "pageSize":"10", "pageIndex":pageNo || 1};
             var totalPage = 1;
-            app.mtopH5Api.getApi( 'mtop.gene.feedCenter.queryFeedItems', '1.0',  data,{},  function (result) {
+            app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (result) {
 
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
                     var comments = result.data.dataList;
-                    var html = self.templates['layout']({good:result.data.data,comments:comments});
+                    var html = self.templates['layout']({good:result.data.data, comments:comments});
 
 
                     $(app.component.getActiveContent()).find("#J_viewAllLayout").html(html);
 
                     var totalSize = result.data.total;
-                    if(totalSize < 10){
+                    if (totalSize < 10) {
                         totalPage = 1;
-                    }else if(totalSize == 10 && result.data.hasNext == "true"){
+                    } else if (totalSize == 10 && result.data.hasNext == "true") {
                         totalPage = 50;
-                    }else if(totalSize <= 10 && result.data.hasNext == "false" ){
+                    } else if (totalSize <= 10 && result.data.hasNext == "false") {
                         totalPage = 1;
                     }
 
-                    var pageInstance = self.pageNav = new PageNav({'id':'#J-allComments', 'index':1, 'pageCount':totalPage,'objId':'p'});
+                    var pageInstance = self.pageNav = new PageNav({'id':'#J-allComments', 'index':1, 'pageCount':totalPage, 'objId':'p'});
 
-                }else{
+                } else {
                     notification.flash("评论请求失败，请重试").show();
                 }
 
@@ -52,35 +53,42 @@
 
 
         events:{
-            "click .J-addPic":"triggerUploader"
+            "click #J-gotoMy":"gotoMyGood"
 
         },
 
-        triggerUploader:function(e){
+        gotoMyGood:function (e) {
+            e.preventDefault();
+            app.navigation.push("my/p1");
+
+        },
+
+
+        triggerUploader:function (e) {
             e.preventDefault();
             $("#J-upload").trigger("click");
 
-           $("#J-upload").on("change",function(){
-                app.navigation.push("upload",{datas:{"picInput":$("#J-upload")}});
-           });
+            $("#J-upload").on("change", function () {
+                app.navigation.push("upload", {datas:{"picInput":$("#J-upload")}});
+            });
 
         },
 
         ready:function () {
-          // implement super.ready
-          var self = this;
-          var content = $(app.component.getActiveContent());
-          var navigation = app.navigation;
+            // implement super.ready
+            var self = this;
+            var content = $(app.component.getActiveContent());
+            var navigation = app.navigation;
 
-          this.itemId = navigation.getParameter("itemId");
-          this.ratedUid = navigation.getParameter("ratedUid");
+            this.itemId = navigation.getParameter("itemId");
+            this.ratedUid = navigation.getParameter("ratedUid");
 
-          content.html('<section id="J_viewAllLayout" class="innercontent"></section>');
+            content.html('<section id="J_viewAllLayout" class="innercontent"></section>');
 
-          //delegate events
-         // app.Util.Events.call(this,"#J-myGood",this.events);
+            //delegate events
+            app.Util.Events.call(this, "#J_viewAllLayout", this.events);
 
-          this._queryComments();
+            this._queryComments();
         },
 
         unload:function () {

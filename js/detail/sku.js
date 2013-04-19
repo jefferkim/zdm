@@ -118,8 +118,9 @@
                skuAll = that.skuAll,
                height = that.height;
            if(skuLimit.hasClass('none')){return;}
-           !isScroll && scrollTo(0,skuLimit.offset().top - 58);
 
+           !isScroll && scrollTo(0,skuLimit.offset().top - 58);
+           $("#J-dInfo").removeClass("fold");
            skuLimit.addClass('none');
            /*skuAll.removeClass('none');
             !isScroll && utils.sendPoint('showsku%23h%23detail');*/
@@ -134,7 +135,11 @@
                skuLimit = that.skuLimit,
                skuAll = that.skuAll,
                height = that.height;
-           scrollTo(0,skuAll.offset().top - 58);
+           $("#J-dInfo").addClass("fold");
+           setTimeout(function(){
+               scrollTo(0,skuAll.offset().top - 58);
+           },200);
+
 
            /*skuLimit.removeClass('none');
             skuAll.addClass('none');
