@@ -1,4 +1,4 @@
-$("#J-uploadNow").on("click", function () {
+$("#J-uploadNowBtn").on("click", function () {
     var commentPoster = $.trim($("#J_CommentPoster").val());
     if (commentPoster.replace("/[^/x00-/xff]/g", "**").length > 140) {
         notification.flash("评论不得超出140个字").show();
@@ -15,7 +15,7 @@ $("#J-uploadNow").on("click", function () {
 
     app.mtopH5Api.getApi('mtop.gene.feedCenter.createItemFeed', '1.0', data, {}, function (result) {
         if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-            window.location.href = window.location.href.toString().replace("uploadPicture.html","zdm.html#my/p1");
+            window.location.href = window.location.href.toString().replace("uploadPicture.htm","zdm.htm#my/p1");
         }else{
              notification.flash(result.ret[0]).show();
         }

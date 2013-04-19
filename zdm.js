@@ -6613,7 +6613,7 @@ window.Swipe = function(element, options) {
   // static css
   this.container.style.overflow = 'hidden';
   this.element.style.listStyle = 'none';
-  this.element.style.margin = 0;
+  this.element.style.marginLeft = "58px";
 
   // trigger slider initialization
   this.setup();
@@ -6956,7 +6956,7 @@ Swipe.prototype = {
 };
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/add_pic"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="J-uploader">\n    <div class="add-pic" id="J-addPicWrap">\n        <div id="J-uploaderTrigger">\n          <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>\n         <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>\n        </div>\n        <div id="J-uploaded" class="uploader-file" style="display:none;">\n          <form action="http://wo.waptest.taobao.com/uploadPicture.htm" method="post" enctype="multipart/form-data">\n              <input type="file" name="picture"  id="J-upload" class="upload-input" multiple/>\n              <input type="hidden" name="ratedUid" id="J-ratedUid" value=""/> <!--被评价的uid-->\n              <input type="hidden" name="itemId" id="J-itemId" value=""/> <!--itemId-->\n              <input type="hidden" name="tradeId" id="J-tradeId" value=""/>  <!---orderId-->\n              <input type="submit" name="" value="上传"/>\n          </form>\n        </div>\n    </div>\n    <div class="comment-area">\n        <em class="arrow"></em>\n        <em class="num"><span id="J-num">0</span>/140</em>\n        <div class="cm-textarea">\n          <textarea name="" id="J_CommentPoster"></textarea>\n        </div>\n    </div>\n\n</div>\n');}return __p.join('');};
+  this.JST["template/add_pic"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="J-uploader">\n    <div class="add-pic" id="J-addPicWrap">\n        <div id="J-uploaderTrigger">\n          <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>\n         <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>\n        </div>\n        <div id="J-uploaded" class="uploader-file" style="display:none;">\n          <form action="http://wo.wapa.taobao.com/uploadPicture.htm" method="post" enctype="multipart/form-data">\n              <input type="file" name="picture"  id="J-upload" class="upload-input" multiple/>\n              <input type="hidden" name="ratedUid" id="J-ratedUid" value=""/> <!--被评价的uid-->\n              <input type="hidden" name="itemId" id="J-itemId" value=""/> <!--itemId-->\n              <input type="hidden" name="tradeId" id="J-tradeId" value=""/>  <!---orderId-->\n              <input type="submit" name="" value="上传"/>\n          </form>\n        </div>\n    </div>\n    <div class="comment-area">\n        <em class="arrow"></em>\n        <em class="num"><span id="J-num">0</span>/140</em>\n        <div class="cm-textarea">\n          <textarea name="" id="J_CommentPoster"></textarea>\n        </div>\n    </div>\n\n</div>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7018,7 +7018,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/good_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push(''); _.each(goods,function(good){; __p.push('\n    ');  _.each(good.boughtItem,function(boughtItem){; __p.push('\n    <li class="z-mod" id="J-commentItem-',  good.orderId ,'-',  boughtItem.itemId,'" data-orderId="',  good.orderId,'" data-id="',  good.orderId ,'-',  boughtItem.itemId ,'" data-itemId="',  boughtItem.itemId ,'"  data-ratedUid="',  good.sellerId,'"  data-tradeId="',  good.orderId ,'" data-parentTradeId="',  good.orderId ,'">\n        <div class="good-item">\n            <div class="hd good-hd">\n                <a href="#detail/',  boughtItem.itemId,'"><img src="',  boughtItem.pic ,'"/></a>\n            </div>\n            <div class="bd good-bd">\n                 <p><a href="#detail/',  boughtItem.itemId,'">',  _.escape(boughtItem.title) ,'</a></p>\n                 <div class="price">￥',  boughtItem.price ,'</div>\n            </div>\n        </div>\n        <div id="J-comment-',  good.orderId ,'-',  boughtItem.itemId ,'"> </div>\n    </li>\n    ');  }); __p.push('\n'); }); __p.push('\n\n');}return __p.join('');};
+  this.JST["template/good_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push(''); _.each(goods,function(good){; __p.push('\n    ');  _.each(good.orderInfo.orderCell,function(boughtItem){; __p.push('\n    <li class="z-mod" id="J-commentItem-',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId,'" data-orderId="',  good.orderInfo.bizOrderId,'" data-id="',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId ,'" data-ratedUid="',  good.sellerInfo.sellerId ,'" data-itemId="',  boughtItem.itemId ,'"    data-tradeId="',  good.orderInfo.bizOrderId ,'" data-parentTradeId="',  good.orderInfo.bizOrderId ,'">\n        <div class="good-item">\n            <div class="hd good-hd">\n                <a href="#detail/',  boughtItem.itemId,'"><img src="',  boughtItem.pic ,'"/></a>\n            </div>\n            <div class="bd good-bd">\n                 <p><a href="#detail/',  boughtItem.itemId,'">',  _.escape(boughtItem.title) ,'</a></p>\n                 <div class="price">￥',  boughtItem.sPrice ,'</div>\n            </div>\n        </div>\n        <div id="J-comment-',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId ,'"> </div>\n    </li>\n    ');  }); __p.push('\n'); }); __p.push('\n\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7777,6 +7777,8 @@ Swipe.prototype = {
                 } else {
                     notification.flash("请求商品评论失败，请刷新");
                 }
+            }, function (error) {
+                notification.flash("网络出错，请稍后再试!").show();
             });
 
         },
@@ -7791,16 +7793,18 @@ Swipe.prototype = {
             var orderIdArr = [];
 
 
-            var data = {"archive":"false", "statusId":"2", "page":pageNo || 1, "pageSize":"10"};
+            var data = {"fromIndex":"0", "toIndex":"4"};
 
-            app.mtopH5Api.getApi('mtop.order.queryOrderList', '1.0', data, {}, function (resp) {
+            app.mtopH5Api.getApi('mtop.gene.feedCenter.queryOrderList', '1.0', data, {}, function (resp) {
 
                 var content = $(app.component.getActiveContent()).find("#J-goodList");
                 var ret = resp.ret[0];
                 if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
 
                     //TODO:write a parse function to flatten the child order
-                    var goodList = resp.data.cell;
+                    var goodList = resp.data.result;
+
+                    console.log(goodList);
 
                     content.html(self.templates['goodItem']({goods:goodList}));
 
@@ -7814,16 +7818,15 @@ Swipe.prototype = {
 
                     self.pageNav = new PageNav({'id':'#J-goodsPage', 'index':1, 'pageCount':Math.ceil(resp.data.total / 10), 'objId':'p'});
 
-
-
-                } else if (ret.indexOf("ORDER_NOT_FOUND") > -1) {
+                } else if (resp.data) {
                     content.html(self.templates['no_order']());
                 } else {
                     notification.flash(ret.split("::")[1]).show();
                 }
 
+            }, function (error) {
+                notification.flash("网络出错，请稍后再试!").show();
             });
-
 
         },
 
@@ -7857,6 +7860,7 @@ Swipe.prototype = {
             }
 
             app.ZDMData.ratedUid = item.attr("data-rateduid");
+            console.log(app.ZDMData.ratedUid);
             app.ZDMData.tradeId = item.attr("data-tradeid");
             app.ZDMData.parentTradeId = item.attr("data-parentTradeId");
             app.ZDMData.aucNumId = item.attr("data-itemId");

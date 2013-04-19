@@ -62,6 +62,8 @@
                 } else {
                     notification.flash("请求商品评论失败，请刷新");
                 }
+            }, function (error) {
+                notification.flash("网络出错，请稍后再试!").show();
             });
 
         },
@@ -76,16 +78,18 @@
             var orderIdArr = [];
 
 
-            var data = {"archive":"false", "statusId":"2", "page":pageNo || 1, "pageSize":"10"};
+            var data = {"fromIndex":"0", "toIndex":"4"};
 
-            app.mtopH5Api.getApi('mtop.order.queryOrderList', '1.0', data, {}, function (resp) {
+            app.mtopH5Api.getApi('mtop.gene.feedCenter.queryOrderList', '1.0', data, {}, function (resp) {
 
                 var content = $(app.component.getActiveContent()).find("#J-goodList");
                 var ret = resp.ret[0];
                 if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
 
                     //TODO:write a parse function to flatten the child order
-                    var goodList = resp.data.cell;
+                    var goodList = resp.data.result;
+
+                    console.log(goodList);
 
                     content.html(self.templates['goodItem']({goods:goodList}));
 
@@ -99,19 +103,15 @@
 
                     self.pageNav = new PageNav({'id':'#J-goodsPage', 'index':1, 'pageCount':Math.ceil(resp.data.total / 10), 'objId':'p'});
 
-
-
-                } else if (ret.indexOf("ORDER_NOT_FOUND") > -1) {
+                } else if (resp.data) {
                     content.html(self.templates['no_order']());
                 } else {
                     notification.flash(ret.split("::")[1]).show();
                 }
 
-            },function(error){
-                console.log(error);
-
+            }, function (error) {
+                notification.flash("网络出错，请稍后再试!").show();
             });
-
 
         },
 
@@ -145,6 +145,7 @@
             }
 
             app.ZDMData.ratedUid = item.attr("data-rateduid");
+            console.log(app.ZDMData.ratedUid);
             app.ZDMData.tradeId = item.attr("data-tradeid");
             app.ZDMData.parentTradeId = item.attr("data-parentTradeId");
             app.ZDMData.aucNumId = item.attr("data-itemId");

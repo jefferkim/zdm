@@ -1,16 +1,16 @@
 <%_.each(goods,function(good){%>
-    <% _.each(good.boughtItem,function(boughtItem){%>
-    <li class="z-mod" id="J-commentItem-<%= good.orderId %>-<%= boughtItem.itemId%>" data-orderId="<%= good.orderId%>" data-id="<%= good.orderId %>-<%= boughtItem.itemId %>" data-itemId="<%= boughtItem.itemId %>"  data-ratedUid="<%= good.sellerId%>"  data-tradeId="<%= good.orderId %>" data-parentTradeId="<%= good.orderId %>">
+    <% _.each(good.orderInfo.orderCell,function(boughtItem){%>
+    <li class="z-mod" id="J-commentItem-<%= good.orderInfo.bizOrderId %>-<%= boughtItem.itemId%>" data-orderId="<%= good.orderInfo.bizOrderId%>" data-id="<%= good.orderInfo.bizOrderId %>-<%= boughtItem.itemId %>" data-ratedUid="<%= good.sellerInfo.sellerId %>" data-itemId="<%= boughtItem.itemId %>"    data-tradeId="<%= good.orderInfo.bizOrderId %>" data-parentTradeId="<%= good.orderInfo.bizOrderId %>">
         <div class="good-item">
             <div class="hd good-hd">
                 <a href="#detail/<%= boughtItem.itemId%>"><img src="<%= boughtItem.pic %>"/></a>
             </div>
             <div class="bd good-bd">
                  <p><a href="#detail/<%= boughtItem.itemId%>"><%= _.escape(boughtItem.title) %></a></p>
-                 <div class="price">￥<%= boughtItem.price %></div>
+                 <div class="price">￥<%= boughtItem.sPrice %></div>
             </div>
         </div>
-        <div id="J-comment-<%= good.orderId %>-<%= boughtItem.itemId %>"> </div>
+        <div id="J-comment-<%= good.orderInfo.bizOrderId %>-<%= boughtItem.itemId %>"> </div>
     </li>
     <% })%>
 <%})%>
