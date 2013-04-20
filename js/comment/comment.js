@@ -4,7 +4,10 @@
         name:"comment",
         title:'评论', //title bar的文案
         route:"comment\/(P<id>\\d+)",
-        templates:JST['template/comment'],
+        templates:{
+            "commetAllLayout":JST['template/detail_commentAllLayout'],
+            "commentItem":JST['template/comment']
+        },
         //buttons of navigation
         buttons:[
             {
@@ -13,6 +16,8 @@
             }
         ],
 
+
+        /*TODO:后期再处理cache逻辑*/
 
         ready:function () {
             // implement super.ready
@@ -25,7 +30,7 @@
             var pageNo = app.navigation.getParameter("pageNo");
             var host = app.helper.fetchHost();
 
-            content.html('<section id="J_commentCont" class="innercontent"><div class="loading"></div></section>');
+            content.html(this.templates['commetAllLayout']());
 
             //delegate events
             app.Util.Events.call(this, "#J_commentCont", this.events);
@@ -77,9 +82,9 @@
             target.addClass('cur');
             that.curLi.removeClass('cur');
             that.curLi = target;
-            var tabCache = that.tabCache[that.typeg],
-                tsel = tabCache.sel;
-            tsel && tsel.addClass('none');
+       //     var tabCache = that.tabCache[that.typeg],
+        //       tsel = tabCache.sel;
+       //     tsel && tsel.addClass('none');
 
             that.typeg = target.attr('s');
             var curCache = that.tabCache[that.typeg];
@@ -90,29 +95,34 @@
             //});
         },
         render:function (json, n) {
-            var that = this,
-                cache = that.tabCache[that.typeg],
-                htmldom = that.templates(json),
-                $htmldom = $(htmldom),
-                ul = json.items && json.items.length && $htmldom.find('#J_commcont ul') || $('<p class="itc-p">无评论</p>');
+            var that = this;
+            var cache = that.tabCache[that.typeg];
+            var htmldom = that.templates['commentItem'](json);
+            console.log(htmldom);
 
-            if (that.isFirst) {  //only once
+            $('#J-detailCommentListAll').html(htmldom);
 
-                $("#J_commentCont").html($htmldom);
+
+      //      if (that.isFirst) {  //only once
+
+
                 that.contbar || (that.contbar = $('#J_commcont'));
                 that.loading || (that.loading = $('#J_listload'));
                 that.pagebar || (that.pagebar = $('#J_dcpage'));
-                json.items && json.items.length || that.contbar.append(ul);
+           //     json.items && json.items.length || that.contbar.append(ul);
                 //  open.loadHide();
-            }
-            cache.sel && cache.sel.addClass('none');
-            cache.list[n] = ul;
-            cache.sel = ul;
+        //    }
+   //         cache.sel && cache.sel.addClass('none');
+         //   cache.list[n] = ul;
+         //   cache.sel = ul;
             that.loading.addClass('none');
-            that.isFirst || that.contbar.append(ul);
+       //     that.isFirst || that.contbar.append(ul);
         },
 
+
+
         fetch:function (id, page) {
+
 
             var that = this;
             if (!id) {
@@ -147,11 +157,16 @@
         },
 
         fetchAfter:function (data, page) {
+            console.log("fetchAfter");
+
             var that = this;
             if (data && data.items && data.items.length) {
-                var cache = that.tabCache[that.typeg];
+                //var cache = that.tabCache[that.typeg];
                 that.render(data, page);
+
+
                 if (!that.pageNav) {
+
                     var pageInstance = that.pageNav = new PageNav({'id':'#J_dcpage', 'index':1, 'pageCount':data.total, 'disableHash':true});
                     pageInstance.$container.on('P:switchPage', function (e, page) {
                         that.getData(page.index);
@@ -160,10 +175,10 @@
                             //     utils.sendPoint('nextpage#h#detail');暂时不设置埋点
                         }
                     });
-                    cache.total = data.total;
-                    cache.first = null;
-                }
-                if (cache.first) {  //Only initialize in first
+                //    cache.total = data.total;
+                //    cache.first = null;
+               }
+          /*      if (cache.first) {  //Only initialize in first
                     cache.first = null;
                     cache.total = data.total;
                     var pageInstance = that.pageNav;
@@ -181,11 +196,12 @@
                 }
                 else {
                     cache.second += 1;
-                }
+                }*/
                 that.pagebar.removeClass('none');
             }
             else if (data) {
-                that.render(data, page);
+               // that.render(data, page);
+                $(app.component.getActiveContent()).find("#J_commentCont").html('<p class="itc-p">无评论</p>');
             }
             /*if(that.isFirst && !that.tmall){  //第一次且不是tmall
              var arr = ["feedGoodCount","allNormalCount","allBadCount","allAppendCount"],
@@ -195,7 +211,7 @@
              });
              }*/
             that.isFirst = null;
-            that.loading.addClass('none');
+         //   that.loading.addClass('none');
         },
         getData:function (n) {
             var that = this,
@@ -224,16 +240,16 @@
                 that.fetch(that.itemId, n);
             }
         },
-        destroy:function () {
-            this.pageNav && this.pageNav.eventDetach();
-            this.undelegateEvents();
-            this.$el.html('');
-            this.$el = null;
-        },
+
 
 
         unload:function () {
             // implement super.unload
+
+            this.pageNav && this.pageNav.eventDetach();
+            this.pageNav = null;
+            //this.undelegateEvents();
+            this.tabCache = null;
         }
     });
 

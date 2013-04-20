@@ -1,8 +1,6 @@
-<section class="c-comm">
 
-    <div id="J_commcont" class="cc-cont">
-        <% if(items && items.length){ %>
-        <ul>
+            <% if(items && items.length){ %>
+
             <% for (var i = 0; i < items.length; i ++) { %>
             <li>
                 <p><%= items[i].text %></p>
@@ -13,11 +11,6 @@
                 <p><%= items[i].buyer %><em><%= app.helper.rank(items[i].credit)%></em><%= items[i].date %></p>
             </li>
             <% } %>
-        </ul>
+
+
         <% } %>
-    </div>
-    <div id="J_listload" class="c-loading dc-load none">
-        <span></span>
-    </div>
-    <div id="J_dcpage" class="c-pnav-con"></div>
-</section>

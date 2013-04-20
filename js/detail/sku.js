@@ -102,8 +102,7 @@
            app.Util.resize(function(){
                if(skuAll.hasClass('none')){
                    that.resize(that.setImgEle);
-               }
-               else{
+               }else{
                    that.height = skuAll.height();
                    that.width = skuAll.width() + 10;
                    that.setImgEle();
@@ -310,10 +309,14 @@
        },
        adjust : function(){
            $props =  $('.dsmp-v i');
+
            var $this,width;
            $props.each(function() {
                $this = $(this);
+           //    console.log($this);
                width = $this.width();
+
+               console.log(width);
                if ( width < 32 ) { $this.addClass('a');}
                else if ( width < 80 )  { $this.addClass('b');}
                else if ( width < 138 ) { $this.addClass('c');}
@@ -329,8 +332,8 @@
            if(skuProps.length) this.el.show();
            else this.el.hide();
            var content = that.outputHtml(skuProps);
-           console.log(that.skuAll);
-           console.log(content);
+        //   console.log(that.skuAll);
+        //   console.log(content);
 
            that.skuAll.html(content);
 

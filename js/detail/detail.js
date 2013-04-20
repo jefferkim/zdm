@@ -40,24 +40,24 @@
         },
 
 
-        setImg : function(str){  //切换图片尺寸
+        setImg:function (str) {  //切换图片尺寸
             var el = this.slideEl;
-            var  imgarr = el.find('li img');
-            imgarr.each(function(n,item){
+            var imgarr = el.find('li img');
+            imgarr.each(function (n, item) {
                 var item = $(item),
                     src = item.attr('src'),
                     dataimg = item.attr("data-src"),
-                    newsrc = app.Util.getWebpImg(dataimg,str);
-                item.attr("data-src",newsrc);
-                item.attr('src',newsrc);
+                    newsrc = app.Util.getWebpImg(dataimg, str);
+                item.attr("data-src", newsrc);
+                item.attr('src', newsrc);
             });
         },
 
         fullscreen:function (e) {
-            scrollTo(0,0);
+            scrollTo(0, 0);
 
             var slide = this.detailSlider;
-          //  if(slide._isScroll){return;}  //滑动过程不允许全屏
+            //  if(slide._isScroll){return;}  //滑动过程不允许全屏
             //只查找once
             this.slideEl || (this.slideEl = $('#J_slide'));
             this.body || (this.body = $('#tbh5v0'));
@@ -100,7 +100,6 @@
         },
 
         original:function (e) {
-
             e.preventDefault();
 
             var images = $("#J-sliderShow").find("li img");
@@ -140,11 +139,11 @@
         queryDesc:function () {
 
 
-
             app.mtopH5Api.getApi('mtop.gene.feedCenter.getConfigByItemId', '1.0', {"aucNumId":this.itemQid}, {}, function (result) {
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
                     $("#J-desc").html(result.data.result);
-
+                }else{
+                    notification.flash("请求商品简介失败").show();
                 }
             })
         },
@@ -187,7 +186,7 @@
 
         queryComment:function (ratedId) {
 
-           var self = this;
+            var self = this;
             var data = {"ratedUid":ratedId, "tradeId":"0", "itemIds":this.itemQid, "pageSize":"5", "pageIndex":"1"};
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (result) {

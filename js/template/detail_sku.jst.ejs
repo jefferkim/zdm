@@ -3,9 +3,11 @@
    <p class="ds-props" id="sku-limit">
        <span class="gray12">
            <%=_.map(sku.skuProps,function(item){
+
               var tempa = _.map(item.values,function(el){
-                    return el.valueAlias || el.name;
+                    return el.valueAlias || el.txt;
                });
+
                tempa.unshift(item.name+': ');
                return tempa.join(' ');}).join(' ')
            %></span>
