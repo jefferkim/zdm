@@ -6960,7 +6960,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/comment"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<section class="c-comm">\n\n    <div id="J_commcont" class="cc-cont">\n        ');  if(items && items.length){ ; __p.push('\n        <ul>\n            ');  for (var i = 0; i < items.length; i ++) { ; __p.push('\n            <li>\n                <p>',  items[i].text ,'</p>\n                ');  if(items[i].reply){ ; __p.push('\n                <div class="reply"><strong>卖家回复：</strong>', items[i].reply,'</div>\n                ');  } ; __p.push('\n                <p>',  items[i].deal ,'</p>\n                <p>',  items[i].buyer ,'<em>',  app.helper.rank(items[i].credit),'</em>',  items[i].date ,'</p>\n            </li>\n            ');  } ; __p.push('\n        </ul>\n        ');  } ; __p.push('\n    </div>\n    <div id="J_listload" class="c-loading dc-load none">\n        <span></span>\n    </div>\n    <div id="J_dcpage" class="c-pnav-con"></div>\n</section>\n');}return __p.join('');};
+  this.JST["template/comment"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('\n            ');  if(items && items.length){ ; __p.push('\n\n            ');  for (var i = 0; i < items.length; i ++) { ; __p.push('\n            <li>\n                <p>',  items[i].text ,'</p>\n                ');  if(items[i].reply){ ; __p.push('\n                <div class="reply"><strong>卖家回复：</strong>', items[i].reply,'</div>\n                ');  } ; __p.push('\n                <p>',  items[i].deal ,'</p>\n                <p>',  items[i].buyer ,'<em>',  app.helper.rank(items[i].credit),'</em>',  items[i].date ,'</p>\n            </li>\n            ');  } ; __p.push('\n\n\n        ');  } ; __p.push('\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -6969,6 +6969,10 @@ Swipe.prototype = {
 (function() {
   this.JST || (this.JST = {});
   this.JST["template/detail_comment"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="ds-action">\n    <a href="#" class="ds-coma ww">\n        <img src="http://im.m.taobao.com/ww/status.do?_input_charset=utf-8&amp;nick=%E5%A5%A5%E6%84%8F%E7%8E%9B%E6%97%97%E8%88%B0%E5%BA%97&amp;sid=a43dc100fd92d4d3f446405857471d10" alt="联系卖家">\n    </a>\n    <a href="#" class="ds-coma fav">收藏</a>\n\n\n    ');  if(item.soldout == 'false'){ ; __p.push('\n    ');  if(trade.buySupport && trade.buySupport == 'true'){ ; __p.push('<a href="#" class="immbuy');  if(seller.type == 'B'){ ; __p.push(' c-btn-tmall-buy');  } else{ ; __p.push(' c-btn-oran');  } ; __p.push('"><span>立即购买</span></a>');  } ; __p.push('\n    ');  if(trade.cartSupport && trade.cartSupport == 'true'){ ; __p.push('<a href="#" class="c-btn-blue addcart"><span>加入购物车</span></a>');  } ; __p.push('\n    ');  } else { ; __p.push('\n    <b class="ds-coma ds-bs"><span>宝贝不能购买</span></b>\n    ');  } ; __p.push('\n\n\n    <form id="order-form" name="orderForm" style="display: none;" action="http://b.m.taobao.com/buy.htm?sid=fa5ef1c3e6848fa9433c0ebf894b1e5a&amp;pds=buynow%23h%23detail" method="post">\n        <input type="hidden" name="_input_charset" value="utf-8"/>\n        <input type="hidden" name="item_id" value="4846668057"/>\n        <input type="hidden" name="item_num_id" value="4846668057"/>\n        <input type="hidden" name="tks" value="" />\n        <input type="hidden" id="sku-id" name="skuId" value=""/>\n        <input type="hidden" name="buyNow" value="true" />\n    </form>\n</div>\n');}return __p.join('');};
+}).call(this);
+(function() {
+  this.JST || (this.JST = {});
+  this.JST["template/detail_commentAllLayout"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<section id="J_commentCont" class="innercontent">\n    <section class="c-comm">\n\n        <div id="J_commcont" class="cc-cont">\n            <ul id="J-detailCommentListAll">\n                <div class="loading"></div>\n            </ul>\n        </div>\n        <div id="J_dcpage" class="c-pnav-con"></div>\n    </section>\n</section>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -6988,14 +6992,16 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/detail_merchant"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<p class="dm-cp"><a href="#comment/',  itemId,'">用户评论</a><b class="aw right"></b></p>\n<p class="dm-cp"><a href="#imaglet/',  itemId,'">图文详情</a><b class="aw right"></b></p>\n\n<ul class="d-cul">\n    <li class="dmf-li"><label>卖家:</label><span class="dm-name">',  seller.nick ,'</span><img src="',  app.helper.convertCredit(seller.credit.level) ,'"/></li>\n    <li><label>地点:</label><span class="gray12">',  seller.location,'</span></li>\n    <li><label>动态:</label><span class="gray12">\n        '); if(seller.evaluateInfo && seller.evaluateInfo.length == 3){ ; __p.push('\n         描述 <i class="red">',  seller.evaluateInfo[2].score ,'</i> 服务 <i class="red">',  seller.evaluateInfo[1].score,'</i> 物流 <i class="red">',  seller.evaluateInfo[0].score ,'</i>　\n        '); }; __p.push('好评率 ',  seller.goodRatePercentage ,'\n    </span></li>\n    ');  if(guarantees && guarantees.length){ ; __p.push('\n    <li><label>保障:</label>');  _.each(guarantees,function(guarantee){ ; __p.push('\n    <img src="',  guarantee.icon,'_16x16.jpg" />\n    ');  }) } ; __p.push('</li>\n</ul>\n<p class="dm-enter dm-five"><a href="http://shop.',  app.helper.fetchHost(),'.taobao.com/shop/shopIndex.htm?user_id=',  seller.userNumId,'">进入店铺</a></p>\n');}return __p.join('');};
+  this.JST["template/detail_merchant"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<p class="dm-cp"><a href="#comment/',  itemId,'" id="J-goToComment">用户评论</a><b class="aw right"></b></p>\n<p class="dm-cp"><a href="#imaglet/',  itemId,'">图文详情</a><b class="aw right"></b></p>\n\n<ul class="d-cul">\n    <li class="dmf-li"><label>卖家:</label><span class="dm-name">',  seller.nick ,'</span><img src="',  app.helper.convertCredit(seller.credit.level) ,'"/></li>\n    <li><label>地点:</label><span class="gray12">',  seller.location,'</span></li>\n    <li><label>动态:</label><span class="gray12">\n        '); if(seller.evaluateInfo && seller.evaluateInfo.length == 3){ ; __p.push('\n         描述 <i class="red">',  seller.evaluateInfo[2].score ,'</i> 服务 <i class="red">',  seller.evaluateInfo[1].score,'</i> 物流 <i class="red">',  seller.evaluateInfo[0].score ,'</i>　\n        '); }; __p.push('好评率 ',  seller.goodRatePercentage ,'\n    </span></li>\n    ');  if(guarantees && guarantees.length){ ; __p.push('\n    <li><label>保障:</label>');  _.each(guarantees,function(guarantee){ ; __p.push('\n    <img src="',  guarantee.icon,'_16x16.jpg" />\n    ');  }) } ; __p.push('</li>\n</ul>\n<p class="dm-enter dm-five"><a href="http://shop.',  app.helper.fetchHost(),'.taobao.com/shop/shopIndex.htm?user_id=',  seller.userNumId,'">进入店铺</a></p>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
   this.JST["template/detail_sku"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('');  if(item.sku == 'true'){ ; __p.push('\n<section class="d-sku');  if(seller.type == 'B'){ ; __p.push(' d-tmall');  } ; __p.push('">\n   <p class="ds-props" id="sku-limit">\n       <span class="gray12">\n           ', _.map(sku.skuProps,function(item){
+  
                 var tempa = _.map(item.values,function(el){
-                      return el.valueAlias || el.name;
+                      return el.valueAlias || el.txt;
                  });
+  
                  tempa.unshift(item.name+': ');
                  return tempa.join(' ');}).join(' ')
              ,'</span>\n       <b class="aw down"></b>\n   </p>\n   <div class="ds-main none" id="sku-all"></div>\n</section>\n');  } ; __p.push('\n');}return __p.join('');};
@@ -7061,29 +7067,83 @@ Swipe.prototype = {
             content.html(self.templates["layout"]());
 
             //delegate events
-            app.Util.Events.call(this, "#tbh5v0", this.events);
+            app.Util.Events.call(this, "body", this.events);
 
             this.queryData();
         },
 
 
         events:{
-            'click .goods-slider':'fullscreen1',
-            'click .dc-delivery':'recover',
+            'click .goods-slider li img':'fullscreen',
+            'click .jsb-back':'recover',
             'click .jsb-ori':'original'
         },
 
-        fullscreen1:function () {
-            alert("fff");
+
+        setImg:function (str) {  //切换图片尺寸
+            var el = this.slideEl;
+            var imgarr = el.find('li img');
+            imgarr.each(function (n, item) {
+                var item = $(item),
+                    src = item.attr('src'),
+                    dataimg = item.attr("data-src"),
+                    newsrc = app.Util.getWebpImg(dataimg, str);
+                item.attr("data-src", newsrc);
+                item.attr('src', newsrc);
+            });
         },
 
-        recover:function () {
-            alert("fsss");
+        fullscreen:function (e) {
+            scrollTo(0, 0);
+
+            var slide = this.detailSlider;
+            //  if(slide._isScroll){return;}  //滑动过程不允许全屏
+            //只查找once
+            this.slideEl || (this.slideEl = $('#J_slide'));
+            this.body || (this.body = $('#tbh5v0'));
+            this.hideEle || (this.hideEle = this.body.children());
+
+            this.slideEl.appendTo(this.body).addClass('dSliderFull');
+            this.hideEle.addClass('none'); //隐藏页面元素，不能直接使用display:none，避免和本来就是隐藏的冲突
+            this.body.addClass('fullbody');
+
+            slide.fixWidth = 300;
+            slide.element.style.marginLeft = 0;
+
+            slide.setup();
+            slide.begin();
+            this.setImg('300x300');
+
+            $(".price-f").hide();
+
+            this.isFulls = true;
         },
 
-        original:function () {
+        recover:function (e) {
+            e.preventDefault();
 
+            this.slidePar || (this.slidePar = $('#J_detailCont').children()[0]);
 
+            this.slideEl.insertBefore(this.slidePar).removeClass('dSliderFull');
+            this.hideEle.removeClass('none'); //还原页面元素
+            this.body.removeClass('fullbody');
+
+            var slide = this.detailSlider;
+
+            slide.fixWidth = 200;
+            slide.element.style.marginLeft = "58px";
+            slide.setup();
+            slide.begin();
+            this.setImg('180x180');
+
+            this.isFulls = false;
+        },
+
+        original:function (e) {
+            e.preventDefault();
+
+            var images = $("#J-sliderShow").find("li img");
+            location.href = $(images[this.detailSlider.index || 0]).attr("src");
         },
 
         //请求详情页信息
@@ -7119,11 +7179,11 @@ Swipe.prototype = {
         queryDesc:function () {
 
 
-
             app.mtopH5Api.getApi('mtop.gene.feedCenter.getConfigByItemId', '1.0', {"aucNumId":this.itemQid}, {}, function (result) {
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
                     $("#J-desc").html(result.data.result);
-
+                } else {
+                    notification.flash("请求商品简介失败").show();
                 }
             })
         },
@@ -7166,15 +7226,35 @@ Swipe.prototype = {
 
         queryComment:function (ratedId) {
 
-           var self = this;
-            var data = {"ratedUid":ratedId, "tradeId":"0", "itemIds":this.itemQid, "pageSize":"5", "pageIndex":"1"};
+
+            var self = this;
+            var data = {"ratedUid":ratedId, "tradeId":"0", "itemIds":this.itemQid, "pageSize":"100", "pageIndex":"1"};
+
+            var filterComments = function (comments) {
+                var commentsSet = comments;
+                var tmp = [];
+                _.each(commentsSet, function (comment) {
+                    if (comment.feedItemPicDOList.length >= 1 && tmp.length <= 4) {
+                        tmp.push(comment);
+                    }
+                });
+
+                if (tmp.length < 5) {
+                    var t = commentsSet.slice(0, 5 - tmp.length);
+                    var tmp = tmp.concat(t);
+                }
+
+                return tmp;
+            }
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (result) {
 
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-                    var comments = result.data.dataList;
+                    var comments = self.comments = result.data.dataList;
 
-                    var html = self.templates['comments']({comments:comments});
+                    var commentsArr = filterComments(comments);
+
+                    var html = self.templates['comments']({comments:commentsArr});
 
                     $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户晒单</h2><ul class="zdm-comment-block">' + html + '</ul>');
                 } else {
@@ -7448,8 +7528,7 @@ Swipe.prototype = {
            app.Util.resize(function(){
                if(skuAll.hasClass('none')){
                    that.resize(that.setImgEle);
-               }
-               else{
+               }else{
                    that.height = skuAll.height();
                    that.width = skuAll.width() + 10;
                    that.setImgEle();
@@ -7656,10 +7735,14 @@ Swipe.prototype = {
        },
        adjust : function(){
            $props =  $('.dsmp-v i');
+
            var $this,width;
            $props.each(function() {
                $this = $(this);
+           //    console.log($this);
                width = $this.width();
+
+               console.log(width);
                if ( width < 32 ) { $this.addClass('a');}
                else if ( width < 80 )  { $this.addClass('b');}
                else if ( width < 138 ) { $this.addClass('c');}
@@ -7675,8 +7758,8 @@ Swipe.prototype = {
            if(skuProps.length) this.el.show();
            else this.el.hide();
            var content = that.outputHtml(skuProps);
-           console.log(that.skuAll);
-           console.log(content);
+        //   console.log(that.skuAll);
+        //   console.log(content);
 
            that.skuAll.html(content);
 
@@ -7799,8 +7882,13 @@ Swipe.prototype = {
 
                 var content = $(app.component.getActiveContent()).find("#J-goodList");
                 var ret = resp.ret[0];
+                //TODO:后端需要对ret进行输出
                 if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
 
+                    if(!resp.data.orderInfo){
+                        content.html(self.templates['no_order']());
+                        return;
+                    }
                     //TODO:write a parse function to flatten the child order
                     var goodList = resp.data.result;
 
@@ -8029,10 +8117,6 @@ Swipe.prototype = {
         triggerUploader:function (e) {
             e.preventDefault();
             $("#J-upload").trigger("click");
-
-
-
-
         },
 
         ready:function () {
@@ -8057,20 +8141,24 @@ Swipe.prototype = {
                 $("#J-itemId").val(app.ZDMData.aucNumId);
             }
 
-            $("#J_CommentPoster").keyup(function () {
-                var val = $(this).val(),
+
+            var _calculateCount = function(el){
+                var val = el.val(),
                     valCount = val.replace("/[^/x00-/xff]/g", "**").length;
                 $("#J-num").text(valCount);
                 if (valCount >= 140) {
-                    $(this).val(val.substr(0, 140));
+                    el.val(val.substr(0, 140));
                 }
-            });
+            }
 
             $("#J-upload").on("change",function(){
                 $("#J-uploaderTrigger").hide();
                 $("#J-uploaded").show();
             });
 
+            $("#J_CommentPoster").on("keyup paste",function () {
+                _calculateCount($(this));
+            });
 
         },
 
@@ -8087,7 +8175,10 @@ Swipe.prototype = {
         name:"comment",
         title:'评论', //title bar的文案
         route:"comment\/(P<id>\\d+)",
-        templates:JST['template/comment'],
+        templates:{
+            "commetAllLayout":JST['template/detail_commentAllLayout'],
+            "commentItem":JST['template/comment']
+        },
         //buttons of navigation
         buttons:[
             {
@@ -8096,6 +8187,8 @@ Swipe.prototype = {
             }
         ],
 
+
+        /*TODO:后期再处理cache逻辑*/
 
         ready:function () {
             // implement super.ready
@@ -8108,7 +8201,7 @@ Swipe.prototype = {
             var pageNo = app.navigation.getParameter("pageNo");
             var host = app.helper.fetchHost();
 
-            content.html('<section id="J_commentCont" class="innercontent"><div class="loading"></div></section>');
+            content.html(this.templates['commetAllLayout']());
 
             //delegate events
             app.Util.Events.call(this, "#J_commentCont", this.events);
@@ -8160,9 +8253,9 @@ Swipe.prototype = {
             target.addClass('cur');
             that.curLi.removeClass('cur');
             that.curLi = target;
-            var tabCache = that.tabCache[that.typeg],
-                tsel = tabCache.sel;
-            tsel && tsel.addClass('none');
+       //     var tabCache = that.tabCache[that.typeg],
+        //       tsel = tabCache.sel;
+       //     tsel && tsel.addClass('none');
 
             that.typeg = target.attr('s');
             var curCache = that.tabCache[that.typeg];
@@ -8173,29 +8266,34 @@ Swipe.prototype = {
             //});
         },
         render:function (json, n) {
-            var that = this,
-                cache = that.tabCache[that.typeg],
-                htmldom = that.templates(json),
-                $htmldom = $(htmldom),
-                ul = json.items && json.items.length && $htmldom.find('#J_commcont ul') || $('<p class="itc-p">无评论</p>');
+            var that = this;
+            var cache = that.tabCache[that.typeg];
+            var htmldom = that.templates['commentItem'](json);
+            console.log(htmldom);
 
-            if (that.isFirst) {  //only once
+            $('#J-detailCommentListAll').html(htmldom);
 
-                $("#J_commentCont").html($htmldom);
+
+      //      if (that.isFirst) {  //only once
+
+
                 that.contbar || (that.contbar = $('#J_commcont'));
                 that.loading || (that.loading = $('#J_listload'));
                 that.pagebar || (that.pagebar = $('#J_dcpage'));
-                json.items && json.items.length || that.contbar.append(ul);
+           //     json.items && json.items.length || that.contbar.append(ul);
                 //  open.loadHide();
-            }
-            cache.sel && cache.sel.addClass('none');
-            cache.list[n] = ul;
-            cache.sel = ul;
+        //    }
+   //         cache.sel && cache.sel.addClass('none');
+         //   cache.list[n] = ul;
+         //   cache.sel = ul;
             that.loading.addClass('none');
-            that.isFirst || that.contbar.append(ul);
+       //     that.isFirst || that.contbar.append(ul);
         },
 
+
+
         fetch:function (id, page) {
+
 
             var that = this;
             if (!id) {
@@ -8230,11 +8328,16 @@ Swipe.prototype = {
         },
 
         fetchAfter:function (data, page) {
+            console.log("fetchAfter");
+
             var that = this;
             if (data && data.items && data.items.length) {
-                var cache = that.tabCache[that.typeg];
+                //var cache = that.tabCache[that.typeg];
                 that.render(data, page);
+
+
                 if (!that.pageNav) {
+
                     var pageInstance = that.pageNav = new PageNav({'id':'#J_dcpage', 'index':1, 'pageCount':data.total, 'disableHash':true});
                     pageInstance.$container.on('P:switchPage', function (e, page) {
                         that.getData(page.index);
@@ -8243,10 +8346,10 @@ Swipe.prototype = {
                             //     utils.sendPoint('nextpage#h#detail');暂时不设置埋点
                         }
                     });
-                    cache.total = data.total;
-                    cache.first = null;
-                }
-                if (cache.first) {  //Only initialize in first
+                //    cache.total = data.total;
+                //    cache.first = null;
+               }
+          /*      if (cache.first) {  //Only initialize in first
                     cache.first = null;
                     cache.total = data.total;
                     var pageInstance = that.pageNav;
@@ -8264,11 +8367,12 @@ Swipe.prototype = {
                 }
                 else {
                     cache.second += 1;
-                }
+                }*/
                 that.pagebar.removeClass('none');
             }
             else if (data) {
-                that.render(data, page);
+               // that.render(data, page);
+                $(app.component.getActiveContent()).find("#J_commentCont").html('<p class="itc-p">无评论</p>');
             }
             /*if(that.isFirst && !that.tmall){  //第一次且不是tmall
              var arr = ["feedGoodCount","allNormalCount","allBadCount","allAppendCount"],
@@ -8278,7 +8382,7 @@ Swipe.prototype = {
              });
              }*/
             that.isFirst = null;
-            that.loading.addClass('none');
+         //   that.loading.addClass('none');
         },
         getData:function (n) {
             var that = this,
@@ -8307,16 +8411,16 @@ Swipe.prototype = {
                 that.fetch(that.itemId, n);
             }
         },
-        destroy:function () {
-            this.pageNav && this.pageNav.eventDetach();
-            this.undelegateEvents();
-            this.$el.html('');
-            this.$el = null;
-        },
+
 
 
         unload:function () {
             // implement super.unload
+
+            this.pageNav && this.pageNav.eventDetach();
+            this.pageNav = null;
+            //this.undelegateEvents();
+            this.tabCache = null;
         }
     });
 

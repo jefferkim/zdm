@@ -142,7 +142,7 @@
             app.mtopH5Api.getApi('mtop.gene.feedCenter.getConfigByItemId', '1.0', {"aucNumId":this.itemQid}, {}, function (result) {
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
                     $("#J-desc").html(result.data.result);
-                }else{
+                } else {
                     notification.flash("请求商品简介失败").show();
                 }
             })
@@ -187,23 +187,24 @@
         queryComment:function (ratedId) {
 
 
-
-
             var self = this;
             var data = {"ratedUid":ratedId, "tradeId":"0", "itemIds":this.itemQid, "pageSize":"100", "pageIndex":"1"};
 
-            var filterComments = function(comments){
+            var filterComments = function (comments) {
                 var commentsSet = comments;
                 var tmp = [];
-                _.each(commentsSet,function(comment){
-                    if(comment.feedItemPicDOList.length >= 1 && tmp.length <=5){
+                _.each(commentsSet, function (comment) {
+                    if (comment.feedItemPicDOList.length >= 1 && tmp.length <= 4) {
                         tmp.push(comment);
                     }
                 });
-                if(tmp.length <5){
-                    //tmp.push(commentsSet)
+
+                if (tmp.length < 5) {
+                    var t = commentsSet.slice(0, 5 - tmp.length);
+                    var tmp = tmp.concat(t);
                 }
 
+                return tmp;
             }
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (result) {
@@ -211,10 +212,9 @@
                 if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
                     var comments = self.comments = result.data.dataList;
 
-                    filterComments(comments);
+                    var commentsArr = filterComments(comments);
 
-
-                    var html = self.templates['comments']({comments:comments});
+                    var html = self.templates['comments']({comments:commentsArr});
 
                     $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户晒单</h2><ul class="zdm-comment-block">' + html + '</ul>');
                 } else {
