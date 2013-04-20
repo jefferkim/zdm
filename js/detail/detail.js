@@ -26,6 +26,8 @@
             var content = $(app.component.getActiveContent());
             content.html(self.templates["layout"]());
 
+
+
             //delegate events
             app.Util.Events.call(this, "body", this.events);
 
@@ -36,7 +38,19 @@
         events:{
             'click .goods-slider li img':'fullscreen',
             'click .jsb-back':'recover',
-            'click .jsb-ori':'original'
+            'click .jsb-ori':'original',
+            'click #J-goToComment':'goToComment',
+            'click #J-goToView':'goToView'
+        },
+
+        goToComment:function(e){
+            e.preventDefault();
+            app.navigation.push("#comment/"+this.itemQid);
+
+        },
+        goToView:function(e){
+            e.preventDefault();
+            app.navigation.push("#imaglet/"+this.itemQid);
         },
 
 
@@ -207,20 +221,33 @@
                 return tmp;
             }
 
-            app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (result) {
+            if(self.commentsFilterArr && self.itemFilterId == self.itemQid){
+                var html = self.templates['comments']({comments:self.commentsFilterArr});
 
-                if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-                    var comments = self.comments = result.data.dataList;
+                $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户晒单</h2><ul class="zdm-comment-block">' + html + '</ul>');
 
-                    var commentsArr = filterComments(comments);
+            }else{
 
-                    var html = self.templates['comments']({comments:commentsArr});
 
-                    $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户晒单</h2><ul class="zdm-comment-block">' + html + '</ul>');
-                } else {
-                    notification.flash("评论请求失败，请重试").show();
-                }
-            });
+                app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (result) {
+
+                    if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
+                        var comments = self.comments = result.data.dataList;
+
+                        self.itemFilterId = result.data.data.aucNumId;
+                        var commentsArr = self.commentsFilterArr = filterComments(comments);
+
+                        var html = self.templates['comments']({comments:commentsArr});
+
+                        $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户晒单</h2><ul class="zdm-comment-block">' + html + '</ul>');
+                    } else {
+                        notification.flash("评论请求失败，请重试").show();
+                    }
+                });
+
+            }
+
+
         },
 
         unload:function () {
