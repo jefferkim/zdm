@@ -84,8 +84,13 @@
 
                 var content = $(app.component.getActiveContent()).find("#J-goodList");
                 var ret = resp.ret[0];
+                //TODO:后端需要对ret进行输出
                 if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
 
+                    if(!resp.data.orderInfo){
+                        content.html(self.templates['no_order']());
+                        return;
+                    }
                     //TODO:write a parse function to flatten the child order
                     var goodList = resp.data.result;
 

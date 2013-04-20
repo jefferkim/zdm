@@ -31,10 +31,6 @@
         triggerUploader:function (e) {
             e.preventDefault();
             $("#J-upload").trigger("click");
-
-
-
-
         },
 
         ready:function () {
@@ -59,20 +55,24 @@
                 $("#J-itemId").val(app.ZDMData.aucNumId);
             }
 
-            $("#J_CommentPoster").keyup(function () {
-                var val = $(this).val(),
+
+            var _calculateCount = function(el){
+                var val = el.val(),
                     valCount = val.replace("/[^/x00-/xff]/g", "**").length;
                 $("#J-num").text(valCount);
                 if (valCount >= 140) {
-                    $(this).val(val.substr(0, 140));
+                    el.val(val.substr(0, 140));
                 }
-            });
+            }
 
             $("#J-upload").on("change",function(){
                 $("#J-uploaderTrigger").hide();
                 $("#J-uploaded").show();
             });
 
+            $("#J_CommentPoster").on("keyup paste",function () {
+                _calculateCount($(this));
+            });
 
         },
 

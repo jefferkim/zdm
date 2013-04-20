@@ -27,29 +27,84 @@
             content.html(self.templates["layout"]());
 
             //delegate events
-            app.Util.Events.call(this, "#tbh5v0", this.events);
+            app.Util.Events.call(this, "body", this.events);
 
             this.queryData();
         },
 
 
         events:{
-            'click .goods-slider':'fullscreen1',
-            'click .dc-delivery':'recover',
+            'click .goods-slider li img':'fullscreen',
+            'click .jsb-back':'recover',
             'click .jsb-ori':'original'
         },
 
-        fullscreen1:function () {
-            alert("fff");
+
+        setImg : function(str){  //切换图片尺寸
+            var el = this.slideEl;
+            var  imgarr = el.find('li img');
+            imgarr.each(function(n,item){
+                var item = $(item),
+                    src = item.attr('src'),
+                    dataimg = item.attr("data-src"),
+                    newsrc = app.Util.getWebpImg(dataimg,str);
+                item.attr("data-src",newsrc);
+                item.attr('src',newsrc);
+            });
         },
 
-        recover:function () {
-            alert("fsss");
+        fullscreen:function (e) {
+            scrollTo(0,0);
+
+            var slide = this.detailSlider;
+          //  if(slide._isScroll){return;}  //滑动过程不允许全屏
+            //只查找once
+            this.slideEl || (this.slideEl = $('#J_slide'));
+            this.body || (this.body = $('#tbh5v0'));
+            this.hideEle || (this.hideEle = this.body.children());
+
+            this.slideEl.appendTo(this.body).addClass('dSliderFull');
+            this.hideEle.addClass('none'); //隐藏页面元素，不能直接使用display:none，避免和本来就是隐藏的冲突
+            this.body.addClass('fullbody');
+
+            slide.fixWidth = 300;
+            slide.element.style.marginLeft = 0;
+
+            slide.setup();
+            slide.begin();
+            this.setImg('300x300');
+
+            $(".price-f").hide();
+
+            this.isFulls = true;
         },
 
-        original:function () {
+        recover:function (e) {
+            e.preventDefault();
 
+            this.slidePar || (this.slidePar = $('#J_detailCont').children()[0]);
 
+            this.slideEl.insertBefore(this.slidePar).removeClass('dSliderFull');
+            this.hideEle.removeClass('none'); //还原页面元素
+            this.body.removeClass('fullbody');
+
+            var slide = this.detailSlider;
+
+            slide.fixWidth = 200;
+            slide.element.style.marginLeft = "58px";
+            slide.setup();
+            slide.begin();
+            this.setImg('180x180');
+
+            this.isFulls = false;
+        },
+
+        original:function (e) {
+
+            e.preventDefault();
+
+            var images = $("#J-sliderShow").find("li img");
+            location.href = $(images[this.detailSlider.index || 0]).attr("src");
         },
 
         //请求详情页信息
