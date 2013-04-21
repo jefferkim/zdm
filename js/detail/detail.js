@@ -37,11 +37,92 @@
 
         events:{
             'click .goods-slider li img':'fullscreen',
-            'click .jsb-back':'recover',
+            'click #J-jsbBack':'recover',
+            'click #J-cBack':'recover1',
             'click .jsb-ori':'original',
             'click #J-goToComment':'goToComment',
-            'click #J-goToView':'goToView'
+            'click #J-goToView':'goToView',
+            'click .immbuy' : 'immediatelyBuy',
+            'click #zdm-comment .pic-desc li':'showCommentPicSlider'
         },
+
+        recover1:function(e){
+            e.preventDefault();
+            $(".viewport").show();
+            $("#tbh5v0 .dSliderFull").remove();
+        },
+        showCommentPicSlider:function(e){
+            e.preventDefault();
+            var currentTarget = e.currentTarget;
+            var cloneDom = $(currentTarget).parents(".pic-desc").clone();
+            $('#tbh5v0').addClass("fullscreen");
+            var sliderEl = $('<div class="dSliderFull"></div>');
+            sliderEl.html('<div class="dSlider" id="J-sliderComment"><div class="js-bton"><a href="#" class="jsb-back" id="J-cBack">返 回</a></div><div id="t"></div></div>');
+            sliderEl.find("#t").html(cloneDom);
+            $("#tbh5v0").append(sliderEl);
+            $(".viewport").hide();
+            $("#t li img").each(function(){
+                var src = $(this).attr("src");
+                $(this).attr("src",src.replace('60x60.jpg','300x300.jpg'));
+            });
+
+
+            var t = new Swipe($('#t')[0], {"fixWidth":300});
+            t.element.style.marginLeft = 0;
+            t.setup();
+            t.begin();
+        },
+
+        commonDecide : function(e){  //区域限售、sku都必须选
+            if(this.soldAreas && !$('.dia-city').attr('c')){
+                notification.flash('请选择所在城市').show();
+                return null;
+            }
+            if(this.hasProps && $('#sku-id').val() == ''){
+                var nosel = $('.dsm-sel em'),
+                    norText = $('.dsm-s em').html(),
+                    text = nosel && nosel.html() || norText;
+                text = '请选择 ' + text;
+                tip(text);
+                $('#sku-limit').trigger('click');
+                return null;
+            }
+            return true;
+        },
+
+        immediatelyBuy:function(e){
+            e.preventDefault();
+
+            if(!this.commonDecide()) return;
+
+            $('#order-form').submit();
+
+        },
+
+
+        addToCart:function(data){
+            if(!data.item.quantity || data.item.quantity <= 0){  //当总库存为0时，不能购买
+                //tip('当前区域已售完');
+                var immbuy = $('.d-sure .immbuy');
+                if(immbuy.length){
+                    var parent = immbuy.parent(),
+                        next = immbuy.next();
+                    immbuy.remove();
+                    next.hasClass('addcart') && next.remove();  //是购物车按钮也去掉
+                    parent.append('<b id="J_NoArea" class="ds-coma ds-bs"><span>商品已售完</span></b>');
+                }
+            }
+            else{//当所在地不在区域限售内，重新选择区域需要重置按钮
+                var noareaBton = $('#J_NoArea');
+                if(noareaBton.length){
+                    var parent = noareaBton.parent();
+                    noareaBton.remove();
+                    parent.append('<a href="#" class="'+(that.tmall && "c-btn-tmall-buy" || "c-btn-oran")+' immbuy"><span>立即购买</span></a><a href="#" class="c-btn-blue addcart"><span>加入购物车</span></a>');
+                }
+            }
+
+        },
+
 
         goToComment:function(e){
             e.preventDefault();
@@ -101,6 +182,7 @@
             this.slideEl.insertBefore(this.slidePar).removeClass('dSliderFull');
             this.hideEle.removeClass('none'); //还原页面元素
             this.body.removeClass('fullbody');
+            $(".price-f").show();
 
             var slide = this.detailSlider;
 
@@ -181,7 +263,7 @@
             $("#J-merchant").html(merchantInfo);
 
 
-            var orderNow = this.templates['orderNow']({item:detailData.info, trade:detailData.trade, seller:detailData.seller});
+            var orderNow = this.templates['orderNow']({itemId:detailData.itemId,item:detailData.info, trade:detailData.trade, seller:detailData.seller});
             $("#J-orderNow").html(orderNow);
 
             this.detailSlider = new Swipe($('#J-sliderShow')[0], {"fixWidth":200, "preload":4});
@@ -191,6 +273,12 @@
 
             app.sku.init(detailData);
 
+
+            console.log("===");
+            console.log(detailData);
+            console.log("===");
+
+            this.addToCart(detailData);
 
             //query comment
             this.queryComment(detailData.seller.userNumId);

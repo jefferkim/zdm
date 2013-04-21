@@ -25,12 +25,12 @@
         ],
 
         events:{
-            "click #J-addPicBtn":"triggerUploader"
+           // "click #J-addPicBtn":"triggerUploader"
         },
 
         triggerUploader:function (e) {
             e.preventDefault();
-            $("#J-upload").trigger("click");
+         //   $("#J-upload").trigger("click");
         },
 
         ready:function () {
@@ -68,6 +68,8 @@
             $("#J-upload").on("change",function(){
                 $("#J-uploaderTrigger").hide();
                 $("#J-uploaded").show();
+                $("#J-upload").css({"opacity":1});
+                $(".upload-btn").show();
             });
 
             $("#J_CommentPoster").on("keyup paste",function () {

@@ -13,10 +13,10 @@
     <% } %>
 
 
-    <form id="order-form" name="orderForm" style="display: none;" action="http://b.m.taobao.com/buy.htm?sid=fa5ef1c3e6848fa9433c0ebf894b1e5a&amp;pds=buynow%23h%23detail" method="post">
+    <form id="order-form" name="orderForm" style="display: none;" action="http://b.m.taobao.com/buy.htm" method="post">
         <input type="hidden" name="_input_charset" value="utf-8"/>
-        <input type="hidden" name="item_id" value="4846668057"/>
-        <input type="hidden" name="item_num_id" value="4846668057"/>
+        <input type="hidden" name="item_id" value="<%= itemId%>"/>
+        <input type="hidden" name="item_num_id" value="<%= item.itemNumId%>"/>
         <input type="hidden" name="tks" value="" />
         <input type="hidden" id="sku-id" name="skuId" value=""/>
         <input type="hidden" name="buyNow" value="true" />
