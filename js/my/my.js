@@ -49,8 +49,11 @@
                     var list = resp.data.dataList;
 
                     console.log(ids);
+                    console.log(orderIdArr);
 
                     _.each(ids, function (id, index) {
+
+                        console.log(list);
 
                         var t = _.where(list, {"aucNumId":id, "parentTradeId":orderIdArr[index]});
 
@@ -78,7 +81,7 @@
             var orderIdArr = [];
 
 
-            var data = {"fromIndex":"0", "toIndex":"4"};
+            var data = {"fromIndex":"0", "toIndex":"15"};
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryOrderList', '1.0', data, {}, function (resp) {
 

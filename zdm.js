@@ -7332,9 +7332,10 @@ Swipe.prototype = {
             var filterComments = function (comments) {
                 var commentsSet = comments;
                 var tmp = [];
-                _.each(commentsSet, function (comment) {
+                _.each(commentsSet, function (comment,index) {
                     if (comment.feedItemPicDOList.length >= 1 && tmp.length <= 4) {
                         tmp.push(comment);
+                        commentsSet.splice(index,1);
                     }
                 });
 
@@ -7959,8 +7960,11 @@ Swipe.prototype = {
                     var list = resp.data.dataList;
 
                     console.log(ids);
+                    console.log(orderIdArr);
 
                     _.each(ids, function (id, index) {
+
+                        console.log(list);
 
                         var t = _.where(list, {"aucNumId":id, "parentTradeId":orderIdArr[index]});
 
@@ -7988,16 +7992,16 @@ Swipe.prototype = {
             var orderIdArr = [];
 
 
-            var data = {"fromIndex":"0", "toIndex":"4"};
+            var data = {"fromIndex":"0", "toIndex":"15"};
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryOrderList', '1.0', data, {}, function (resp) {
 
                 var content = $(app.component.getActiveContent()).find("#J-goodList");
                 var ret = resp.ret[0];
                 //TODO:后端需要对ret进行输出
-                if (resp.ret && resp.ret[0] == 'SUCCESS' && resp.data) {
+                if (resp.ret && resp.ret[0].indexOf('SUCCESS')> -1 && resp.data) {
 
-                    if(!resp.data.result.orderInfo){
+                    if(!resp.data.result.length){
                         content.html(self.templates['no_order']());
                         return;
                     }
@@ -8016,8 +8020,8 @@ Swipe.prototype = {
 
                     self.pageNav = new PageNav({'id':'#J-goodsPage', 'index':1, 'pageCount':Math.ceil(resp.data.total / 10), 'objId':'p'});
 
-                } else if (resp.data) {
-                    content.html(self.templates['no_order']());
+                } else if (resp.ret[0].indexOf("FAIL_SYS_SESSION_EXPIRED") > -1) {   //
+                    notification.flash("请重新登录").show();
                 } else {
                     notification.flash(ret.split("::")[1]).show();
                 }
