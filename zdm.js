@@ -7314,9 +7314,6 @@ Swipe.prototype = {
             app.sku.init(detailData);
 
 
-            console.log("===");
-            console.log(detailData);
-            console.log("===");
 
             this.addToCart(detailData);
 
@@ -7360,7 +7357,14 @@ Swipe.prototype = {
                 app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (result) {
 
                     if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-                        var comments = self.comments = result.data.dataList;
+
+                        var comments = result.data.dataList;
+                        if(comments.length <= 0){
+                            $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户晒单</h2><ul class="zdm-comment-block"><li class="no-sd">暂无晒单</li></ul>');
+                            return;
+                        }
+
+                        self.comments = comments;
 
                         self.itemFilterId = result.data.data.aucNumId;
                         var commentsArr = self.commentsFilterArr = filterComments(comments);
@@ -7991,16 +7995,14 @@ Swipe.prototype = {
                 var content = $(app.component.getActiveContent()).find("#J-goodList");
                 var ret = resp.ret[0];
                 //TODO:后端需要对ret进行输出
-                if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
+                if (resp.ret && resp.ret[0] == 'SUCCESS' && resp.data) {
 
-                    if(!resp.data.orderInfo){
+                    if(!resp.data.result.orderInfo){
                         content.html(self.templates['no_order']());
                         return;
                     }
                     //TODO:write a parse function to flatten the child order
                     var goodList = resp.data.result;
-
-                    console.log(goodList);
 
                     content.html(self.templates['goodItem']({goods:goodList}));
 

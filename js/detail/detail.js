@@ -292,9 +292,10 @@
             var filterComments = function (comments) {
                 var commentsSet = comments;
                 var tmp = [];
-                _.each(commentsSet, function (comment) {
+                _.each(commentsSet, function (comment,index) {
                     if (comment.feedItemPicDOList.length >= 1 && tmp.length <= 4) {
                         tmp.push(comment);
+                        commentsSet.splice(index,1);
                     }
                 });
 

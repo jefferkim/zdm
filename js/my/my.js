@@ -85,16 +85,14 @@
                 var content = $(app.component.getActiveContent()).find("#J-goodList");
                 var ret = resp.ret[0];
                 //TODO:后端需要对ret进行输出
-                if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
+                if (resp.ret && resp.ret[0].indexOf('SUCCESS')> -1 && resp.data) {
 
-                    if(!resp.data.orderInfo){
+                    if(!resp.data.result.length){
                         content.html(self.templates['no_order']());
                         return;
                     }
                     //TODO:write a parse function to flatten the child order
                     var goodList = resp.data.result;
-
-                    console.log(goodList);
 
                     content.html(self.templates['goodItem']({goods:goodList}));
 
@@ -108,8 +106,8 @@
 
                     self.pageNav = new PageNav({'id':'#J-goodsPage', 'index':1, 'pageCount':Math.ceil(resp.data.total / 10), 'objId':'p'});
 
-                } else if (resp.data) {
-                    content.html(self.templates['no_order']());
+                } else if (resp.ret[0].indexOf("FAIL_SYS_SESSION_EXPIRED") > -1) {   //
+                    notification.flash("请重新登录").show();
                 } else {
                     notification.flash(ret.split("::")[1]).show();
                 }
