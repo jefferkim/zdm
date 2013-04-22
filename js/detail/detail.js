@@ -274,9 +274,6 @@
             app.sku.init(detailData);
 
 
-            console.log("===");
-            console.log(detailData);
-            console.log("===");
 
             this.addToCart(detailData);
 
@@ -320,7 +317,14 @@
                 app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (result) {
 
                     if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
-                        var comments = self.comments = result.data.dataList;
+
+                        var comments = result.data.dataList;
+                        if(comments.length <= 0){
+                            $(app.component.getActiveContent()).find("#zdm-comment").html('<h2>用户晒单</h2><ul class="zdm-comment-block"><li class="no-sd">暂无晒单</li></ul>');
+                            return;
+                        }
+
+                        self.comments = comments;
 
                         self.itemFilterId = result.data.data.aucNumId;
                         var commentsArr = self.commentsFilterArr = filterComments(comments);
