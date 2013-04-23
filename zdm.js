@@ -6980,7 +6980,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/detail_info"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<section class="d-info">\n    <h1 class="title" id="J-desc"></h1>\n    <ul class="d-cul">\n\t  <li><label>价格:</label><ins class="red dc-origin">￥',  info.price ,'</ins></li>\n\n');  if(info.delivery.deliveryFeeType != 0){ ; __p.push('\n\t  <li class="dc-area"><label>运费:</label>\n      ');  if(info.delivery.deliveryFeeType == 2){; __p.push('\n          ',  info.delivery.title ,'\n      '); } else if(info.delivery.deliveryFeeType == 1){; __p.push('\n\t\t<span class="dc-delivery"> ',  _.map(info.delivery.deliveryFees,function(item){return item.title}).join(' ') ,'</span>\n      '); }; __p.push('\n\n      ');  if(mallInfo && mallInfo.allAreaSold == false){ ; __p.push('\n            <span class="font12 di-gy di-adsxg"><span class="dia-city" c="areaId">',  info.delivery.destination ,'</span><b class="aw down"></b></span>\n         '); } else if(info.delivery.deliveryFeeType != 2){ ; __p.push('\n            <span class="font12"> 至 <span class="di-gy">',  info.delivery.destination,'</span></span>\n      '); }; __p.push('\n      </li>\n      '); if(mallInfo && mallInfo.allAreaSold == false){; __p.push('\n        <li class="di-area none"> <div class="c-loading"><span></span></div></li>\n      '); }; __p.push('\n\n\n'); }; __p.push('\n\t    <li><label>月销:</label>',  info.totalSoldQuantity ,'件</li>\n    </ul>\n</section>\n');}return __p.join('');};
+  this.JST["template/detail_info"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<section class="d-info">\n    <h1 class="title" id="J-desc"></h1>\n    <ul class="d-cul">\n\t  <li class="d-price"><label>价格:</label><ins class="red dc-origin">￥',  info.price ,'</ins></li>\n\n');  if(info.delivery.deliveryFeeType != 0){ ; __p.push('\n\t  <li class="dc-area"><label>运费:</label>\n      ');  if(info.delivery.deliveryFeeType == 2){; __p.push('\n          ',  info.delivery.title ,'\n      '); } else if(info.delivery.deliveryFeeType == 1){; __p.push('\n\t\t<span class="dc-delivery"> ',  _.map(info.delivery.deliveryFees,function(item){return item.title}).join(' ') ,'</span>\n      '); }; __p.push('\n\n      ');  if(mallInfo && mallInfo.allAreaSold == false){ ; __p.push('\n            <span class="font12 di-gy di-adsxg"><span class="dia-city" c="areaId">',  info.delivery.destination ,'</span><b class="aw down"></b></span>\n         '); } else if(info.delivery.deliveryFeeType != 2){ ; __p.push('\n            <span class="font12"> 至 <span class="di-gy">',  info.delivery.destination,'</span></span>\n      '); }; __p.push('\n      </li>\n      '); if(mallInfo && mallInfo.allAreaSold == false){; __p.push('\n        <li class="di-area none"> <div class="c-loading"><span></span></div></li>\n      '); }; __p.push('\n\n\n'); }; __p.push('\n\t    <li><label>月销:</label>',  info.totalSoldQuantity ,'件</li>\n    </ul>\n</section>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7008,7 +7008,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/detail_slider"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="sliderWrap" class="dSlider">\n    <div class="js-bton">\n        <a href="#" class="jsb-back" id="J-jsbBack">返 回</a>\n        <a href="#" class="jsb-ori">原 图</a>\n    </div>\n    <div class="goods-slider" id="J-sliderShow">\n        <ul>\n            ');  _.each(sliders,function(slider){ ; __p.push('\n              <li><img src="http://a.tbcdn.cn/mw/webapp/fav/img/grey.gif"  class="lazy" data-src="',  app.Util.getWebpImg(slider,'180x180'),'" /></li>\n            '); }); __p.push('\n        </ul>\n    </div>\n    <div class="price-f"><span class="p">￥',  info.price ,'</span></div>\n    <b class="prev">上一个</b>\n    <b class="next">下一个</b>\n</div>\n');}return __p.join('');};
+  this.JST["template/detail_slider"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="sliderWrap" class="dSlider">\n    <div class="js-bton">\n        <a href="#" class="jsb-back" id="J-jsbBack">返 回</a>\n        <a href="#" class="jsb-ori">原 图</a>\n    </div>\n    <div class="goods-slider" id="J-sliderShow">\n        <ul>\n            ');  _.each(sliders,function(slider){ ; __p.push('\n              <li><img src="http://a.tbcdn.cn/mw/webapp/fav/img/grey.gif"  class="lazy" data-src="',  app.Util.getWebpImg(slider,'180x180'),'" /></li>\n            '); }); __p.push('\n        </ul>\n    </div>\n    <b class="prev">上一个</b>\n    <b class="next">下一个</b>\n</div>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7986,13 +7986,13 @@ Swipe.prototype = {
 
             var self = this;
             var navigation = app.navigation;
-            var pageNo = navigation.getParameter("pageNo");
+            var pageNo = parseInt(navigation.getParameter("pageNo"));
             var itemIdsArr = [];
             var itemIdForBind = [];
             var orderIdArr = [];
 
 
-            var data = {"fromIndex":"0", "toIndex":"15"};
+            var data = {"fromIndex":(pageNo-1)*15, "toIndex":pageNo*15};
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryOrderList', '1.0', data, {}, function (resp) {
 
@@ -8001,7 +8001,7 @@ Swipe.prototype = {
                 //TODO:后端需要对ret进行输出
                 if (resp.ret && resp.ret[0].indexOf('SUCCESS')> -1 && resp.data) {
 
-                    if(!resp.data.result.length){
+                    if(!resp.data.result){
                         content.html(self.templates['no_order']());
                         return;
                     }

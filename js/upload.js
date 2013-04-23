@@ -22,7 +22,7 @@ $("#J-uploadNowBtn").on("click", function () {
     });
 });
 
-$("#J_CommentPoster").keyup(function () {
+$("#J_CommentPoster").on('keyup paste',function () {
     var val = $.trim($(this).val()),
         valCount = val.replace("/[^/x00-/xff]/g", "**").length;
     $("#J-num").text(valCount);

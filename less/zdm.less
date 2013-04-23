@@ -1409,7 +1409,21 @@ header.titlebar > ul > li{
 
 
 .fold{
-    display:none;
+    .d-cul{
+        padding:0 !important;
+        border-bottom:none !important;
+        li{
+            display:none;
+            &.d-price{
+                margin-bottom:-10px;
+                display:block;
+            }
+        }
+
+
+
+    }
+
 }
 #J-sliderComment{
    li{

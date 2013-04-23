@@ -75,13 +75,13 @@
 
             var self = this;
             var navigation = app.navigation;
-            var pageNo = navigation.getParameter("pageNo");
+            var pageNo = parseInt(navigation.getParameter("pageNo"));
             var itemIdsArr = [];
             var itemIdForBind = [];
             var orderIdArr = [];
 
 
-            var data = {"fromIndex":"0", "toIndex":"15"};
+            var data = {"fromIndex":(pageNo-1)*15, "toIndex":pageNo*15};
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryOrderList', '1.0', data, {}, function (resp) {
 
@@ -90,7 +90,7 @@
                 //TODO:后端需要对ret进行输出
                 if (resp.ret && resp.ret[0].indexOf('SUCCESS')> -1 && resp.data) {
 
-                    if(!resp.data.result.length){
+                    if(!resp.data.result){
                         content.html(self.templates['no_order']());
                         return;
                     }
