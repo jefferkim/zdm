@@ -4331,6 +4331,47 @@ define("#mix/sln/0.3.0/app-debug", [ "./modules/page-debug", "./modules/componen
 });
 
 require("mix/sln/0.3.0/app-debug");
+(function(win, app) {
+    var doc = win.document, ss = win.sessionStorage, navigate = require("mix/core/0.3.0/url/navigate-debug").singleton, SS_PREIX = "mix_storage_001_";
+    navigate.on("forward backward", function() {
+        app.plugin.stateStorage.saveAll();
+    });
+    app.plugin.stateStorage = {
+        saveAll: function() {
+            var strStateIdx = navigate._stateIdx + "", strStateLen = navigate._states.length + "";
+            ss.setItem(SS_PREIX + "state_index", navigate._stateIdx);
+            ss.setItem(SS_PREIX + "state_length", navigate._states.length);
+            navigate._states.forEach(function(state, i) {
+                ss.setItem(SS_PREIX + "state_item[" + i + "]", JSON.stringify(state));
+            });
+        },
+        save: function() {
+            var stateIdx = navigate._stateIdx, state = navigate._states[stateIdx];
+            ss.setItem(SS_PREIX + "state_item[" + stateIdx + "]", JSON.stringify(state));
+        },
+        loadAll: function() {
+            var len, i;
+            navigate._stateIdx = parseInt(ss.getItem(SS_PREIX + "state_index") || 0);
+            len = parseInt(ss.getItem(SS_PREIX + "state_length") || 0);
+            for (i = 0; i < len; i++) {
+                navigate._states[i] = JSON.parse(ss.getItem(SS_PREIX + "state_item[" + i + "]") || "{}");
+            }
+        },
+        load: function() {
+            var stateIdx = navigate._stateIdx;
+            navigate._states[stateIdx] = JSON.parse(ss.getItem(SS_PREIX + "state_item[" + stateIdx + "]") || "{}");
+        },
+        clear: function() {
+            var len = navigate._stateLimit;
+            ss.removeItem(SS_PREIX + "state_index");
+            ss.removeItem(SS_PREIX + "state_length");
+            for (var i = 0; i < len; i++) {
+                ss.removeItem(SS_PREIX + "state_item[" + i + "]");
+            }
+        }
+    };
+    app.plugin.stateStorage.loadAll();
+})(window, window["app"]);
 /**
 * global configuration
 *
@@ -6956,7 +6997,7 @@ Swipe.prototype = {
 };
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/add_pic"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="J-uploader">\n    <div class="add-pic" id="J-addPicWrap">\n        <div id="J-uploaderTrigger">\n          <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>\n         <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>\n        </div>\n        <div id="J-uploaded" class="uploader-file">\n          <form action="http://wo.m.taobao.com/uploadPicture.htm" method="post" enctype="multipart/form-data">\n              <input type="file" name="picture"  id="J-upload" class="upload-input" multiple/>\n              <input type="hidden" name="ratedUid" id="J-ratedUid" value=""/> <!--被评价的uid-->\n              <input type="hidden" name="itemId" id="J-itemId" value=""/> <!--itemId-->\n              <input type="hidden" name="tradeId" id="J-tradeId" value=""/>  <!---orderId-->\n              <input type="submit" name="" value="上传" class="upload-btn c-btn-oran-small" style="display:none;"/>\n          </form>\n        </div>\n    </div>\n    <div class="comment-area">\n        <em class="arrow"></em>\n        <em class="num"><span id="J-num">0</span>/140</em>\n        <div class="cm-textarea">\n          <textarea name="" id="J_CommentPoster"></textarea>\n        </div>\n    </div>\n\n</div>\n');}return __p.join('');};
+  this.JST["template/add_pic"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="J-uploader">\n    <div class="add-pic" id="J-addPicWrap">\n        <div id="J-uploaderTrigger">\n          <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>\n         <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>\n        </div>\n        <div id="J-uploaded" class="uploader-file">\n          <form action="http://wo.m.taobao.com/uploadPicture.htm" method="post" id="J-imgForm" enctype="multipart/form-data">\n              <input type="file" name="picture"  id="J-upload" class="upload-input" multiple/>\n              <input type="hidden" name="ratedUid" id="J-ratedUid" value=""/> <!--被评价的uid-->\n              <input type="hidden" name="itemId" id="J-itemId" value=""/> <!--itemId-->\n              <input type="hidden" name="tradeId" id="J-tradeId" value=""/>  <!---orderId-->\n              <input type="submit" name="" value="上传" class="upload-btn c-btn-oran-small" style="display:none;"/>\n          </form>\n        </div>\n    </div>\n    <div class="comment-area">\n        <em class="arrow"></em>\n        <em class="num"><span id="J-num">0</span>/140</em>\n        <div class="cm-textarea">\n          <textarea name="" id="J_CommentPoster"></textarea>\n        </div>\n    </div>\n\n</div>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7991,6 +8032,7 @@ Swipe.prototype = {
             var itemIdForBind = [];
             var orderIdArr = [];
 
+            console.log(pageNo);
 
             var data = {"fromIndex":(pageNo-1)*15, "toIndex":pageNo*15};
 
@@ -8018,7 +8060,12 @@ Swipe.prototype = {
 
                     self._queryComments(itemIdsArr, itemIdForBind, orderIdArr);
 
-                    self.pageNav = new PageNav({'id':'#J-goodsPage', 'index':1, 'pageCount':Math.ceil(resp.data.total / 10), 'objId':'p'});
+                    var totalPage =  resp.data.total ? Math.ceil(resp.data.total / 15) : 3;
+
+
+                    self.pageNav = new PageNav({'id':'#tbh5v0 #J-goodsPage', 'index':1, 'pageCount':totalPage, 'objId':'p'});
+
+
 
                 } else if (resp.ret[0].indexOf("FAIL_SYS_SESSION_EXPIRED") > -1) {   //
                     notification.flash("请重新登录").show();
@@ -8219,7 +8266,10 @@ Swipe.prototype = {
                 type:"func",
                 text:"上传图片",
                 handler:function () {
-                    $("#J-imgForm").submit();
+                    if($("#J-upload").val() == "")
+                        notification.flash("请上传图片或者回到我的商品页重新进行操作").show();
+                    else
+                        $("#J-imgForm").submit();
                 }
             }
         ],
@@ -8454,7 +8504,7 @@ Swipe.prototype = {
 
                 if (!that.pageNav) {
 
-                    var pageInstance = that.pageNav = new PageNav({'id':'#J_dcpage', 'index':1, 'pageCount':data.total, 'disableHash':true});
+                    var pageInstance = that.pageNav = new PageNav({'id':'#tbh5v0 #J_dcpage', 'index':1, 'pageCount':data.total, 'disableHash':true});
                     pageInstance.$container.on('P:switchPage', function (e, page) {
                         that.getData(page.index);
                         that.tabCache[that.typeg].page = page.index;
@@ -8535,7 +8585,6 @@ Swipe.prototype = {
 
             this.pageNav && this.pageNav.eventDetach();
             this.pageNav = null;
-            //this.undelegateEvents();
             this.tabCache = null;
         }
     });
@@ -8876,6 +8925,8 @@ Swipe.prototype = {
 
 
 })(window['app']);
+
+
 
 
 
