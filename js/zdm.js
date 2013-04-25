@@ -2,6 +2,8 @@
 //= require vendor/underscore
 //= require vendor/mixsln-debug
 
+//= require vendor/stateStorage-debug
+
 
 //= require vendor/config
 //= require vendor/cookie

@@ -167,7 +167,7 @@
 
                 if (!that.pageNav) {
 
-                    var pageInstance = that.pageNav = new PageNav({'id':'#J_dcpage', 'index':1, 'pageCount':data.total, 'disableHash':true});
+                    var pageInstance = that.pageNav = new PageNav({'id':'#tbh5v0 #J_dcpage', 'index':1, 'pageCount':data.total, 'disableHash':true});
                     pageInstance.$container.on('P:switchPage', function (e, page) {
                         that.getData(page.index);
                         that.tabCache[that.typeg].page = page.index;
@@ -248,7 +248,6 @@
 
             this.pageNav && this.pageNav.eventDetach();
             this.pageNav = null;
-            //this.undelegateEvents();
             this.tabCache = null;
         }
     });

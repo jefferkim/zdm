@@ -19,7 +19,10 @@
                 type:"func",
                 text:"上传图片",
                 handler:function () {
-                    $("#J-imgForm").submit();
+                    if($("#J-upload").val() == "")
+                        notification.flash("请上传图片或者回到我的商品页重新进行操作").show();
+                    else
+                        $("#J-imgForm").submit();
                 }
             }
         ],

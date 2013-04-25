@@ -80,6 +80,7 @@
             var itemIdForBind = [];
             var orderIdArr = [];
 
+            console.log(pageNo);
 
             var data = {"fromIndex":(pageNo-1)*15, "toIndex":pageNo*15};
 
@@ -107,7 +108,12 @@
 
                     self._queryComments(itemIdsArr, itemIdForBind, orderIdArr);
 
-                    self.pageNav = new PageNav({'id':'#J-goodsPage', 'index':1, 'pageCount':Math.ceil(resp.data.total / 10), 'objId':'p'});
+                    var totalPage =  resp.data.total ? Math.ceil(resp.data.total / 15) : 3;
+
+
+                    self.pageNav = new PageNav({'id':'#tbh5v0 #J-goodsPage', 'index':1, 'pageCount':totalPage, 'objId':'p'});
+
+
 
                 } else if (resp.ret[0].indexOf("FAIL_SYS_SESSION_EXPIRED") > -1) {   //
                     notification.flash("请重新登录").show();
