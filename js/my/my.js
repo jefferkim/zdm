@@ -109,8 +109,6 @@
                     self._queryComments(itemIdsArr, itemIdForBind, orderIdArr);
 
                     var totalPage =  resp.data.total ? Math.ceil(resp.data.total / 15) : 3;
-
-
                     self.pageNav = new PageNav({'id':'#tbh5v0 #J-goodsPage', 'index':1, 'pageCount':totalPage, 'objId':'p'});
 
 
