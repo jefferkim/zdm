@@ -16,8 +16,10 @@ $("#J-uploadNowBtn").on("click", function () {
     app.mtopH5Api.getApi('mtop.gene.feedCenter.createItemFeed', '1.0', data, {}, function (result) {
         if (result.ret && result.ret[0] == 'SUCCESS::调用成功' && result.data) {
             window.location.href = window.location.href.toString().replace("uploadPicture.htm","zdm.htm#my/p1");
+        }else if(result.ret[0].indexOf("UNKNOWN_FAIL_MSG") > -1){
+            notification.flash("已经评价过了").show();
         }else{
-             notification.flash(result.ret[0]).show();
+            notification.flash(result.ret[0]).show();
         }
     });
 });

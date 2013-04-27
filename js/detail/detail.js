@@ -26,8 +26,6 @@
             var content = $(app.component.getActiveContent());
             content.html(self.templates["layout"]());
 
-
-
             //delegate events
             app.Util.Events.call(this, "body", this.events);
 
