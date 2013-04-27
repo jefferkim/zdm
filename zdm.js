@@ -6997,7 +6997,7 @@ Swipe.prototype = {
 };
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/add_pic"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="J-uploader">\n    <div class="add-pic" id="J-addPicWrap">\n        <div id="J-uploaderTrigger">\n          <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>\n         <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>\n        </div>\n        <div id="J-uploaded" class="uploader-file">\n          <form action="http://wo.m.taobao.com/uploadPicture.htm" method="post" id="J-imgForm" enctype="multipart/form-data">\n              <input type="file" name="picture"  id="J-upload" class="upload-input" multiple/>\n              <input type="hidden" name="ratedUid" id="J-ratedUid" value=""/> <!--被评价的uid-->\n              <input type="hidden" name="itemId" id="J-itemId" value=""/> <!--itemId-->\n              <input type="hidden" name="tradeId" id="J-tradeId" value=""/>  <!---orderId-->\n              <input type="submit" name="" value="上传" class="upload-btn c-btn-oran-small" style="display:none;"/>\n          </form>\n        </div>\n    </div>\n    <div class="comment-area">\n        <em class="arrow"></em>\n        <em class="num"><span id="J-num">0</span>/140</em>\n        <div class="cm-textarea">\n          <textarea name="" id="J_CommentPoster"></textarea>\n        </div>\n    </div>\n\n</div>\n');}return __p.join('');};
+  this.JST["template/add_pic"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div id="J-uploader">\n    <div class="add-pic" id="J-addPicWrap">\n        <div id="J-uploaderTrigger">\n          <a href="#" id="J-addPicBtn" class="add-pic-btn"></a>\n         <span class="tip">这里可以添加照片，只有上传照片才可以写评论哦~~</span>\n        </div>\n        <div id="J-uploaded" class="uploader-file">\n          <form action="http://wo.m.taobao.com/uploadPicture.htm" method="post" id="J-imgForm" enctype="multipart/form-data">\n              <input type="file" name="picture"  id="J-upload" class="upload-input" multiple/>\n              <input type="hidden" name="ratedUid" id="J-ratedUid" value=""/> <!--被评价的uid-->\n              <input type="hidden" name="itemId" id="J-itemId" value=""/> <!--itemId-->\n              <input type="hidden" name="tradeId" id="J-tradeId" value=""/>  <!---orderId-->\n              <input type="hidden" name="parentTradeId" id="J-parentTradeId" value=""/>  <!---parentOrderId-->\n              <input type="submit" name="" value="上传" class="upload-btn c-btn-oran-small" style="display:none;"/>\n          </form>\n        </div>\n    </div>\n    <div class="comment-area">\n        <em class="arrow"></em>\n        <em class="num"><span id="J-num">0</span>/140</em>\n        <div class="cm-textarea">\n          <textarea name="" id="J_CommentPoster"></textarea>\n        </div>\n    </div>\n\n</div>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7065,7 +7065,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/good_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push(''); _.each(goods,function(good){; __p.push('\n    ');  _.each(good.orderInfo.orderCell,function(boughtItem){; __p.push('\n    <li class="z-mod" id="J-commentItem-',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId,'" data-orderId="',  good.orderInfo.bizOrderId,'" data-id="',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId ,'" data-ratedUid="',  good.sellerInfo.sellerId ,'" data-itemId="',  boughtItem.itemId ,'"    data-tradeId="',  good.orderInfo.bizOrderId ,'" data-parentTradeId="',  good.orderInfo.bizOrderId ,'">\n        <div class="good-item">\n            <div class="hd good-hd">\n                <a href="#detail/',  boughtItem.itemId,'"><img src="',  boughtItem.pic ,'"/></a>\n            </div>\n            <div class="bd good-bd">\n                 <p><a href="#detail/',  boughtItem.itemId,'">',  _.escape(boughtItem.title) ,'</a></p>\n                 <div class="price">￥',  boughtItem.sPrice ,'</div>\n            </div>\n        </div>\n        <div id="J-comment-',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId ,'"> </div>\n    </li>\n    ');  }); __p.push('\n'); }); __p.push('\n\n');}return __p.join('');};
+  this.JST["template/good_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push(''); _.each(goods,function(good){; __p.push('\n    ');  _.each(good.orderInfo.orderCell,function(boughtItem){; __p.push('\n    <li class="z-mod" id="J-commentItem-',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId,'" data-orderId="',  good.orderInfo.bizOrderId,'" data-id="',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId ,'" data-ratedUid="',  good.sellerInfo.sellerId ,'" data-itemId="',  boughtItem.itemId ,'"    data-tradeId="',  boughtItem.orderId ,'" data-parentTradeId="',  good.orderInfo.bizOrderId ,'">\n        <div class="good-item">\n            <div class="hd good-hd">\n                <a href="#detail/',  boughtItem.itemId,'"><img src="',  boughtItem.pic ,'"/></a>\n            </div>\n            <div class="bd good-bd">\n                 <p><a href="#detail/',  boughtItem.itemId,'">',  _.escape(boughtItem.title) ,'</a></p>\n                 <div class="price">￥',  boughtItem.sPrice ,'</div>\n            </div>\n        </div>\n        <div id="J-comment-',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId ,'"> </div>\n    </li>\n    ');  }); __p.push('\n'); }); __p.push('\n\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7106,8 +7106,6 @@ Swipe.prototype = {
             var self = this;
             var content = $(app.component.getActiveContent());
             content.html(self.templates["layout"]());
-
-
 
             //delegate events
             app.Util.Events.call(this, "body", this.events);
@@ -7159,12 +7157,12 @@ Swipe.prototype = {
                 notification.flash('请选择所在城市').show();
                 return null;
             }
-            if(this.hasProps && $('#sku-id').val() == ''){
+            if(app.ZDMDetail.hasProps && $('#sku-id').val() == ''){
                 var nosel = $('.dsm-sel em'),
                     norText = $('.dsm-s em').html(),
                     text = nosel && nosel.html() || norText;
                 text = '请选择 ' + text;
-                tip(text);
+                notification.flash(text).show();
                 $('#sku-limit').trigger('click');
                 return null;
             }
@@ -7176,7 +7174,7 @@ Swipe.prototype = {
 
             if(!this.commonDecide()) return;
 
-            $('#order-form').submit();
+           $('#order-form').submit();
 
         },
 
@@ -8061,8 +8059,6 @@ Swipe.prototype = {
                     self._queryComments(itemIdsArr, itemIdForBind, orderIdArr);
 
                     var totalPage =  resp.data.total ? Math.ceil(resp.data.total / 15) : 3;
-
-
                     self.pageNav = new PageNav({'id':'#tbh5v0 #J-goodsPage', 'index':1, 'pageCount':totalPage, 'objId':'p'});
 
 
@@ -8109,7 +8105,7 @@ Swipe.prototype = {
             }
 
             app.ZDMData.ratedUid = item.attr("data-rateduid");
-            console.log(app.ZDMData.ratedUid);
+            console.log(app.ZDMData);
             app.ZDMData.tradeId = item.attr("data-tradeid");
             app.ZDMData.parentTradeId = item.attr("data-parentTradeId");
             app.ZDMData.aucNumId = item.attr("data-itemId");
@@ -8302,6 +8298,7 @@ Swipe.prototype = {
                 }
                 $("#J-ratedUid").val(app.ZDMData.ratedUid);
                 $("#J-tradeId").val(app.ZDMData.tradeId);
+                $("#J-parentTradeId").val(app.ZDMData.parentTradeId);
                 $("#J-itemId").val(app.ZDMData.aucNumId);
             }
 

@@ -155,7 +155,7 @@
             }
 
             app.ZDMData.ratedUid = item.attr("data-rateduid");
-            console.log(app.ZDMData.ratedUid);
+            console.log(app.ZDMData);
             app.ZDMData.tradeId = item.attr("data-tradeid");
             app.ZDMData.parentTradeId = item.attr("data-parentTradeId");
             app.ZDMData.aucNumId = item.attr("data-itemId");
