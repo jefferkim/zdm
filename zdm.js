@@ -7017,7 +7017,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/detail_extra"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="ds-action">\n    <a href="#" class="ds-coma ww">\n        <img src="http://im.m.taobao.com/ww/status.do?_input_charset=utf-8&amp;nick=%E5%A5%A5%E6%84%8F%E7%8E%9B%E6%97%97%E8%88%B0%E5%BA%97&amp;sid=a43dc100fd92d4d3f446405857471d10" alt="联系卖家">\n    </a>\n    <a href="#" class="ds-coma fav">收藏</a>\n\n\n    ');  if(item.soldout == 'false'){ ; __p.push('\n    ');  if(trade.buySupport && trade.buySupport == 'true'){ ; __p.push('<a href="#" class="immbuy');  if(seller.type == 'B'){ ; __p.push(' c-btn-tmall-buy');  } else{ ; __p.push(' c-btn-oran');  } ; __p.push('"><span>立即购买</span></a>');  } ; __p.push('\n    ');  if(trade.cartSupport && trade.cartSupport == 'true'){ ; __p.push('<a href="#" class="c-btn-blue addcart"><span>加入购物车</span></a>');  } ; __p.push('\n    ');  } else { ; __p.push('\n    <b class="ds-coma ds-bs"><span>宝贝不能购买</span></b>\n    ');  } ; __p.push('\n\n\n    <form id="order-form" name="orderForm" style="display: none;" action="http://b.m.taobao.com/buy.htm" method="post">\n        <input type="hidden" name="_input_charset" value="utf-8"/>\n        <input type="hidden" name="item_id" value="',  itemId,'"/>\n        <input type="hidden" name="item_num_id" value="',  item.itemNumId,'"/>\n        <input type="hidden" name="tks" value="" />\n        <input type="hidden" id="sku-id" name="skuId" value=""/>\n        <input type="hidden" name="buyNow" value="true" />\n    </form>\n</div>\n');}return __p.join('');};
+  this.JST["template/detail_extra"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="ds-action">\n    <a href="#" class="ds-coma ww">\n        <img src="http://im.m.taobao.com/ww/status.do?_input_charset=utf-8&amp;nick=%E5%A5%A5%E6%84%8F%E7%8E%9B%E6%97%97%E8%88%B0%E5%BA%97&amp;sid=a43dc100fd92d4d3f446405857471d10" alt="联系卖家">\n    </a>\n    <a href="#" class="ds-coma fav">收藏</a>\n\n\n    ');  if(item.soldout == 'false'){ ; __p.push('\n    ');  if(trade.buySupport && trade.buySupport == 'true'){ ; __p.push('<a href="#" class="immbuy');  if(seller.type == 'B'){ ; __p.push(' c-btn-tmall-buy');  } else{ ; __p.push(' c-btn-oran');  } ; __p.push('"><span>立即购买</span></a>');  } ; __p.push('\n    ');  if(trade.cartSupport && trade.cartSupport == 'true'){ ; __p.push('');  } ; __p.push('\n    ');  } else { ; __p.push('\n    <b class="ds-coma ds-bs"><span>宝贝不能购买</span></b>\n    ');  } ; __p.push('\n\n\n    <form id="order-form" name="orderForm" style="display: none;" action="http://b.m.taobao.com/buy.htm" method="post">\n        <input type="hidden" name="_input_charset" value="utf-8"/>\n        <input type="hidden" name="item_id" value="',  itemId,'"/>\n        <input type="hidden" name="item_num_id" value="',  item.itemNumId,'"/>\n        <input type="hidden" name="tks" value="" />\n        <input type="hidden" id="sku-id" name="skuId" value=""/>\n        <input type="hidden" name="buyNow" value="true" />\n    </form>\n</div>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7821,6 +7821,7 @@ Swipe.prototype = {
                    tempobj = this.availSKUs[temp.join(';')];
                promotxt = this.promoTxt+'：<em class="red">￥'+(tempobj.promoPrice || tempobj.price) + tjbText +'</em>'+ (!this.isJu && '(库存'+tempobj.quantity+'件)' || '');
                priceor = '￥' + tempobj.price;
+
                pricepo = tempobj.promoPrice && ('￥' + tempobj.promoPrice) || priceor;
                pricepo += tjbText;
                /*if(tempobj.tmall){  //天猫特色服务
@@ -7838,7 +7839,12 @@ Swipe.prototype = {
            }
            skuSel.html(seltxt);
            skuLap.html(promotxt);
-           this.porigin.html(priceor);  //cost price
+
+
+      //     this.porigin.html(priceor);  //cost price
+
+           this.porigin.html(pricepo || priceor);
+
            this.ppromo && this.ppromo.html(pricepo);  //promo price
            this.height = skuAll.height();
        },

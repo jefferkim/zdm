@@ -236,6 +236,7 @@
                    tempobj = this.availSKUs[temp.join(';')];
                promotxt = this.promoTxt+'：<em class="red">￥'+(tempobj.promoPrice || tempobj.price) + tjbText +'</em>'+ (!this.isJu && '(库存'+tempobj.quantity+'件)' || '');
                priceor = '￥' + tempobj.price;
+
                pricepo = tempobj.promoPrice && ('￥' + tempobj.promoPrice) || priceor;
                pricepo += tjbText;
                /*if(tempobj.tmall){  //天猫特色服务
@@ -253,7 +254,12 @@
            }
            skuSel.html(seltxt);
            skuLap.html(promotxt);
-           this.porigin.html(priceor);  //cost price
+
+
+      //     this.porigin.html(priceor);  //cost price
+
+           this.porigin.html(pricepo || priceor);
+
            this.ppromo && this.ppromo.html(pricepo);  //promo price
            this.height = skuAll.height();
        },
