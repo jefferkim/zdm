@@ -76,12 +76,12 @@
                 notification.flash('请选择所在城市').show();
                 return null;
             }
-            if(this.hasProps && $('#sku-id').val() == ''){
+            if(app.ZDMDetail.hasProps && $('#sku-id').val() == ''){
                 var nosel = $('.dsm-sel em'),
                     norText = $('.dsm-s em').html(),
                     text = nosel && nosel.html() || norText;
                 text = '请选择 ' + text;
-                tip(text);
+                notification.flash(text).show();
                 $('#sku-limit').trigger('click');
                 return null;
             }
@@ -93,7 +93,7 @@
 
             if(!this.commonDecide()) return;
 
-            $('#order-form').submit();
+           $('#order-form').submit();
 
         },
 

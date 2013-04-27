@@ -55,6 +55,7 @@
                 }
                 $("#J-ratedUid").val(app.ZDMData.ratedUid);
                 $("#J-tradeId").val(app.ZDMData.tradeId);
+                $("#J-parentTradeId").val(app.ZDMData.parentTradeId);
                 $("#J-itemId").val(app.ZDMData.aucNumId);
             }
 
