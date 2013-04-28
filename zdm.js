@@ -7017,7 +7017,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/detail_extra"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="ds-action">\n    <a href="#" class="ds-coma ww">\n        <img src="http://im.m.taobao.com/ww/status.do?_input_charset=utf-8&amp;nick=%E5%A5%A5%E6%84%8F%E7%8E%9B%E6%97%97%E8%88%B0%E5%BA%97&amp;sid=a43dc100fd92d4d3f446405857471d10" alt="联系卖家">\n    </a>\n    <a href="#" class="ds-coma fav">收藏</a>\n\n\n    ');  if(item.soldout == 'false'){ ; __p.push('\n    ');  if(trade.buySupport && trade.buySupport == 'true'){ ; __p.push('<a href="#" class="immbuy');  if(seller.type == 'B'){ ; __p.push(' c-btn-tmall-buy');  } else{ ; __p.push(' c-btn-oran');  } ; __p.push('"><span>立即购买</span></a>');  } ; __p.push('\n    ');  if(trade.cartSupport && trade.cartSupport == 'true'){ ; __p.push('');  } ; __p.push('\n    ');  } else { ; __p.push('\n    <b class="ds-coma ds-bs"><span>宝贝不能购买</span></b>\n    ');  } ; __p.push('\n\n\n    <form id="order-form" name="orderForm" style="display: none;" action="http://b.m.taobao.com/buy.htm" method="post">\n        <input type="hidden" name="_input_charset" value="utf-8"/>\n        <input type="hidden" name="item_id" value="',  itemId,'"/>\n        <input type="hidden" name="item_num_id" value="',  item.itemNumId,'"/>\n        <input type="hidden" name="tks" value="" />\n        <input type="hidden" id="sku-id" name="skuId" value=""/>\n        <input type="hidden" name="buyNow" value="true" />\n    </form>\n</div>\n');}return __p.join('');};
+  this.JST["template/detail_extra"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="ds-action">\n    <a href="#" class="ds-coma ww">\n        <img src="http://im.m.taobao.com/ww/status.do?_input_charset=utf-8&amp;nick=%E5%A5%A5%E6%84%8F%E7%8E%9B%E6%97%97%E8%88%B0%E5%BA%97&amp;sid=a43dc100fd92d4d3f446405857471d10" alt="联系卖家">\n    </a>\n    <a href="#" class="ds-coma fav">收藏</a>\n\n\n    ');  if(item.soldout == 'false'){ ; __p.push('\n    ');  if(trade.buySupport && trade.buySupport == 'true'){ ; __p.push('<a href="#" class="immbuy');  if(seller.type == 'B'){ ; __p.push(' c-btn-tmall-buy');  } else{ ; __p.push(' c-btn-oran');  } ; __p.push('"><span>立即购买</span></a>');  } ; __p.push('\n    ');  if(trade.cartSupport && trade.cartSupport == 'true'){ ; __p.push('<a href="#" class="c-btn-blue addcart"><span>加入购物车</span></a>');  } ; __p.push('\n    ');  } else { ; __p.push('\n    <b class="ds-coma ds-bs"><span>宝贝不能购买</span></b>\n    ');  } ; __p.push('\n\n\n    <form id="order-form" name="orderForm" style="display: none;" action="http://b.m.taobao.com/buy.htm" method="post">\n        <input type="hidden" name="_input_charset" value="utf-8"/>\n        <input type="hidden" name="item_id" value="',  itemId,'"/>\n        <input type="hidden" name="item_num_id" value="',  item.itemNumId,'"/>\n        <input type="hidden" name="tks" value="" />\n        <input type="hidden" id="sku-id" name="skuId" value=""/>\n        <input type="hidden" name="buyNow" value="true" />\n    </form>\n</div>\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7065,7 +7065,7 @@ Swipe.prototype = {
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
-  this.JST["template/good_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push(''); _.each(goods,function(good){; __p.push('\n    ');  _.each(good.orderInfo.orderCell,function(boughtItem){; __p.push('\n    <li class="z-mod" id="J-commentItem-',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId,'" data-orderId="',  good.orderInfo.bizOrderId,'" data-id="',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId ,'" data-ratedUid="',  good.sellerInfo.sellerId ,'" data-itemId="',  boughtItem.itemId ,'"    data-tradeId="',  boughtItem.orderId ,'" data-parentTradeId="',  good.orderInfo.bizOrderId ,'">\n        <div class="good-item">\n            <div class="hd good-hd">\n                <a href="#detail/',  boughtItem.itemId,'"><img src="',  boughtItem.pic ,'"/></a>\n            </div>\n            <div class="bd good-bd">\n                 <p><a href="#detail/',  boughtItem.itemId,'">',  _.escape(boughtItem.title) ,'</a></p>\n                 <div class="price">￥',  boughtItem.sPrice ,'</div>\n            </div>\n        </div>\n        <div id="J-comment-',  good.orderInfo.bizOrderId ,'-',  boughtItem.itemId ,'"> </div>\n    </li>\n    ');  }); __p.push('\n'); }); __p.push('\n\n');}return __p.join('');};
+  this.JST["template/good_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push(''); _.each(goods,function(good,i){; __p.push('\n    ');  _.each(good.orderInfo.orderCell,function(boughtItem,j){; __p.push('\n    <li class="z-mod" data-config = \'{"itemId":',  boughtItem.itemId ,',"orderId":',  good.orderInfo.bizOrderId,',"ratedUid":',  good.sellerInfo.sellerId ,',"tradeId":',  boughtItem.orderId ,',"parentTradeId":',  good.orderInfo.bizOrderId ,'}\'>\n        <div class="good-item">\n            <div class="hd good-hd">\n                <a href="#detail/',  boughtItem.itemId,'"><img src="',  boughtItem.pic ,'"/></a>\n            </div>\n            <div class="bd good-bd">\n                 <p><a href="#detail/',  boughtItem.itemId,'">',  _.escape(boughtItem.title) ,'</a></p>\n                 <div class="price">￥',  boughtItem.sPrice ,'</div>\n            </div>\n        </div>\n        <div id="J-comment-',  i,'-',  j,'" class="J-commentFt"> </div>\n    </li>\n    ');  }); __p.push('\n'); }); __p.push('\n\n');}return __p.join('');};
 }).call(this);
 (function() {
   this.JST || (this.JST = {});
@@ -7974,53 +7974,39 @@ Swipe.prototype = {
             }
         ],
 
-
         events:{
             "click .J-addPic":"triggerUploader",
             "click .view-comments":"gotoViewAll"
         },
 
-
         gotoViewAll:function (e) {
             e.preventDefault();
             var mod = $(e.currentTarget).parents(".z-mod");
-            var itemId = mod.attr("data-itemid");
-            var ratedUid = mod.attr("data-rateduid");
-            app.navigation.push("viewAll/" + itemId + "/" + ratedUid + "/p1");
-
+            var dataConfig = mod.attr("data-config");
+            var itemData = dataConfig ? (new Function("return " + dataConfig))() : {};
+            app.navigation.push("viewAll/" + itemData.itemId + "/" + itemData.ratedUid + "/p1");
         },
 
-
-        _queryComments:function (ids, itemIdForBind, orderIdArr) {
+        _queryComments:function (itemArr,objArr) {
 
             var self = this;
-
-
+            var ids = _.map(itemArr,function(item){return item.itemId});
             var data = {"ratedUid":"0", "itemIds":ids.join(","), "pageSize":"150", "pageIndex":"1"};
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (resp) {
 
                 if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
-
                     var list = resp.data.dataList;
-
-                    console.log(ids);
-                    console.log(orderIdArr);
-
                     _.each(ids, function (id, index) {
-
-                        console.log(list);
-
-                        var t = _.where(list, {"aucNumId":id, "parentTradeId":orderIdArr[index]});
-
+                        var t = _.where(list, {"aucNumId":id, "parentTradeId":itemArr[index].parentTradeId,"tradeId":itemArr[index].tradeId});
                         var comment1 = t.length > 0 ? t[0] : false;
+                        $("#"+objArr[index]).html(self.templates['commentItem']({comment:comment1}));
 
-                        $("#J-comment-" + itemIdForBind[index]).html(self.templates['commentItem']({comment:comment1}));
-
-                    })
+                    });
                 } else {
                     notification.flash("请求商品评论失败，请刷新");
                 }
+
             }, function (error) {
                 notification.flash("网络出错，请稍后再试!").show();
             });
@@ -8032,11 +8018,9 @@ Swipe.prototype = {
             var self = this;
             var navigation = app.navigation;
             var pageNo = parseInt(navigation.getParameter("pageNo"));
-            var itemIdsArr = [];
-            var itemIdForBind = [];
-            var orderIdArr = [];
 
-            console.log(pageNo);
+            var itemArr = [];
+            var objArr = [];
 
             var data = {"fromIndex":(pageNo-1)*15, "toIndex":pageNo*15};
 
@@ -8057,17 +8041,19 @@ Swipe.prototype = {
                     content.html(self.templates['goodItem']({goods:goodList}));
 
                     $(".z-mod").each(function (index, node) {
-                        itemIdsArr.push($(node).attr("data-itemId"));
-                        itemIdForBind.push($(node).attr("data-id"));
-                        orderIdArr.push($(node).attr("data-orderId"));
+
+                        var configData = $(node).attr("data-config");
+                        var objId = $(node).find(".J-commentFt").attr("id");
+                        var data = configData ? (new Function("return " + configData))() : {};
+                        itemArr.push(data);
+                        objArr.push(objId);
+
                     });
 
-                    self._queryComments(itemIdsArr, itemIdForBind, orderIdArr);
+                    self._queryComments(itemArr,objArr);
 
                     var totalPage =  resp.data.total ? Math.ceil(resp.data.total / 15) : 3;
                     self.pageNav = new PageNav({'id':'#tbh5v0 #J-goodsPage', 'index':1, 'pageCount':totalPage, 'objId':'p'});
-
-
 
                 } else if (resp.ret[0].indexOf("FAIL_SYS_SESSION_EXPIRED") > -1) {   //
                     notification.flash("请重新登录").show();
@@ -8110,15 +8096,11 @@ Swipe.prototype = {
                 alert("抱歉！您的手机浏览器暂不支持网页上传图片功能。");
             }
 
-            app.ZDMData.ratedUid = item.attr("data-rateduid");
-            console.log(app.ZDMData);
-            app.ZDMData.tradeId = item.attr("data-tradeid");
-            app.ZDMData.parentTradeId = item.attr("data-parentTradeId");
-            app.ZDMData.aucNumId = item.attr("data-itemId");
+            var dataConfig = item.attr("data-config");
 
+            app.ZDMData.itemDataConfig = dataConfig ? (new Function("return " + dataConfig))() : {};
 
             app.navigation.push("upload", {datas:{"canUpload":canUpload}});
-
 
         },
 
@@ -8302,10 +8284,12 @@ Swipe.prototype = {
                 if(!canUpload){
                     $("#J-addPicWrap").hide();
                 }
-                $("#J-ratedUid").val(app.ZDMData.ratedUid);
-                $("#J-tradeId").val(app.ZDMData.tradeId);
-                $("#J-parentTradeId").val(app.ZDMData.parentTradeId);
-                $("#J-itemId").val(app.ZDMData.aucNumId);
+
+                var data =  app.ZDMData.itemDataConfig;
+                $("#J-ratedUid").val(data.ratedUid);
+                $("#J-tradeId").val(data.tradeId);
+                $("#J-parentTradeId").val(data.parentTradeId);
+                $("#J-itemId").val(data.itemId);
             }
 
 

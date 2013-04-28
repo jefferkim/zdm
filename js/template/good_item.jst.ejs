@@ -1,6 +1,6 @@
-<%_.each(goods,function(good){%>
-    <% _.each(good.orderInfo.orderCell,function(boughtItem){%>
-    <li class="z-mod" id="J-commentItem-<%= good.orderInfo.bizOrderId %>-<%= boughtItem.itemId%>" data-orderId="<%= good.orderInfo.bizOrderId%>" data-id="<%= good.orderInfo.bizOrderId %>-<%= boughtItem.itemId %>" data-ratedUid="<%= good.sellerInfo.sellerId %>" data-itemId="<%= boughtItem.itemId %>"    data-tradeId="<%= boughtItem.orderId %>" data-parentTradeId="<%= good.orderInfo.bizOrderId %>">
+<%_.each(goods,function(good,i){%>
+    <% _.each(good.orderInfo.orderCell,function(boughtItem,j){%>
+    <li class="z-mod" data-config = '{"itemId":<%= boughtItem.itemId %>,"orderId":<%= good.orderInfo.bizOrderId%>,"ratedUid":<%= good.sellerInfo.sellerId %>,"tradeId":<%= boughtItem.orderId %>,"parentTradeId":<%= good.orderInfo.bizOrderId %>}'>
         <div class="good-item">
             <div class="hd good-hd">
                 <a href="#detail/<%= boughtItem.itemId%>"><img src="<%= boughtItem.pic %>"/></a>
@@ -10,7 +10,7 @@
                  <div class="price">￥<%= boughtItem.sPrice %></div>
             </div>
         </div>
-        <div id="J-comment-<%= good.orderInfo.bizOrderId %>-<%= boughtItem.itemId %>"> </div>
+        <div id="J-comment-<%= i%>-<%= j%>" class="J-commentFt"> </div>
     </li>
     <% })%>
 <%})%>

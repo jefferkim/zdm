@@ -53,10 +53,12 @@
                 if(!canUpload){
                     $("#J-addPicWrap").hide();
                 }
-                $("#J-ratedUid").val(app.ZDMData.ratedUid);
-                $("#J-tradeId").val(app.ZDMData.tradeId);
-                $("#J-parentTradeId").val(app.ZDMData.parentTradeId);
-                $("#J-itemId").val(app.ZDMData.aucNumId);
+
+                var data =  app.ZDMData.itemDataConfig;
+                $("#J-ratedUid").val(data.ratedUid);
+                $("#J-tradeId").val(data.tradeId);
+                $("#J-parentTradeId").val(data.parentTradeId);
+                $("#J-itemId").val(data.itemId);
             }
 
 

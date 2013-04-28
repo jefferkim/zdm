@@ -18,54 +18,39 @@
             }
         ],
 
-
         events:{
             "click .J-addPic":"triggerUploader",
             "click .view-comments":"gotoViewAll"
         },
 
-
         gotoViewAll:function (e) {
             e.preventDefault();
             var mod = $(e.currentTarget).parents(".z-mod");
-            var itemId = mod.attr("data-itemid");
-            var ratedUid = mod.attr("data-rateduid");
-            app.navigation.push("viewAll/" + itemId + "/" + ratedUid + "/p1");
-
+            var dataConfig = mod.attr("data-config");
+            var itemData = dataConfig ? (new Function("return " + dataConfig))() : {};
+            app.navigation.push("viewAll/" + itemData.itemId + "/" + itemData.ratedUid + "/p1");
         },
 
-
-        _queryComments:function (ids, itemIdForBind, orderIdArr,parentOrderIdArr) {
+        _queryComments:function (itemArr,objArr) {
 
             var self = this;
-
-            console.log(itemIdForBind);
-
+            var ids = _.map(itemArr,function(item){return item.itemId});
             var data = {"ratedUid":"0", "itemIds":ids.join(","), "pageSize":"150", "pageIndex":"1"};
 
             app.mtopH5Api.getApi('mtop.gene.feedCenter.queryFeedItems', '1.0', data, {}, function (resp) {
 
                 if (resp.ret && resp.ret[0] == 'SUCCESS::调用成功' && resp.data) {
-
                     var list = resp.data.dataList;
-
-                    console.log(ids);
-                    console.log(orderIdArr);
-
                     _.each(ids, function (id, index) {
-
-                        console.log(list);
-
-                        var t = _.where(list, {"aucNumId":id, "parentTradeId":orderIdArr[index],"tradeId":parentOrderIdArr[index]});
-
+                        var t = _.where(list, {"aucNumId":id, "parentTradeId":itemArr[index].parentTradeId,"tradeId":itemArr[index].tradeId});
                         var comment1 = t.length > 0 ? t[0] : false;
+                        $("#"+objArr[index]).html(self.templates['commentItem']({comment:comment1}));
 
-                        $("#J-comment-" + itemIdForBind[index]).html(self.templates['commentItem']({comment:comment1}));
-
-                    })
+                    });
                 } else {
                     notification.flash("请求商品评论失败，请刷新");
                 }
+
             }, function (error) {
                 notification.flash("网络出错，请稍后再试!").show();
             });
@@ -77,12 +62,9 @@
             var self = this;
             var navigation = app.navigation;
             var pageNo = parseInt(navigation.getParameter("pageNo"));
-            var itemIdsArr = [];
-            var itemIdForBind = [];
-            var orderIdArr = [];
-            var parentOrderIdArr = [];
 
-            console.log(pageNo);
+            var itemArr = [];
+            var objArr = [];
 
             var data = {"fromIndex":(pageNo-1)*15, "toIndex":pageNo*15};
 
@@ -103,18 +85,19 @@
                     content.html(self.templates['goodItem']({goods:goodList}));
 
                     $(".z-mod").each(function (index, node) {
-                        itemIdsArr.push($(node).attr("data-itemId"));
-                        itemIdForBind.push($(node).attr("data-id"));
-                        orderIdArr.push($(node).attr("data-orderId"));
-                        parentOrderIdArr.push($(node).attr("data-parenttradeid"));
+
+                        var configData = $(node).attr("data-config");
+                        var objId = $(node).find(".J-commentFt").attr("id");
+                        var data = configData ? (new Function("return " + configData))() : {};
+                        itemArr.push(data);
+                        objArr.push(objId);
+
                     });
 
-                    self._queryComments(itemIdsArr, itemIdForBind, orderIdArr,parentOrderIdArr);
+                    self._queryComments(itemArr,objArr);
 
                     var totalPage =  resp.data.total ? Math.ceil(resp.data.total / 15) : 3;
                     self.pageNav = new PageNav({'id':'#tbh5v0 #J-goodsPage', 'index':1, 'pageCount':totalPage, 'objId':'p'});
-
-
 
                 } else if (resp.ret[0].indexOf("FAIL_SYS_SESSION_EXPIRED") > -1) {   //
                     notification.flash("请重新登录").show();
@@ -157,15 +140,11 @@
                 alert("抱歉！您的手机浏览器暂不支持网页上传图片功能。");
             }
 
-            app.ZDMData.ratedUid = item.attr("data-rateduid");
-            console.log(app.ZDMData);
-            app.ZDMData.tradeId = item.attr("data-tradeid");
-            app.ZDMData.parentTradeId = item.attr("data-parentTradeId");
-            app.ZDMData.aucNumId = item.attr("data-itemId");
+            var dataConfig = item.attr("data-config");
 
+            app.ZDMData.itemDataConfig = dataConfig ? (new Function("return " + dataConfig))() : {};
 
             app.navigation.push("upload", {datas:{"canUpload":canUpload}});
-
 
         },
 
