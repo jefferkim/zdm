@@ -35,10 +35,11 @@
         },
 
 
-        _queryComments:function (ids, itemIdForBind, orderIdArr) {
+        _queryComments:function (ids, itemIdForBind, orderIdArr,parentOrderIdArr) {
 
             var self = this;
 
+            console.log(itemIdForBind);
 
             var data = {"ratedUid":"0", "itemIds":ids.join(","), "pageSize":"150", "pageIndex":"1"};
 
@@ -55,7 +56,7 @@
 
                         console.log(list);
 
-                        var t = _.where(list, {"aucNumId":id, "parentTradeId":orderIdArr[index]});
+                        var t = _.where(list, {"aucNumId":id, "parentTradeId":orderIdArr[index],"tradeId":parentOrderIdArr[index]});
 
                         var comment1 = t.length > 0 ? t[0] : false;
 
@@ -79,6 +80,7 @@
             var itemIdsArr = [];
             var itemIdForBind = [];
             var orderIdArr = [];
+            var parentOrderIdArr = [];
 
             console.log(pageNo);
 
@@ -104,9 +106,10 @@
                         itemIdsArr.push($(node).attr("data-itemId"));
                         itemIdForBind.push($(node).attr("data-id"));
                         orderIdArr.push($(node).attr("data-orderId"));
+                        parentOrderIdArr.push($(node).attr("data-parenttradeid"));
                     });
 
-                    self._queryComments(itemIdsArr, itemIdForBind, orderIdArr);
+                    self._queryComments(itemIdsArr, itemIdForBind, orderIdArr,parentOrderIdArr);
 
                     var totalPage =  resp.data.total ? Math.ceil(resp.data.total / 15) : 3;
                     self.pageNav = new PageNav({'id':'#tbh5v0 #J-goodsPage', 'index':1, 'pageCount':totalPage, 'objId':'p'});
