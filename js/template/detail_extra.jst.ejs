@@ -7,8 +7,7 @@
 
     <% if(item.soldout == 'false'){ %>
     <% if(trade.buySupport && trade.buySupport == 'true'){ %><a href="#" class="immbuy<% if(seller.type == 'B'){ %> c-btn-tmall-buy<% } else{ %> c-btn-oran<% } %>"><span>立即购买</span></a><% } %>
-    <% if(trade.cartSupport && trade.cartSupport == 'true'){ %><a href="#" class="c-btn-blue addcart"><span>加入购物车</span></a><% } %>
-    <% } else { %>
+    <% if(trade.cartSupport && trade.cartSupport == 'true'){ %><% } %> <% } else { %>
     <b class="ds-coma ds-bs"><span>宝贝不能购买</span></b>
     <% } %>
 
